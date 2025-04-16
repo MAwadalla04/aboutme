@@ -492,10 +492,48 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div>© 2025 Mohamed Awadalla. All rights reserved.</div>
+                <div>
+                    © 2025 Mohamed Awadalla. All rights reserved.
+                    <br> <span style="font-size: 0.8em;">Visitor Count: <span id="visit-count">Loading...</span></span> </div>
                 <div class="code">/* Built with HTML & CSS */</div>
             </div>
         </div>
     </footer>
+<script>
+        async function fetchVisitCount() {
+            try {
+                // Use relative path for deployed site
+                const response = await fetch('/api/visits'); // This path needs to match your Pages Function route
+                if (!response.ok) {
+                    // If the API fails, don't break the page, just log error and maybe hide the count
+                    console.error('Visit counter API error:', response.status);
+                    const countElement = document.getElementById('visit-count');
+                    if (countElement) countElement.textContent = 'N/A'; // Or hide it: countElement.parentElement.style.display = 'none';
+                    return; 
+                }
+                
+                const data = await response.json();
+                const countElement = document.getElementById('visit-count');
+                
+                if (countElement && data.visits !== undefined) {
+                     // Format large numbers nicely
+                     countElement.textContent = Number(data.visits).toLocaleString(); 
+                } else if (countElement) {
+                    countElement.textContent = 'N/A';
+                }
+
+            } catch (error) {
+                console.error('Failed to fetch visit count:', error);
+                const countElement = document.getElementById('visit-count');
+                if (countElement) {
+                    // Hide or show error on network failure
+                     countElement.textContent = 'N/A'; 
+                }
+            }
+        }
+
+        // Call the function when the HTML DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', fetchVisitCount);
+    </script>
 </body>
 </html>
