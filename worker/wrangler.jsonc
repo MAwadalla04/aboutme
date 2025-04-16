@@ -1,0 +1,25 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "resume-visitor-counter",  // <-- Changed this name
+  "main": "src/index.js",
+  "compatibility_date": "2025-04-16", // <-- Keep your date
+  "observability": {
+    "enabled": true // You can keep this
+  },
+
+  // --- ADD THIS ENTIRE SECTION ---
+  "d1_databases": [
+    {
+      "binding": "DB", // This name MUST match env.DB in your JS code
+      "database_name": "resume-stats-db", // The name you gave your D1 DB in Cloudflare
+      "database_id": "YOUR_ACTUAL_DATABASE_ID_HERE" // Get this from the D1 dashboard
+    }
+  ]
+  // --- END OF SECTION TO ADD ---
+
+  // You can leave the commented-out sections below if you want
+  // "placement": { "mode": "smart" },
+  // "vars": { "MY_VARIABLE": "production_value" },
+  // "assets": { "directory": "./public/", "binding": "ASSETS" },
+  // "services": [{ "binding": "MY_SERVICE", "service": "my-service" }]
+}}
