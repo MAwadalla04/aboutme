@@ -503,7 +503,7 @@
         async function fetchVisitCount() {
             try {
                 // Use relative path for deployed site
-                const response = await fetch('/api/visits'); // This path needs to match your Pages Function route
+                const response = await fetch('https://solitary-paper-a975.mohamedawadalla75.workers.dev/visits');
                 if (!response.ok) {
                     // If the API fails, don't break the page, just log error and maybe hide the count
                     console.error('Visit counter API error:', response.status);
