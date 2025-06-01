@@ -142,6 +142,31 @@
         .location svg {
             margin-right: 0.5rem;
         }
+
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--light-text);
+        }
         
         /* Main Content */
         section {
@@ -247,6 +272,23 @@
         .project-description {
             font-size: 0.95rem;
         }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tech-tag {
+            background-color: var(--light-bg);
+            color: var(--secondary-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid var(--border-color);
+        }
         
         /* Contact */
         .contact-content {
@@ -315,6 +357,11 @@
             .nav-links {
                 display: none;
             }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
         }
     </style>
 </head>
@@ -344,6 +391,12 @@
                     </svg>
                     Brooklyn, NY
                 </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">2026</div>
+                        <div class="stat-label">Graduation</div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -353,16 +406,16 @@
             <h2>About Me</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <p>I am a Computer Science student at Long Island University's Honors College with a strong focus on cybersecurity, network security, and ethical hacking. My technical background spans across various cybersecurity tools, programming languages, and virtualization technologies.</p>
-                    <p>Currently working as an Honors College Assistant while pursuing my Bachelor's degree, I'm passionate about securing digital infrastructures and developing automated security solutions. My experience includes building virtual IT environments, creating security automation scripts, and developing ethical hacking tools.</p>
-                    <p>I actively participate in Capture The Flag (CTF) competitions, solving cybersecurity challenges in penetration testing, cryptography, and reverse engineering. My goal is to leverage my technical skills and knowledge to contribute to the field of cybersecurity and protect organizations from emerging threats.</p>
+                    <p>I am a Computer Science student at Long Island University's Honors College with a strong focus on cybersecurity, data analysis, and AI/machine learning technologies. My technical expertise spans across cybersecurity tools, programming languages, and modern AI frameworks including Natural Language Processing and Retrieval-Augmented Generation.</p>
+                    <p>Currently serving as an Honors College Assistant while pursuing my Bachelor's degree, I'm passionate about securing digital infrastructures, automating security processes, and developing intelligent systems. My experience includes building virtual IT environments, creating automated security solutions, and developing comprehensive management systems.</p>
+                    <p>I actively engage in CTF competitions and cybersecurity challenges, continuously developing my analytical and problem-solving skills. My goal is to leverage cutting-edge technology and AI to contribute meaningfully to the cybersecurity field and protect organizations from evolving digital threats.</p>
                 </div>
                 <div class="education">
                     <h3>Education</h3>
-                    <p><strong>Long Island University-Honors College</strong><br>Brooklyn, NY</p>
+                    <p><strong>Long Island University</strong><br>Honors College<br>Brooklyn, NY</p>
                     <p>Bachelor of Science in Computer Science<br>Anticipated 2026</p>
                     <p>GPA: 3.46</p>
-                    <p><em>Honors: Dean's List, Scholar</em></p>
+                    <p><em>Honors: Dean's List, Dean Scholar</em></p>
                 </div>
             </div>
         </div>
@@ -370,43 +423,45 @@
 
     <section id="skills">
         <div class="container">
-            <h2>Technical Skills</h2>
+            <h2>Skills</h2>
             <div class="skills-container">
                 <div class="skill-category">
-                    <h3>Programming & Databases</h3>
+                    <h3>Data & Analytics</h3>
                     <ul class="skill-list">
-                        <li>Python</li>
-                        <li>C++</li>
-                        <li>MySQL</li>
-                        <li>Java</li>
+                        <li>Data Analysis & Visualization</li>
+                        <li>Process Automation (Python)</li>
+                        <li>Log Analysis</li>
+                        <li>MySQL Database Management</li>
+                        <li>Critical Thinking & Problem-Solving</li>
                     </ul>
                 </div>
                 <div class="skill-category">
-                    <h3>Cybersecurity Tools & Concepts</h3>
+                    <h3>Cybersecurity & Security</h3>
                     <ul class="skill-list">
                         <li>SIEM (Splunk, ELK Stack)</li>
-                        <li>OSINT</li>
                         <li>Network Security</li>
                         <li>Web Security (Burp Suite, OWASP Top 10)</li>
-                        <li>Cryptography</li>
-                        <li>MITRE ATT&CK</li>
-                        <li>Log Analysis</li>
                         <li>Incident Response</li>
+                        <li>OSINT & Threat Intelligence</li>
+                        <li>MITRE ATT&CK Framework</li>
                     </ul>
                 </div>
                 <div class="skill-category">
-                    <h3>Systems & Infrastructure</h3>
+                    <h3>Programming & Development</h3>
                     <ul class="skill-list">
-                        <li>Windows, MacOS, Linux</li>
-                        <li>VMware, Hyper-V</li>
+                        <li>Python, C++, Java</li>
+                        <li>Operating Systems (Windows, MacOS, Linux)</li>
+                        <li>Virtualization (VMware, Hyper-V)</li>
                         <li>AWS Fundamentals</li>
                     </ul>
                 </div>
                 <div class="skill-category">
-                    <h3>Certifications</h3>
+                    <h3>AI & Machine Learning</h3>
                     <ul class="skill-list">
-                        <li>CompTIA Security+ (pending)</li>
-                        <li>Microsoft Certified Solutions Associate: Networking & Cybersecurity</li>
+                        <li>Natural Language Processing (NLP)</li>
+                        <li>Retrieval-Augmented Generation (RAG)</li>
+                        <li>Model Context Protocol</li>
+                        <li>AI Integration & Automation</li>
                     </ul>
                 </div>
             </div>
@@ -425,25 +480,55 @@
                             <p>Configured a dedicated VM as a central routing point to manage data flow and connectivity between other VMs.</p>
                             <p>Implemented firewall rules and network monitoring tools to analyze traffic and detect anomalies.</p>
                         </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-content">
-                        <h3 class="project-title">Security Automation Scripting & Threat Detection</h3>
-                        <div class="project-description">
-                            <p>Developed Python scripts to automate log analysis and vulnerability scanning, reducing manual analysis time by 40%.</p>
-                            <p>Integrated Splunk and ELK Stack for real-time security monitoring and threat intelligence gathering.</p>
-                            <p>Designed automated alerting via email/SMS for immediate threat detection and incident response.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">VMware</span>
+                            <span class="tech-tag">Hyper-V</span>
+                            <span class="tech-tag">Network Security</span>
                         </div>
                     </div>
                 </div>
                 <div class="project-card">
                     <div class="project-content">
-                        <h3 class="project-title">Remote Access Tool (RAT) for Ethical Hacking</h3>
+                        <h3 class="project-title">Advanced Python Scripting for Cybersecurity Operations & Ethical Hacking</h3>
                         <div class="project-description">
-                            <p>Developed a custom Remote Access Tool (RAT) in Python for penetration testing and ethical hacking scenarios.</p>
-                            <p>Implemented secure command execution and file transfer capabilities over an encrypted channel.</p>
-                            <p>Designed stealth and persistence mechanisms to simulate real-world attack vectors for red-team exercises.</p>
+                            <p>Developed Python scripts to automate critical security operations, including log analysis and vulnerability scanning, and engineered a custom Remote Access Tool (RAT) for penetration testing and ethical hacking exercises.</p>
+                            <p>Reduced manual security analysis time by 40% through automation, integrated Splunk and ELK Stack for real-time security monitoring and threat intelligence gathering, and designed automated email/SMS alerts for immediate incident response.</p>
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Splunk</span>
+                            <span class="tech-tag">ELK Stack</span>
+                            <span class="tech-tag">Automation</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">Retail Inventory & Purchase Order Management System</h3>
+                        <div class="project-description">
+                            <p>Collaborated to develop a comprehensive Retail Inventory Management System using Python, Tkinter (GUI), and MySQL, engineering core modules for product tracking (addition, quantity/price updates), stock level management, and end-to-end purchase order processing to minimize retail losses.</p>
+                            <p>Designed and implemented the MySQL database backend, structuring tables for users, products, suppliers, and detailed purchase orders, and ensured data integrity through secure user authentication and input validation techniques.</p>
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Tkinter</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">GUI Development</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">Applied Cybersecurity Problem-Solving (CTF Challenges)</h3>
+                        <div class="project-description">
+                            <p>Actively solve cybersecurity challenges on platforms like TryHackMe, HackTheBox, and picoCTF, focusing on penetration testing, cryptography, and reverse engineering.</p>
+                            <p>Continuously develop analytical and problem-solving skills by identifying vulnerabilities and devising solutions in diverse, simulated cybersecurity scenarios.</p>
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">Penetration Testing</span>
+                            <span class="tech-tag">Cryptography</span>
+                            <span class="tech-tag">Reverse Engineering</span>
+                            <span class="tech-tag">CTF</span>
                         </div>
                     </div>
                 </div>
@@ -475,7 +560,7 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
                                 <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
                             </svg>
-                            <a href="https://github.com/yourusername" target="_blank">GitHub</a>
+                            <a href="https://github.com/MAwadalla04/" target="_blank">GitHub</a>
                         </li>
                         <li class="contact-link">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
