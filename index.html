@@ -3,20 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mohamed Awadalla | Cybersecurity Professional</title>
+    <title>Mohamed Awadalla | AI/ML Engineer & Computer Science Student</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #2a3d66;
-            --secondary-color: #3f72af;
-            --accent-color: #1089ff;
-            --light-bg: #f9f9f9;
-            --dark-bg: #1e272e;
-            --text-color: #333;
-            --light-text: #f5f5f5;
-            --border-color: #e0e0e0;
+            --primary-color: #1a1a2e;
+            --secondary-color: #16213e;
+            --accent-color: #0f3460;
+            --highlight-color: #e94560;
+            --light-bg: #f8fafc;
+            --white: #ffffff;
+            --text-color: #1e293b;
+            --light-text: #64748b;
+            --border-color: #e2e8f0;
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
         
         * {
@@ -26,8 +32,8 @@
         }
         
         body {
-            font-family: 'Source Sans 3', sans-serif;
-            line-height: 1.6;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
             color: var(--text-color);
             background-color: var(--light-bg);
         }
@@ -35,47 +41,65 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
         
         /* Typography */
         h1, h2, h3, h4 {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Inter', sans-serif;
             font-weight: 600;
-            margin-bottom: 1rem;
+            line-height: 1.3;
         }
         
         h1 {
-            font-size: 2.5rem;
+            font-size: clamp(2.5rem, 5vw, 4rem);
             font-weight: 700;
         }
         
         h2 {
-            font-size: 1.8rem;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
             color: var(--primary-color);
-            border-bottom: 2px solid var(--secondary-color);
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
+            position: relative;
         }
         
-        p {
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+        }
+        
+        h3 {
+            font-size: 1.4rem;
+            color: var(--accent-color);
             margin-bottom: 1rem;
         }
         
+        p {
+            margin-bottom: 1.2rem;
+            color: var(--light-text);
+        }
+        
         .code {
-            font-family: 'Roboto Mono', monospace;
+            font-family: 'JetBrains Mono', monospace;
         }
         
         /* Header */
         header {
-            background-color: var(--primary-color);
-            color: var(--light-text);
-            padding: 1.5rem 0;
+            background-color: var(--white);
+            color: var(--text-color);
+            padding: 1rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow-sm);
+            backdrop-filter: blur(10px);
         }
         
         nav {
@@ -85,141 +109,268 @@
         }
         
         .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            font-family: 'Montserrat', sans-serif;
+            display: none;
         }
         
         .nav-links {
             display: flex;
             list-style: none;
-        }
-        
-        .nav-links li {
-            margin-left: 2rem;
+            gap: 2rem;
         }
         
         .nav-links a {
-            color: var(--light-text);
+            color: var(--text-color);
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            position: relative;
         }
         
-        .nav-links a:hover {
-            color: var(--accent-color);
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
         }
         
         /* Hero Section */
         .hero {
             padding-top: 8rem;
-            padding-bottom: 4rem;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            color: var(--light-text);
+            padding-bottom: 6rem;
+            background: var(--gradient-primary);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
         }
         
         .hero-content {
+            position: relative;
+            z-index: 2;
             max-width: 800px;
         }
         
         .hero h1 {
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            color: var(--white);
         }
         
         .hero .tagline {
             font-size: 1.25rem;
             margin-bottom: 2rem;
             font-weight: 300;
+            color: var(--white);
+            opacity: 0.9;
         }
         
-        .location {
+        .hero-info {
             display: flex;
-            align-items: center;
-            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
             font-size: 1rem;
         }
         
-        .location svg {
-            margin-right: 0.5rem;
+        .hero-info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0.9;
         }
-
+        
         .hero-stats {
             display: flex;
             gap: 2rem;
             margin-top: 2rem;
         }
-
+        
         .stat-item {
             text-align: center;
-            padding: 1rem;
+            padding: 1.5rem;
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
+            border-radius: 12px;
             backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
-
+        
         .stat-number {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 700;
-            color: var(--accent-color);
+            color: var(--highlight-color);
         }
-
+        
         .stat-label {
             font-size: 0.9rem;
-            color: var(--light-text);
+            opacity: 0.8;
+        }
+        
+        .hero-actions {
+            margin-top: 2rem;
+        }
+        
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: var(--highlight-color);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(233, 69, 96, 0.3);
+            border: 2px solid var(--highlight-color);
+        }
+        
+        .download-btn:hover {
+            background: transparent;
+            color: var(--highlight-color);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(233, 69, 96, 0.4);
+        }
+        
+        .download-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+        
+        .surprise-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: transparent;
+            color: var(--white);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: 2px solid var(--white);
+            margin-left: 1rem;
+        }
+        
+        .surprise-btn:hover {
+            background: var(--white);
+            color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
+        }
+        
+        .surprise-btn svg {
+            width: 20px;
+            height: 20px;
         }
         
         /* Main Content */
         section {
-            padding: 4rem 0;
+            padding: 5rem 0;
         }
         
         section:nth-child(even) {
-            background-color: #fff;
+            background-color: var(--white);
         }
         
         /* About */
         .about-content {
-            display: flex;
-            gap: 2rem;
-            align-items: flex-start;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            align-items: start;
         }
         
-        .about-text {
-            flex: 2;
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
         }
         
         .education {
-            flex: 1;
-            background-color: #fff;
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
         }
         
         .education h3 {
-            color: var(--secondary-color);
-            font-size: 1.2rem;
-            margin-bottom: 0.75rem;
+            color: var(--accent-color);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .education-item {
+            margin-bottom: 1.5rem;
+        }
+        
+        .education-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .education-item strong {
+            color: var(--text-color);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .education-item em {
+            color: var(--highlight-color);
+            font-style: normal;
+            font-weight: 500;
         }
         
         /* Skills */
         .skills-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
         }
         
         .skill-category {
-            background-color: #fff;
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .skill-category:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
         }
         
         .skill-category h3 {
-            color: var(--secondary-color);
+            color: var(--accent-color);
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .skill-category h3::before {
+            content: '⚡';
             font-size: 1.2rem;
-            margin-bottom: 1rem;
         }
         
         .skill-list {
@@ -227,77 +378,129 @@
         }
         
         .skill-list li {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
             padding-left: 1.5rem;
             position: relative;
+            color: var(--light-text);
         }
         
         .skill-list li::before {
             content: "▹";
-            color: var(--accent-color);
+            color: var(--highlight-color);
             position: absolute;
             left: 0;
+            font-weight: bold;
+        }
+        
+        /* Experience */
+        .experience-item {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .experience-item:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .experience-title {
+            font-size: 1.3rem;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .experience-company {
+            color: var(--text-color);
+            font-weight: 600;
+        }
+        
+        .experience-date {
+            color: var(--highlight-color);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        
+        .experience-description {
+            color: var(--light-text);
+            line-height: 1.7;
         }
         
         /* Projects */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
         }
         
         .project-card {
-            background-color: #fff;
-            border-radius: 8px;
+            background: var(--white);
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
         .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
         }
         
         .project-content {
-            padding: 1.5rem;
+            padding: 2rem;
         }
         
         .project-title {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             margin-bottom: 1rem;
-            color: var(--primary-color);
+            color: var(--accent-color);
         }
         
         .project-description {
-            font-size: 0.95rem;
+            color: var(--light-text);
+            line-height: 1.7;
         }
-
+        
         .project-tech {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
-            margin-top: 1rem;
+            margin-top: 1.5rem;
         }
-
+        
         .tech-tag {
-            background-color: var(--light-bg);
-            color: var(--secondary-color);
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
+            background: var(--gradient-secondary);
+            color: var(--white);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
             font-size: 0.8rem;
             font-weight: 500;
-            border: 1px solid var(--border-color);
         }
         
         /* Contact */
         .contact-content {
-            display: flex;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 3rem;
         }
         
-        .contact-info {
-            flex: 1;
+        .contact-info p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
         }
         
         .contact-links {
@@ -307,29 +510,42 @@
         .contact-link {
             display: flex;
             align-items: center;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .contact-link:hover {
+            transform: translateX(8px);
+            box-shadow: var(--shadow-md);
         }
         
         .contact-link svg {
             margin-right: 1rem;
-            color: var(--accent-color);
+            color: var(--highlight-color);
+            width: 24px;
+            height: 24px;
         }
         
         .contact-link a {
             color: var(--text-color);
             text-decoration: none;
+            font-weight: 500;
             transition: color 0.3s ease;
         }
         
         .contact-link a:hover {
-            color: var(--accent-color);
+            color: var(--highlight-color);
         }
         
         /* Footer */
         footer {
-            background-color: var(--dark-bg);
-            color: var(--light-text);
-            padding: 2rem 0;
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 3rem 0;
             font-size: 0.9rem;
         }
         
@@ -337,13 +553,19 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .footer-content .code {
+            color: var(--light-text);
         }
         
         /* Responsive */
         @media (max-width: 768px) {
             .about-content,
             .contact-content {
-                flex-direction: column;
+                grid-template-columns: 1fr;
             }
             
             .projects-grid {
@@ -357,11 +579,37 @@
             .nav-links {
                 display: none;
             }
-
+            
             .hero-stats {
                 flex-direction: column;
                 gap: 1rem;
             }
+            
+            .experience-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
         }
     </style>
 </head>
@@ -373,6 +621,7 @@
                 <ul class="nav-links">
                     <li><a href="#about">About</a></li>
                     <li><a href="#skills">Skills</a></li>
+                    <li><a href="#experience">Experience</a></li>
                     <li><a href="#projects">Projects</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
@@ -382,20 +631,53 @@
 
     <section class="hero">
         <div class="container">
-            <div class="hero-content">
+            <div class="hero-content fade-in-up">
                 <h1>Mohamed Awadalla</h1>
-                <p class="tagline">Cybersecurity Professional & Computer Science Student</p>
-                <div class="location">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
-                    </svg>
-                    Brooklyn, NY
+                <p class="tagline">AI/ML Engineer & Computer Science Student</p>
+                <div class="hero-info">
+                    <div class="hero-info-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+                        </svg>
+                        Brooklyn, NY
+                    </div>
+                    <div class="hero-info-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h6zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H5z"/>
+                            <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                        </svg>
+                        917-436-9873
+                    </div>
+                    <div class="hero-info-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+                        </svg>
+                        Mohamedawadalla75@gmail.com
+                    </div>
                 </div>
                 <div class="hero-stats">
                     <div class="stat-item">
                         <div class="stat-number">2026</div>
                         <div class="stat-label">Graduation</div>
                     </div>
+                    <div class="stat-item">
+                        <div class="stat-number">AI/ML</div>
+                        <div class="stat-label">Specialization</div>
+                    </div>
+                </div>
+                
+                <div class="hero-actions">
+                    <a href="Mohamed_Awadalla_Resume.pdf" download class="download-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                            <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+                        </svg>
+                        Download My Resume
+                    </a>
+                    
+                    <a href="https://youtu.be/xvFZjo5PgG0?si=e2d4R0ybH1zhHJZS" target="_blank" class="surprise-btn">
+                        Don't click here! 
+                    </a>
                 </div>
             </div>
         </div>
@@ -406,16 +688,24 @@
             <h2>About Me</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <p>I am a Computer Science student at Long Island University's Honors College with a strong focus on cybersecurity, data analysis, and AI/machine learning technologies. My technical expertise spans across cybersecurity tools, programming languages, and modern AI frameworks including Natural Language Processing and Retrieval-Augmented Generation.</p>
-                    <p>Currently serving as an Honors College Assistant while pursuing my Bachelor's degree, I'm passionate about securing digital infrastructures, automating security processes, and developing intelligent systems. My experience includes building virtual IT environments, creating automated security solutions, and developing comprehensive management systems.</p>
-                    <p>I actively engage in CTF competitions and cybersecurity challenges, continuously developing my analytical and problem-solving skills. My goal is to leverage cutting-edge technology and AI to contribute meaningfully to the cybersecurity field and protect organizations from evolving digital threats.</p>
+                    <p>I am a Computer Science student at Long Island University's Honors College with a strong focus on Artificial Intelligence, Machine Learning, and Cybersecurity. My technical expertise spans across modern AI frameworks, neural networks, and large language models, with hands-on experience in fine-tuning and evaluating LLMs.</p>
+                    <p>Currently serving as a Legal Intern at NYC Emergency Management, I'm developing full-stack applications and intelligent document processing systems using AI/ML technologies. My passion lies in leveraging cutting-edge AI to solve real-world problems and create innovative solutions.</p>
+                    <p>I actively engage in machine learning projects, from fine-tuning LLaMA models for specialized knowledge bases to building neural networks for financial forecasting. My goal is to contribute meaningfully to the AI/ML field and help organizations harness the power of artificial intelligence.</p>
                 </div>
                 <div class="education">
                     <h3>Education</h3>
-                    <p><strong>Long Island University</strong><br>Honors College<br>Brooklyn, NY</p>
-                    <p>Bachelor of Science in Computer Science<br>Anticipated 2026</p>
-                    <p>GPA: 3.46</p>
-                    <p><em>Honors: Dean's List, Dean Scholar</em></p>
+                    <div class="education-item">
+                        <strong>Long Island University</strong>
+                        <div>Honors College</div>
+                        <div>Brooklyn, NY</div>
+                    </div>
+                    <div class="education-item">
+                        <strong>Bachelor of Science in Computer Science</strong>
+                        <div>Anticipated 2026</div>
+                    </div>
+                    <div class="education-item">
+                        <em>Dean's List, Dean Scholar</em>
+                    </div>
                 </div>
             </div>
         </div>
@@ -426,43 +716,90 @@
             <h2>Skills</h2>
             <div class="skills-container">
                 <div class="skill-category">
-                    <h3>Data & Analytics</h3>
-                    <ul class="skill-list">
-                        <li>Data Analysis & Visualization</li>
-                        <li>Process Automation (Python)</li>
-                        <li>Log Analysis</li>
-                        <li>MySQL Database Management</li>
-                        <li>Critical Thinking & Problem-Solving</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>Cybersecurity & Security</h3>
-                    <ul class="skill-list">
-                        <li>SIEM (Splunk, ELK Stack)</li>
-                        <li>Network Security</li>
-                        <li>Web Security (Burp Suite, OWASP Top 10)</li>
-                        <li>Incident Response</li>
-                        <li>OSINT & Threat Intelligence</li>
-                        <li>MITRE ATT&CK Framework</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>Programming & Development</h3>
-                    <ul class="skill-list">
-                        <li>Python, C++, Java</li>
-                        <li>Operating Systems (Windows, MacOS, Linux)</li>
-                        <li>Virtualization (VMware, Hyper-V)</li>
-                        <li>AWS Fundamentals</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
                     <h3>AI & Machine Learning</h3>
                     <ul class="skill-list">
                         <li>Natural Language Processing (NLP)</li>
-                        <li>Retrieval-Augmented Generation (RAG)</li>
-                        <li>Model Context Protocol</li>
-                        <li>AI Integration & Automation</li>
+                        <li>Neural Networks & Deep Learning</li>
+                        <li>PyTorch Framework</li>
+                        <li>Large Language Models (LLMs)</li>
+                        <li>Fine-tuning & Evaluating LLMs</li>
+                        <li>Prompt Engineering</li>
+                        <li>Machine Learning Fundamentals</li>
+                        <li>Data Analysis & Visualization</li>
+                        <li>Process Automation (Python)</li>
+                        <li>Scikit-learn, Pandas, NumPy</li>
                     </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Languages & Databases</h3>
+                    <ul class="skill-list">
+                        <li>Python (Advanced)</li>
+                        <li>C++</li>
+                        <li>MySQL</li>
+                        <li>JavaScript/HTML/CSS</li>
+                        <li>SQL & Database Design</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Developer Tools & Platforms</h3>
+                    <ul class="skill-list">
+                        <li>Operating Systems (Windows, MacOS, Linux)</li>
+                        <li>Version Control (Git)</li>
+                        <li>AI Coding Agents</li>
+                        <li>Full-Stack Development</li>
+                        <li>VMware & Virtualization</li>
+                        <li>Splunk & ELK Stack</li>
+                        <li>Cloud Platforms (AWS)</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Product & Communication</h3>
+                    <ul class="skill-list">
+                        <li>Rapid Prototyping</li>
+                        <li>Cross-Functional Collaboration</li>
+                        <li>Technical Communication</li>
+                        <li>MS Office Suite</li>
+                        <li>Project Coordination</li>
+                        <li>Time Management</li>
+                        <li>Problem-Solving</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <div class="container">
+            <h2>Relevant Experience</h2>
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <h3 class="experience-title">Legal Intern - Development</h3>
+                        <div class="experience-company">New York City Emergency Management</div>
+                        <div>Brooklyn, NY</div>
+                    </div>
+                    <div class="experience-date">June 2025 – Present</div>
+                </div>
+                <div class="experience-description">
+                    <p>• Developed a full-stack web application for a Disaster Law Symposium, enabling 1000+ participants to register and attend both online and in-person sessions, demonstrating scalable system design and user experience optimization</p>
+                    <p>• Built an intelligent Document Processing Suite that automated the sorting and renaming of 16,000+ procurement contracts and supporting documents using Python, implementing machine learning-based document classification, OCR technology for scanned documents, and intelligent vendor name standardization</p>
+                    <p>• Engineered automated workflow solutions that reduced manual contract processing time by implementing smart document classification (MSA, SOW, NDA, Purchase Orders) and metadata extraction for large-scale document management systems</p>
+                </div>
+            </div>
+            
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <h3 class="experience-title">Honors College Assistant</h3>
+                        <div class="experience-company">Long Island University Brooklyn</div>
+                        <div>Brooklyn, NY</div>
+                    </div>
+                    <div class="experience-date">Sep 2022 - Present</div>
+                </div>
+                <div class="experience-description">
+                    <p>• Led engaging campus tours for 100+ prospective students and their families, effectively showcasing university programs and campus life while providing exceptional support throughout the admissions process</p>
+                    <p>• Assist in coordinating and executing 15+ Honors College events annually, programs, and activities, ensuring an engaging community for 200+ students and leveraging data-driven insights to optimize event planning and student engagement strategies</p>
+                    <p>• Collaborate with staff to manage communications and outreach efforts across 5+ digital platforms, enhancing visibility and engagement through promotional materials, and automated workflow solutions to streamline administrative processes</p>
                 </div>
             </div>
         </div>
@@ -474,61 +811,53 @@
             <div class="projects-grid">
                 <div class="project-card">
                     <div class="project-content">
-                        <h3 class="project-title">Virtual IT Infrastructure Simulation & Network Security</h3>
+                        <h3 class="project-title">NBA Analytics Conversational AI - Fine-tuned LLaMA 3.2</h3>
                         <div class="project-description">
-                            <p>Built a simulated enterprise IT environment using Hyper-V and VMware, deploying multiple virtual machines for network segmentation and security testing.</p>
-                            <p>Configured a dedicated VM as a central routing point to manage data flow and connectivity between other VMs.</p>
-                            <p>Implemented firewall rules and network monitoring tools to analyze traffic and detect anomalies.</p>
+                            <p>Fine-tuned LLaMA 3.2 model using LoRA techniques to create a specialized New York Knicks knowledge base, implementing custom tokenization and data preprocessing pipelines for sports analytics applications.</p>
+                            <p>Developed automated data collection system for NBA Twitter content, creating text cleaning algorithms and sentiment analysis tools to extract meaningful basketball insights and performance metrics from social media data.</p>
                         </div>
                         <div class="project-tech">
-                            <span class="tech-tag">VMware</span>
-                            <span class="tech-tag">Hyper-V</span>
-                            <span class="tech-tag">Network Security</span>
+                            <span class="tech-tag">LLaMA 3.2</span>
+                            <span class="tech-tag">LoRA</span>
+                            <span class="tech-tag">NLP</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Sentiment Analysis</span>
                         </div>
                     </div>
                 </div>
+                
                 <div class="project-card">
                     <div class="project-content">
-                        <h3 class="project-title">Advanced Python Scripting for Cybersecurity Operations & Ethical Hacking</h3>
+                        <h3 class="project-title">Automated Log Analysis</h3>
                         <div class="project-description">
-                            <p>Developed Python scripts to automate critical security operations, including log analysis and vulnerability scanning, and engineered a custom Remote Access Tool (RAT) for penetration testing and ethical hacking exercises.</p>
-                            <p>Reduced manual security analysis time by 40% through automation, integrated Splunk and ELK Stack for real-time security monitoring and threat intelligence gathering, and designed automated email/SMS alerts for immediate incident response.</p>
+                            <p>Developed Python-based data processing pipeline for parsing and analyzing large-scale security logs, implementing statistical analysis and anomaly detection algorithms for real-time threat intelligence.</p>
+                            <p>Integrated Splunk and ELK Stack for distributed data processing, creating automated alert systems that reduced incident response time by 40% through intelligent pattern recognition.</p>
+                            <p>Built comprehensive monitoring dashboard with data visualization components, enabling real-time analysis of system performance metrics and security event correlation.</p>
                         </div>
                         <div class="project-tech">
                             <span class="tech-tag">Python</span>
                             <span class="tech-tag">Splunk</span>
                             <span class="tech-tag">ELK Stack</span>
-                            <span class="tech-tag">Automation</span>
+                            <span class="tech-tag">Anomaly Detection</span>
+                            <span class="tech-tag">Data Visualization</span>
                         </div>
                     </div>
                 </div>
+                
                 <div class="project-card">
                     <div class="project-content">
-                        <h3 class="project-title">Retail Inventory & Purchase Order Management System</h3>
+                        <h3 class="project-title">Stock Price Prediction Neural Network</h3>
                         <div class="project-description">
-                            <p>Collaborated to develop a comprehensive Retail Inventory Management System using Python, Tkinter (GUI), and MySQL, engineering core modules for product tracking (addition, quantity/price updates), stock level management, and end-to-end purchase order processing to minimize retail losses.</p>
-                            <p>Designed and implemented the MySQL database backend, structuring tables for users, products, suppliers, and detailed purchase orders, and ensured data integrity through secure user authentication and input validation techniques.</p>
+                            <p>Developed LSTM neural network using PyTorch to predict stock price movements, implementing time series analysis and feature engineering techniques for financial market data processing.</p>
+                            <p>Built comprehensive data pipeline integrating multiple financial APIs, creating automated preprocessing workflows for handling missing data, normalization, and sequential feature extraction.</p>
+                            <p>Achieved predictive accuracy improvements through hyperparameter optimization and ensemble methods, demonstrating practical application of deep learning for financial forecasting and risk analysis.</p>
                         </div>
                         <div class="project-tech">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Tkinter</span>
-                            <span class="tech-tag">MySQL</span>
-                            <span class="tech-tag">GUI Development</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-content">
-                        <h3 class="project-title">Applied Cybersecurity Problem-Solving (CTF Challenges)</h3>
-                        <div class="project-description">
-                            <p>Actively solve cybersecurity challenges on platforms like TryHackMe, HackTheBox, and picoCTF, focusing on penetration testing, cryptography, and reverse engineering.</p>
-                            <p>Continuously develop analytical and problem-solving skills by identifying vulnerabilities and devising solutions in diverse, simulated cybersecurity scenarios.</p>
-                        </div>
-                        <div class="project-tech">
-                            <span class="tech-tag">Penetration Testing</span>
-                            <span class="tech-tag">Cryptography</span>
-                            <span class="tech-tag">Reverse Engineering</span>
-                            <span class="tech-tag">CTF</span>
+                            <span class="tech-tag">PyTorch</span>
+                            <span class="tech-tag">LSTM</span>
+                            <span class="tech-tag">Time Series</span>
+                            <span class="tech-tag">Financial APIs</span>
+                            <span class="tech-tag">Deep Learning</span>
                         </div>
                     </div>
                 </div>
@@ -541,7 +870,9 @@
             <h2>Contact Information</h2>
             <div class="contact-content">
                 <div class="contact-info">
-                    <p>Feel free to reach out to me for cybersecurity consultations, professional opportunities, or collaborative projects.</p>
+                    <p>I'm happy to discuss AI/ML, Cybersecurity, research opportunities, and professional collaborations. Feel free to reach out for with any inquiries or potential opportunities.</p>
+                </div>
+                <div>
                     <ul class="contact-links">
                         <li class="contact-link">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
@@ -560,14 +891,9 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
                                 <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
                             </svg>
-                            <a href="https://github.com/MAwadalla04/" target="_blank">GitHub</a>
+                            <a href="https://github.com/MAwadalla04/" target="_blank">GitHub (pending)</a>
                         </li>
-                        <li class="contact-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-                                <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
-                            </svg>
-                            <a href="https://www.linkedin.com/in/mohamed-r-awadalla/" target="_blank">LinkedIn</a>
-                        </li>
+
                     </ul>
                 </div>
             </div>
@@ -579,21 +905,21 @@
             <div class="footer-content">
                 <div>
                     © 2025 Mohamed Awadalla. All rights reserved.
-                    <br> <span style="font-size: 0.8em;">Visitor Count: <span id="visit-count">Loading...</span></span> </div>
-                <div class="code">/* Built with HTML & CSS */</div>
+                    <br> <span style="font-size: 0.8em;">Visitor Count: <span id="visit-count">Loading...</span></span>
+                </div>
+                <div class="code">/* Built with AI & ML Passion */</div>
             </div>
         </div>
     </footer>
-<script>
+
+    <script>
         async function fetchVisitCount() {
             try {
-                // Use relative path for deployed site
                 const response = await fetch('https://solitary-paper-a975.mohamedawadalla75.workers.dev/visits');
                 if (!response.ok) {
-                    // If the API fails, don't break the page, just log error and maybe hide the count
                     console.error('Visit counter API error:', response.status);
                     const countElement = document.getElementById('visit-count');
-                    if (countElement) countElement.textContent = 'N/A'; // Or hide it: countElement.parentElement.style.display = 'none';
+                    if (countElement) countElement.textContent = 'N/A';
                     return; 
                 }
                 
@@ -601,8 +927,7 @@
                 const countElement = document.getElementById('visit-count');
                 
                 if (countElement && data.visits !== undefined) {
-                     // Format large numbers nicely
-                     countElement.textContent = Number(data.visits).toLocaleString(); 
+                    countElement.textContent = Number(data.visits).toLocaleString(); 
                 } else if (countElement) {
                     countElement.textContent = 'N/A';
                 }
@@ -611,11 +936,47 @@
                 console.error('Failed to fetch visit count:', error);
                 const countElement = document.getElementById('visit-count');
                 if (countElement) {
-                    // Hide or show error on network failure
-                     countElement.textContent = 'N/A'; 
+                    countElement.textContent = 'N/A'; 
                 }
             }
         }
+
+        // Add smooth scroll behavior for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections for animation
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
 
         // Call the function when the HTML DOM is fully loaded
         document.addEventListener('DOMContentLoaded', fetchVisitCount);
