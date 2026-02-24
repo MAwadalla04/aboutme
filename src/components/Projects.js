@@ -3,30 +3,51 @@ import React from 'react';
 const Projects = () => {
   const projects = [
     {
-      title: 'NBA Analytics Conversational AI - Fine-tuned LLaMA 3.2',
+      title: 'NLP & Unstructured Data Processing Pipeline (NYC Emergency Management)',
       description: [
-        'Fine-tuned LLaMA 3.2 model using LoRA techniques to create a specialized New York Knicks knowledge base, implementing custom tokenization and data preprocessing pipelines for sports analytics applications.',
-        'Developed automated data collection system for NBA Twitter content, creating text cleaning algorithms and sentiment analysis tools to extract meaningful basketball insights and performance metrics from social media data.'
+        'Built a production-scale NLP pipeline processing 16,000+ unstructured legal documents.',
+        'Implemented automated classification using OCR integration (AWS Textract), text-pattern analysis, and hybrid rule-based/probabilistic classification.',
+        'Designed scalable ETL workflows and data validation pipelines that standardized multi-source vendor data.'
       ],
-      tech: ['LLaMA 3.2', 'LoRA', 'NLP', 'Python', 'Sentiment Analysis']
+      tech: ['Python', 'AWS Textract', 'OCR', 'NLP', 'Database Storage', 'REST APIs']
     },
     {
-      title: 'Automated Log Analysis',
+      title: 'Event Registration System (NYC Emergency Management)',
       description: [
-        'Developed Python-based data processing pipeline for parsing and analyzing large-scale security logs, implementing statistical analysis and anomaly detection algorithms for real-time threat intelligence.',
-        'Integrated Splunk and ELK Stack for distributed data processing, creating automated alert systems that reduced incident response time by 40% through intelligent pattern recognition.',
-        'Built comprehensive monitoring dashboard with data visualization components, enabling real-time analysis of system performance metrics and security event correlation.'
+        'Designed and deployed automated event registration system serving 1,000+ participants.',
+        'Built using Microsoft Power Platform (Power Automate workflows), SharePoint Lists, and custom connectors.',
+        'Eliminated manual registration processing with zero downtime during peak periods.'
       ],
-      tech: ['Python', 'Splunk', 'ELK Stack', 'Anomaly Detection', 'Data Visualization']
+      tech: ['Power Platform', 'Power Automate', 'SharePoint', 'REST APIs']
     },
     {
-      title: 'Stock Price Prediction Neural Network',
+      title: 'Custom Autograd Engine + Character-Level Language Model',
       description: [
-        'Developed LSTM neural network using PyTorch to predict stock price movements, implementing time series analysis and feature engineering techniques for financial market data processing.',
-        'Built comprehensive data pipeline integrating multiple financial APIs, creating automated preprocessing workflows for handling missing data, normalization, and sequential feature extraction.',
-        'Achieved predictive accuracy improvements through hyperparameter optimization and ensemble methods, demonstrating practical application of deep learning for financial forecasting and risk analysis.'
+        'Built reverse-mode automatic differentiation engine from scratch in Jupyter Notebooks.',
+        'Implemented dynamic computation graphs, custom gradient functions, and full training loop for neural networks.',
+        'Developed character-level language model inspired by Karpathy\'s makemore.'
       ],
-      tech: ['PyTorch', 'LSTM', 'Time Series', 'Financial APIs', 'Deep Learning']
+      tech: ['Python', 'Jupyter Notebooks', 'Neural Networks', 'Backpropagation']
+    },
+    {
+      title: 'Case Management Workflow System (NYC Emergency Management)',
+      description: [
+        'Designed case management workflows and data architecture using SharePoint Lists and Power Automate.',
+        'Implemented structured request intake processes and document routing automation.',
+        'Improved departmental operational efficiency by 30%.'
+      ],
+      tech: ['SharePoint', 'Power Automate', 'Workflow Automation']
+    },
+    {
+      title: 'Context-Aware Spotify Recommendation Engine (In Progress)',
+      description: [
+        'Developing a behavioral ML system that predicts user intent from skip patterns and listening context.',
+        'Moving beyond collaborative filtering to model psychological engagement (discovery vs. comfort modes).',
+        'Engineered 4 custom recommendation algorithms: momentum-based transitions ("Ghost Target"), rage-skip detection with immediate fallback, novelty injection for zero-play tracks ("Trojan Horse"), and user-controlled exploration parameters.',
+        'Built ETL pipeline processing 100K+ songs with engineered audio features (valence, energy, tempo).',
+        'Training XGBoost classifier on simulated preference data as baseline before LSTM sequence modeling.'
+      ],
+      tech: ['Python', 'XGBoost', 'LSTM', 'ETL Pipelines', 'Feature Engineering', 'Behavioral ML']
     }
   ];
 

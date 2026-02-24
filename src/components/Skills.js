@@ -3,52 +3,85 @@ import React from 'react';
 const Skills = () => {
   const skillCategories = [
     {
-      title: 'AI & Machine Learning',
+      title: 'Programming Languages & Frameworks',
       skills: [
-        'Natural Language Processing (NLP)',
-        'Neural Networks & Deep Learning',
-        'PyTorch Framework',
-        'Large Language Models (LLMs)',
-        'Fine-tuning & Evaluating LLMs',
-        'Prompt Engineering',
-        'Machine Learning Fundamentals',
-        'Data Analysis & Visualization',
-        'Process Automation (Python)',
-        'Scikit-learn, Pandas, NumPy'
-      ]
-    },
-    {
-      title: 'Languages & Databases',
-      skills: [
-        'Python (Advanced)',
+        'Python',
         'C++',
+        'SQL',
+        'PyTorch',
+        'Scikit-learn'
+      ]
+    },
+    {
+      title: 'Machine Learning & AI',
+      skills: [
+        'LLM Fine-Tuning (LoRA)',
+        'NLP',
+        'Neural Networks',
+        'Time-Series Modeling (LSTM)',
+        'Prompt Engineering',
+        'ML Libraries: Pandas, Scikit-learn, TensorFlow'
+      ]
+    },
+    {
+      title: 'Data Engineering',
+      skills: [
+        'Pandas',
+        'NumPy',
+        'Feature Engineering',
+        'Text Processing',
+        'Data Cleaning',
+        'OCR (Tesseract/AWS Textract)',
+        'API Integration',
+        'ETL Workflows',
+        'Data Pipeline Development'
+      ]
+    },
+    {
+      title: 'Cloud & Infrastructure',
+      skills: [
+        'AWS (EC2, S3, Textract)',
+        'Azure (basic experience)',
+        'Docker',
+        'Database Administration'
+      ]
+    },
+    {
+      title: 'Low-Code Development & Automation',
+      skills: [
+        'Microsoft Power Platform (Power Apps, Power Automate)',
+        'SharePoint',
+        'SharePoint Lists',
+        'PowerShell',
+        'Workflow Automation'
+      ]
+    },
+    {
+      title: 'Tools & Infrastructure',
+      skills: [
+        'Git',
+        'GitHub',
+        'Linux',
+        'REST APIs',
         'MySQL',
-        'JavaScript/HTML/CSS',
-        'SQL & Database Design'
+        'PostgreSQL',
+        'Training Pipelines'
       ]
     },
     {
-      title: 'Developer Tools & Platforms',
+      title: 'Web Development & APIs',
       skills: [
-        'Operating Systems (Windows, MacOS, Linux)',
-        'Version Control (Git)',
-        'AI Coding Agents',
-        'Full-Stack Development',
-        'VMware & Virtualization',
-        'Splunk & ELK Stack',
-        'Cloud Platforms (AWS)'
+        'RESTful API Design',
+        'Web Application Development',
+        'Custom Connectors'
       ]
     },
     {
-      title: 'Product & Communication',
+      title: 'Database',
       skills: [
-        'Rapid Prototyping',
-        'Cross-Functional Collaboration',
-        'Technical Communication',
-        'MS Office Suite',
-        'Project Coordination',
-        'Time Management',
-        'Problem-Solving'
+        'MySQL',
+        'PostgreSQL',
+        'Database Schema Design'
       ]
     }
   ];

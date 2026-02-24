@@ -9,7 +9,7 @@ const Hero = () => {
         <div className="hero-shape hero-shape-3"></div>
         <div className="hero-content fade-in-up">
           <h1>Mohamed Awadalla</h1>
-          <p className="tagline">AI/ML Engineer & Computer Science Student</p>
+          <p className="tagline">AI/ML Engineer & Computer Science Graduate</p>
           <div className="hero-info">
             <div className="hero-info-item">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
@@ -34,7 +34,7 @@ const Hero = () => {
           <div className="hero-stats">
             <div className="stat-item">
               <div className="stat-number">2026</div>
-              <div className="stat-label">Graduation</div>
+              <div className="stat-label">Graduate</div>
             </div>
             <div className="stat-item">
               <div className="stat-number">AI/ML</div>

@@ -37,7 +37,6 @@ const Footer = () => {
             © 2025 Mohamed Awadalla. All rights reserved.
             <br /> <span style={{ fontSize: '0.8em' }}>Visitor Count: <span id="visit-count">{visitCount}</span></span>
           </div>
-          <div className="code">/* Built with AI & ML Passion */</div>
         </div>
       </div>
     </footer>
