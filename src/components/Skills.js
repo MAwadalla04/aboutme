@@ -4,6 +4,7 @@ const Skills = () => {
   const skillCategories = [
     {
       title: 'Programming Languages & Frameworks',
+      icon: '</>',
       skills: [
         'Python',
         'C++',
@@ -14,6 +15,7 @@ const Skills = () => {
     },
     {
       title: 'Machine Learning & AI',
+      icon: 'ML',
       skills: [
         'LLM Fine-Tuning (LoRA)',
         'NLP',
@@ -25,6 +27,7 @@ const Skills = () => {
     },
     {
       title: 'Data Engineering',
+      icon: 'ETL',
       skills: [
         'Pandas',
         'NumPy',
@@ -39,6 +42,7 @@ const Skills = () => {
     },
     {
       title: 'Cloud & Infrastructure',
+      icon: 'AWS',
       skills: [
         'AWS (EC2, S3, Textract)',
         'Azure (basic experience)',
@@ -48,6 +52,7 @@ const Skills = () => {
     },
     {
       title: 'Low-Code Development & Automation',
+      icon: 'Auto',
       skills: [
         'Microsoft Power Platform (Power Apps, Power Automate)',
         'SharePoint',
@@ -58,6 +63,7 @@ const Skills = () => {
     },
     {
       title: 'Tools & Infrastructure',
+      icon: 'Git',
       skills: [
         'Git',
         'GitHub',
@@ -70,6 +76,7 @@ const Skills = () => {
     },
     {
       title: 'Web Development & APIs',
+      icon: 'API',
       skills: [
         'RESTful API Design',
         'Web Application Development',
@@ -78,6 +85,7 @@ const Skills = () => {
     },
     {
       title: 'Database',
+      icon: 'DB',
       skills: [
         'MySQL',
         'PostgreSQL',
@@ -93,7 +101,10 @@ const Skills = () => {
         <div className="skills-container">
           {skillCategories.map((category, index) => (
             <div key={index} className="skill-category">
-              <h3>{category.title}</h3>
+              <h3>
+                <span className="skill-icon">{category.icon}</span>
+                {category.title}
+              </h3>
               <ul className="skill-list">
                 {category.skills.map((skill, skillIndex) => (
                   <li key={skillIndex}>{skill}</li>
