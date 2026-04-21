@@ -3,43 +3,49 @@ import React from 'react';
 const Projects = () => {
   const projects = [
     {
-      title: 'NLP & Unstructured Data Processing Pipeline (NYC Emergency Management)',
-      description: [
-        'Built a production-scale NLP pipeline processing 16,000+ unstructured legal documents.',
-        'Implemented automated classification using OCR integration (AWS Textract), text-pattern analysis, and hybrid rule-based/probabilistic classification.',
-        'Designed scalable ETL workflows and data validation pipelines that standardized multi-source vendor data.'
+      title: 'Custom Autograd Engine & Character-Level Language Model',
+      links: [
+        { label: 'autograd', url: 'https://github.com/Mo-Awadalla/autograd' },
+        { label: 'makemore', url: 'https://github.com/Mo-Awadalla/makemore' }
       ],
-      tech: ['Python', 'AWS Textract', 'OCR', 'NLP', 'Database Storage', 'REST APIs']
+      description: [
+        'Re-implemented a reverse-mode automatic differentiation engine in Python (inspired by Karpathy’s micrograd), then extended it beyond the tutorial with tensor operations, a numerical gradient checker using finite differences, and a PyTorch benchmark suite validating gradient correctness against torch.autograd on identical inputs.',
+        'Built a character-level language model on top of the custom engine with tokenization, embedding layers, and an MLP architecture following Bengio et al. (2003), trained end-to-end via backpropagation on a 32,000-name dataset.'
+      ],
+      tech: ['Python', 'PyTorch', 'Backpropagation', 'Custom Autograd', 'Neural Networks']
     },
     {
-      title: 'Event Registration System (NYC Emergency Management)',
-      description: [
-        'Designed and deployed automated event registration system serving 1,000+ participants.',
-        'Built using Microsoft Power Platform (Power Automate workflows), SharePoint Lists, and custom connectors.',
-        'Eliminated manual registration processing with zero downtime during peak periods.'
+      title: 'LegalDocuMan — Document Processing & Classification Suite',
+      links: [
+        { label: 'LegalDocuMan', url: 'https://github.com/Mo-Awadalla/LegalDocuMan' }
       ],
-      tech: ['Power Platform', 'Power Automate', 'SharePoint', 'REST APIs']
+      description: [
+        'Built a modular Python application for automated legal document classification, signature detection, and vendor-based file organization — deployed at NYC Emergency Management’s Office of the Chief Counsel to process a legal drive of 16,000+ contracts ahead of migration to a new legal management system.',
+        'Architected as a multi-component pipeline (processing engine, threaded GUI, CLI query tool, test suite) with OCR fallback via Tesseract, PDF text extraction via pdfplumber, and persistent metadata tracking for retention and destruction scheduling; released as MIT-licensed open-source with full installation and contribution documentation.'
+      ],
+      tech: ['Python', 'Tesseract', 'pdfplumber', 'OCR', 'CLI', 'GUI']
     },
     {
-      title: 'Custom Autograd Engine + Character-Level Language Model',
+      title: 'Financial Time-Series Forecasting (LSTM & Sequence Modeling)',
       description: [
-        'Built reverse-mode automatic differentiation engine from scratch in Jupyter Notebooks.',
-        'Implemented dynamic computation graphs, custom gradient functions, and full training loop for neural networks.',
-        'Developed character-level language model inspired by Karpathy\'s makemore.'
+        'Built a PyTorch LSTM for sequence modeling on financial market data, with a multi-API ingestion pipeline, systematic hyperparameter search, and ensemble experimentation to improve forecasting accuracy.',
+        'Engineered time-series features across multi-API sources, ran controlled experiments on model architecture and training procedure, and analyzed performance across configurations to improve generalization on out-of-sample data.'
       ],
-      tech: ['Python', 'Jupyter Notebooks', 'Neural Networks', 'Backpropagation']
+      tech: ['Python', 'PyTorch', 'LSTM', 'Time-Series Modeling', 'Feature Engineering']
     },
     {
-      title: 'Case Management Workflow System (NYC Emergency Management)',
-      description: [
-        'Designed case management workflows and data architecture using SharePoint Lists and Power Automate.',
-        'Implemented structured request intake processes and document routing automation.',
-        'Improved departmental operational efficiency by 30%.'
+      title: 'DLS Website Sanitized',
+      links: [
+        { label: 'dls-website-sanitized', url: 'https://github.com/Mo-Awadalla/dls-website-sanitized' }
       ],
-      tech: ['SharePoint', 'Power Automate', 'Workflow Automation']
+      description: [
+        'Built a sanitized public version of the Disaster Law Symposium registration and tracking website used for hybrid event sign-up and attendance workflows.',
+        'Implemented reusable front-end registration flows with HTML, CSS, and JavaScript, designed around the same operational needs as the internal Zoom Events-integrated system.'
+      ],
+      tech: ['HTML', 'CSS', 'JavaScript', 'REST APIs', 'Event Registration']
     },
     {
-      title: 'Context-Aware Spotify Recommendation Engine (In Progress)',
+      title: 'Context-Aware Spotify Recommendation Engine',
       description: [
         'Developing a behavioral ML system that predicts user intent from skip patterns and listening context.',
         'Moving beyond collaborative filtering to model psychological engagement (discovery vs. comfort modes).',
@@ -60,6 +66,15 @@ const Projects = () => {
             <div key={index} className="project-card">
               <div className="project-content">
                 <h3 className="project-title">{project.title}</h3>
+                {project.links && (
+                  <div className="project-links">
+                    {project.links.map((link, linkIndex) => (
+                      <a key={linkIndex} href={link.url} target="_blank" rel="noopener noreferrer">
+                        {link.label}
+                      </a>
+                    ))}
+                  </div>
+                )}
                 <div className="project-description">
                   {project.description.map((desc, descIndex) => (
                     <p key={descIndex}>{desc}</p>

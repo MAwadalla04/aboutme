@@ -873,10 +873,35 @@ section::before {
 
 .project-title {
   font-size: 1.2rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   color: var(--text-primary);
   font-weight: 600;
   line-height: 1.4;
+}
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.project-links a {
+  color: var(--accent-primary);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 0.25rem 0.65rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  background: var(--glass-bg);
+  transition: all 0.2s ease;
+}
+
+.project-links a:hover {
+  color: var(--text-primary);
+  border-color: var(--accent-primary);
+  background: var(--bg-card-hover);
 }
 
 .project-description {
@@ -1219,13 +1244,6 @@ footer {
                     </div>
                     <div class="hero-info-item">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                            <path d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h6zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H5z"/>
-                            <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
-                        </svg>
-                        917-436-9873
-                    </div>
-                    <div class="hero-info-item">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                             <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
                         </svg>
                         Mohamedawadalla75@gmail.com
@@ -1260,7 +1278,7 @@ footer {
             <div class="about-content">
                 <div class="about-text">
                     <p>I'm a Computer Science graduate specializing in Artificial Intelligence and Machine Learning. I work with modern AI frameworks, neural networks, and large language models, with hands-on experience in fine-tuning and evaluating LLMs.</p>
-                    <p>As a Legal Intern at NYC Emergency Management, I develop full-stack applications and intelligent document processing systems using AI/ML technologies. I've built projects ranging from fine-tuned LLaMA models for specialized knowledge bases to neural networks for financial forecasting.</p>
+                    <p>As a Legal Tech & Automation Intern at NYC Emergency Management, I build internal web tools, workflow automation, and legal technology systems that replace manual processes with reusable software.</p>
                     <p>I'm passionate about leveraging AI to solve real-world problems and help organizations harness the power of artificial intelligence.</p>
                 </div>
                 <div class="education">
@@ -1291,43 +1309,51 @@ footer {
                     <ul class="skill-list">
                         <li>Python</li>
                         <li>C++</li>
+                        <li>JavaScript</li>
+                        <li>TypeScript</li>
+                        <li>HTML/CSS</li>
                         <li>SQL</li>
                         <li>PyTorch</li>
                         <li>Scikit-learn</li>
+                        <li>NumPy</li>
+                        <li>Pandas</li>
                     </ul>
                 </div>
                 <div class="skill-category">
                     <h3><span class="skill-icon">ML</span>Machine Learning & AI</h3>
                     <ul class="skill-list">
                         <li>LLM Fine-Tuning (LoRA)</li>
-                        <li>NLP</li>
                         <li>Neural Networks</li>
+                        <li>Transformers</li>
+                        <li>NLP</li>
                         <li>Time-Series Modeling (LSTM)</li>
-                        <li>Prompt Engineering</li>
-                        <li>ML Libraries: Pandas, Scikit-learn, TensorFlow</li>
+                        <li>Backpropagation</li>
+                        <li>Custom Autograd</li>
                     </ul>
                 </div>
                 <div class="skill-category">
                     <h3><span class="skill-icon">ETL</span>Data Engineering</h3>
                     <ul class="skill-list">
-                        <li>Pandas</li>
-                        <li>NumPy</li>
+                        <li>Data Pipelines</li>
                         <li>Feature Engineering</li>
                         <li>Text Processing</li>
                         <li>Data Cleaning</li>
-                        <li>OCR (Tesseract/AWS Textract)</li>
-                        <li>API Integration</li>
-                        <li>ETL Workflows</li>
-                        <li>Data Pipeline Development</li>
+                        <li>OCR (Tesseract, AWS Textract)</li>
+                        <li>REST API Integration</li>
+                        <li>ETL</li>
                     </ul>
                 </div>
                 <div class="skill-category">
-                    <h3><span class="skill-icon">AWS</span>Cloud & Infrastructure</h3>
+                    <h3><span class="skill-icon">Git</span>Tools & Infrastructure</h3>
                     <ul class="skill-list">
-                        <li>AWS (EC2, S3, Textract)</li>
-                        <li>Azure (basic experience)</li>
+                        <li>Git</li>
+                        <li>Linux</li>
                         <li>Docker</li>
-                        <li>Database Administration</li>
+                        <li>AWS</li>
+                        <li>Cloudflare (Pages, Workers)</li>
+                        <li>Jupyter</li>
+                        <li>REST APIs</li>
+                        <li>CI/CD</li>
                     </ul>
                 </div>
                 <div class="skill-category">
@@ -1336,36 +1362,17 @@ footer {
                         <li>Microsoft Power Platform (Power Apps, Power Automate)</li>
                         <li>SharePoint</li>
                         <li>SharePoint Lists</li>
-                        <li>PowerShell</li>
                         <li>Workflow Automation</li>
                     </ul>
                 </div>
                 <div class="skill-category">
-                    <h3><span class="skill-icon">Git</span>Tools & Infrastructure</h3>
+                    <h3><span class="skill-icon">CS</span>Foundations</h3>
                     <ul class="skill-list">
-                        <li>Git</li>
-                        <li>GitHub</li>
-                        <li>Linux</li>
-                        <li>REST APIs</li>
-                        <li>MySQL</li>
-                        <li>PostgreSQL</li>
-                        <li>Training Pipelines</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3><span class="skill-icon">API</span>Web Development & APIs</h3>
-                    <ul class="skill-list">
-                        <li>RESTful API Design</li>
-                        <li>Web Application Development</li>
-                        <li>Custom Connectors</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3><span class="skill-icon">DB</span>Database</h3>
-                    <ul class="skill-list">
-                        <li>MySQL</li>
-                        <li>PostgreSQL</li>
-                        <li>Database Schema Design</li>
+                        <li>Data Structures & Algorithms</li>
+                        <li>Object-Oriented Design</li>
+                        <li>Automatic Differentiation</li>
+                        <li>Systems Design</li>
+                        <li>Empirical Experimentation</li>
                     </ul>
                 </div>
             </div>
@@ -1379,7 +1386,7 @@ footer {
                 <div class="experience-item">
                     <div class="experience-header">
                         <div>
-                            <h3 class="experience-title">Legal Intern - Development</h3>
+                            <h3 class="experience-title">Legal Tech & Automation Intern</h3>
                             <div class="experience-company">New York City Emergency Management</div>
                             <div class="experience-location">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
@@ -1391,29 +1398,9 @@ footer {
                         <div class="experience-date">June 2025 – Present</div>
                     </div>
                     <div class="experience-description">
-                        <p>Developed a full-stack web application for a Disaster Law Symposium, enabling 1000+ participants to register and attend both online and in-person sessions, demonstrating scalable system design and user experience optimization</p>
-                        <p>Built an intelligent Document Processing Suite that automated the sorting and renaming of 16,000+ procurement contracts and supporting documents using Python, implementing machine learning-based document classification, OCR technology for scanned documents, and intelligent vendor name standardization</p>
-                        <p>Engineered automated workflow solutions that reduced manual contract processing time by implementing smart document classification (MSA, SOW, NDA, Purchase Orders) and metadata extraction for large-scale document management systems</p>
-                    </div>
-                </div>
-                <div class="experience-item">
-                    <div class="experience-header">
-                        <div>
-                            <h3 class="experience-title">Honors College Assistant</h3>
-                            <div class="experience-company">Long Island University Brooklyn</div>
-                            <div class="experience-location">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
-                                    <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
-                                </svg>
-                                Brooklyn, NY
-                            </div>
-                        </div>
-                        <div class="experience-date">Sep 2022 - Present</div>
-                    </div>
-                    <div class="experience-description">
-                        <p>Led engaging campus tours for 100+ prospective students and their families, effectively showcasing university programs and campus life while providing exceptional support throughout the admissions process</p>
-                        <p>Assist in coordinating and executing 15+ Honors College events annually, programs, and activities, ensuring an engaging community for 200+ students and leveraging data-driven insights to optimize event planning and student engagement strategies</p>
-                        <p>Collaborate with staff to manage communications and outreach efforts across 5+ digital platforms, enhancing visibility and engagement through promotional materials, and automated workflow solutions to streamline administrative processes</p>
+                        <p>Designed and built a custom event registration and tracking website (HTML, CSS, JavaScript) integrated with the Zoom Events REST API, handling sign-up and attendance tracking for 1,000+ registrants across hybrid events and replacing a manual coordination process with a reusable template adopted by the department.</p>
+                        <p>Authored a vendor evaluation framework benchmarking 8 competing legal matter management platforms (Thomson Reuters-class systems) on technical capabilities, cost, and integration fit; framework adopted by Chief Counsel and drove the department’s final vendor selection.</p>
+                        <p>Designed and deployed an end-to-end OKR tracking and reporting system for the Office of the Chief Counsel: built a dynamic Power Apps form with cascading dropdowns backed by a SharePoint list of 63 pre-populated records across 4 attorneys, and orchestrated 3 Power Automate flows for quarterly reminders, 48-hour compliance follow-ups, and automated HTML report generation and email delivery.</p>
                     </div>
                 </div>
             </div>
@@ -1426,72 +1413,82 @@ footer {
             <div class="projects-grid">
                 <div class="project-card">
                     <div class="project-content">
-                        <h3 class="project-title">NLP & Unstructured Data Processing Pipeline (NYC Emergency Management)</h3>
+                        <h3 class="project-title">Custom Autograd Engine & Character-Level Language Model</h3>
+                        <div class="project-links">
+                            <a href="https://github.com/Mo-Awadalla/autograd" target="_blank" rel="noopener noreferrer">autograd</a>
+                            <a href="https://github.com/Mo-Awadalla/makemore" target="_blank" rel="noopener noreferrer">makemore</a>
+                        </div>
                         <div class="project-description">
-                            <p>Built a production-scale NLP pipeline processing 16,000+ unstructured legal documents.</p>
-                            <p>Implemented automated classification using OCR integration (AWS Textract), text-pattern analysis, and hybrid rule-based/probabilistic classification.</p>
-                            <p>Designed scalable ETL workflows and data validation pipelines that standardized multi-source vendor data.</p>
+                            <p>Re-implemented a reverse-mode automatic differentiation engine in Python (inspired by Karpathy’s micrograd), then extended it beyond the tutorial with tensor operations, a numerical gradient checker using finite differences, and a PyTorch benchmark suite validating gradient correctness against torch.autograd on identical inputs.</p>
+                            <p>Built a character-level language model on top of the custom engine with tokenization, embedding layers, and an MLP architecture following Bengio et al. (2003), trained end-to-end via backpropagation on a 32,000-name dataset.</p>
                         </div>
                         <div class="project-tech">
                             <span class="tech-tag">Python</span>
-                            <span class="tech-tag">AWS Textract</span>
-                            <span class="tech-tag">OCR</span>
-                            <span class="tech-tag">NLP</span>
-                            <span class="tech-tag">Database Storage</span>
-                            <span class="tech-tag">REST APIs</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-content">
-                        <h3 class="project-title">Event Registration System (NYC Emergency Management)</h3>
-                        <div class="project-description">
-                            <p>Designed and deployed automated event registration system serving 1,000+ participants.</p>
-                            <p>Built using Microsoft Power Platform (Power Automate workflows), SharePoint Lists, and custom connectors.</p>
-                            <p>Eliminated manual registration processing with zero downtime during peak periods.</p>
-                        </div>
-                        <div class="project-tech">
-                            <span class="tech-tag">Power Platform</span>
-                            <span class="tech-tag">Power Automate</span>
-                            <span class="tech-tag">SharePoint</span>
-                            <span class="tech-tag">REST APIs</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-content">
-                        <h3 class="project-title">Custom Autograd Engine + Character-Level Language Model</h3>
-                        <div class="project-description">
-                            <p>Built reverse-mode automatic differentiation engine from scratch in Jupyter Notebooks.</p>
-                            <p>Implemented dynamic computation graphs, custom gradient functions, and full training loop for neural networks.</p>
-                            <p>Developed character-level language model inspired by Karpathy's makemore.</p>
-                        </div>
-                        <div class="project-tech">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Jupyter Notebooks</span>
-                            <span class="tech-tag">Neural Networks</span>
+                            <span class="tech-tag">PyTorch</span>
                             <span class="tech-tag">Backpropagation</span>
+                            <span class="tech-tag">Custom Autograd</span>
+                            <span class="tech-tag">Neural Networks</span>
                         </div>
                     </div>
                 </div>
                 <div class="project-card">
                     <div class="project-content">
-                        <h3 class="project-title">Case Management Workflow System (NYC Emergency Management)</h3>
+                        <h3 class="project-title">LegalDocuMan — Document Processing & Classification Suite</h3>
+                        <div class="project-links">
+                            <a href="https://github.com/Mo-Awadalla/LegalDocuMan" target="_blank" rel="noopener noreferrer">LegalDocuMan</a>
+                        </div>
                         <div class="project-description">
-                            <p>Designed case management workflows and data architecture using SharePoint Lists and Power Automate.</p>
-                            <p>Implemented structured request intake processes and document routing automation.</p>
-                            <p>Improved departmental operational efficiency by 30%.</p>
+                            <p>Built a modular Python application for automated legal document classification, signature detection, and vendor-based file organization — deployed at NYC Emergency Management’s Office of the Chief Counsel to process a legal drive of 16,000+ contracts ahead of migration to a new legal management system.</p>
+                            <p>Architected as a multi-component pipeline (processing engine, threaded GUI, CLI query tool, test suite) with OCR fallback via Tesseract, PDF text extraction via pdfplumber, and persistent metadata tracking for retention and destruction scheduling; released as MIT-licensed open-source with full installation and contribution documentation.</p>
                         </div>
                         <div class="project-tech">
-                            <span class="tech-tag">SharePoint</span>
-                            <span class="tech-tag">Power Automate</span>
-                            <span class="tech-tag">Workflow Automation</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Tesseract</span>
+                            <span class="tech-tag">pdfplumber</span>
+                            <span class="tech-tag">OCR</span>
+                            <span class="tech-tag">CLI</span>
+                            <span class="tech-tag">GUI</span>
                         </div>
                     </div>
                 </div>
                 <div class="project-card">
                     <div class="project-content">
-                        <h3 class="project-title">Context-Aware Spotify Recommendation Engine (In Progress)</h3>
+                        <h3 class="project-title">Financial Time-Series Forecasting (LSTM & Sequence Modeling)</h3>
+                        <div class="project-description">
+                            <p>Built a PyTorch LSTM for sequence modeling on financial market data, with a multi-API ingestion pipeline, systematic hyperparameter search, and ensemble experimentation to improve forecasting accuracy.</p>
+                            <p>Engineered time-series features across multi-API sources, ran controlled experiments on model architecture and training procedure, and analyzed performance across configurations to improve generalization on out-of-sample data.</p>
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">PyTorch</span>
+                            <span class="tech-tag">LSTM</span>
+                            <span class="tech-tag">Time-Series Modeling</span>
+                            <span class="tech-tag">Feature Engineering</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">DLS Website Sanitized</h3>
+                        <div class="project-links">
+                            <a href="https://github.com/Mo-Awadalla/dls-website-sanitized" target="_blank" rel="noopener noreferrer">dls-website-sanitized</a>
+                        </div>
+                        <div class="project-description">
+                            <p>Built a sanitized public version of the Disaster Law Symposium registration and tracking website used for hybrid event sign-up and attendance workflows.</p>
+                            <p>Implemented reusable front-end registration flows with HTML, CSS, and JavaScript, designed around the same operational needs as the internal Zoom Events-integrated system.</p>
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">REST APIs</span>
+                            <span class="tech-tag">Event Registration</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">Context-Aware Spotify Recommendation Engine</h3>
                         <div class="project-description">
                             <p>Developing a behavioral ML system that predicts user intent from skip patterns and listening context.</p>
                             <p>Moving beyond collaborative filtering to model psychological engagement (discovery vs. comfort modes).</p>
@@ -1529,16 +1526,9 @@ footer {
                         </li>
                         <li class="contact-link">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-                                <path d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h6zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H5z"/>
-                                <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
-                            </svg>
-                            <a href="tel:9174369873">917-436-9873</a>
-                        </li>
-                        <li class="contact-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
                                 <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
                             </svg>
-                            <a href="https://github.com/MAwadalla04/" target="_blank">GitHub (pending)</a>
+                            <a href="https://github.com/Mo-Awadalla/" target="_blank">GitHub</a>
                         </li>
                     </ul>
                 </div>

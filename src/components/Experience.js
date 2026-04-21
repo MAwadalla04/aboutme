@@ -3,25 +3,14 @@ import React from 'react';
 const Experience = () => {
   const experiences = [
     {
-      title: 'Legal Intern - Development',
+      title: 'Legal Tech & Automation Intern',
       company: 'New York City Emergency Management',
       location: 'Brooklyn, NY',
       date: 'June 2025 – Present',
       description: [
-        'Developed a full-stack web application for a Disaster Law Symposium, enabling 1000+ participants to register and attend both online and in-person sessions, demonstrating scalable system design and user experience optimization',
-        'Built an intelligent Document Processing Suite that automated the sorting and renaming of 16,000+ procurement contracts and supporting documents using Python, implementing machine learning-based document classification, OCR technology for scanned documents, and intelligent vendor name standardization',
-        'Engineered automated workflow solutions that reduced manual contract processing time by implementing smart document classification (MSA, SOW, NDA, Purchase Orders) and metadata extraction for large-scale document management systems'
-      ]
-    },
-    {
-      title: 'Honors College Assistant',
-      company: 'Long Island University Brooklyn',
-      location: 'Brooklyn, NY',
-      date: 'Sep 2022 - Present',
-      description: [
-        'Led engaging campus tours for 100+ prospective students and their families, effectively showcasing university programs and campus life while providing exceptional support throughout the admissions process',
-        'Assist in coordinating and executing 15+ Honors College events annually, programs, and activities, ensuring an engaging community for 200+ students and leveraging data-driven insights to optimize event planning and student engagement strategies',
-        'Collaborate with staff to manage communications and outreach efforts across 5+ digital platforms, enhancing visibility and engagement through promotional materials, and automated workflow solutions to streamline administrative processes'
+        'Designed and built a custom event registration and tracking website (HTML, CSS, JavaScript) integrated with the Zoom Events REST API, handling sign-up and attendance tracking for 1,000+ registrants across hybrid events and replacing a manual coordination process with a reusable template adopted by the department.',
+        'Authored a vendor evaluation framework benchmarking 8 competing legal matter management platforms (Thomson Reuters-class systems) on technical capabilities, cost, and integration fit; framework adopted by Chief Counsel and drove the department’s final vendor selection.',
+        'Designed and deployed an end-to-end OKR tracking and reporting system for the Office of the Chief Counsel: built a dynamic Power Apps form with cascading dropdowns backed by a SharePoint list of 63 pre-populated records across 4 attorneys, and orchestrated 3 Power Automate flows for quarterly reminders, 48-hour compliance follow-ups, and automated HTML report generation and email delivery.'
       ]
     }
   ];

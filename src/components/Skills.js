@@ -8,9 +8,14 @@ const Skills = () => {
       skills: [
         'Python',
         'C++',
+        'JavaScript',
+        'TypeScript',
+        'HTML/CSS',
         'SQL',
         'PyTorch',
-        'Scikit-learn'
+        'Scikit-learn',
+        'NumPy',
+        'Pandas'
       ]
     },
     {
@@ -18,36 +23,39 @@ const Skills = () => {
       icon: 'ML',
       skills: [
         'LLM Fine-Tuning (LoRA)',
-        'NLP',
         'Neural Networks',
+        'Transformers',
+        'NLP',
         'Time-Series Modeling (LSTM)',
-        'Prompt Engineering',
-        'ML Libraries: Pandas, Scikit-learn, TensorFlow'
+        'Backpropagation',
+        'Custom Autograd'
       ]
     },
     {
       title: 'Data Engineering',
       icon: 'ETL',
       skills: [
-        'Pandas',
-        'NumPy',
+        'Data Pipelines',
         'Feature Engineering',
         'Text Processing',
         'Data Cleaning',
-        'OCR (Tesseract/AWS Textract)',
-        'API Integration',
-        'ETL Workflows',
-        'Data Pipeline Development'
+        'OCR (Tesseract, AWS Textract)',
+        'REST API Integration',
+        'ETL'
       ]
     },
     {
-      title: 'Cloud & Infrastructure',
-      icon: 'AWS',
+      title: 'Tools & Infrastructure',
+      icon: 'Git',
       skills: [
-        'AWS (EC2, S3, Textract)',
-        'Azure (basic experience)',
+        'Git',
+        'Linux',
         'Docker',
-        'Database Administration'
+        'AWS',
+        'Cloudflare (Pages, Workers)',
+        'Jupyter',
+        'REST APIs',
+        'CI/CD'
       ]
     },
     {
@@ -57,39 +65,18 @@ const Skills = () => {
         'Microsoft Power Platform (Power Apps, Power Automate)',
         'SharePoint',
         'SharePoint Lists',
-        'PowerShell',
         'Workflow Automation'
       ]
     },
     {
-      title: 'Tools & Infrastructure',
-      icon: 'Git',
+      title: 'Foundations',
+      icon: 'CS',
       skills: [
-        'Git',
-        'GitHub',
-        'Linux',
-        'REST APIs',
-        'MySQL',
-        'PostgreSQL',
-        'Training Pipelines'
-      ]
-    },
-    {
-      title: 'Web Development & APIs',
-      icon: 'API',
-      skills: [
-        'RESTful API Design',
-        'Web Application Development',
-        'Custom Connectors'
-      ]
-    },
-    {
-      title: 'Database',
-      icon: 'DB',
-      skills: [
-        'MySQL',
-        'PostgreSQL',
-        'Database Schema Design'
+        'Data Structures & Algorithms',
+        'Object-Oriented Design',
+        'Automatic Differentiation',
+        'Systems Design',
+        'Empirical Experimentation'
       ]
     }
   ];

@@ -868,10 +868,35 @@ section::before {
 
 .project-title {
   font-size: 1.2rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   color: var(--text-primary);
   font-weight: 600;
   line-height: 1.4;
+}
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.project-links a {
+  color: var(--accent-primary);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 0.25rem 0.65rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  background: var(--glass-bg);
+  transition: all 0.2s ease;
+}
+
+.project-links a:hover {
+  color: var(--text-primary);
+  border-color: var(--accent-primary);
+  background: var(--bg-card-hover);
 }
 
 .project-description {
