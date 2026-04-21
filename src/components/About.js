@@ -7,9 +7,9 @@ const About = () => {
         <h2>About Me</h2>
         <div className="about-content">
           <div className="about-text">
-            <p>I'm a Computer Science graduate specializing in Artificial Intelligence and Machine Learning. I work with modern AI frameworks, neural networks, and large language models, with hands-on experience in fine-tuning and evaluating LLMs.</p>
+            <p>I am a Computer Science graduate specializing in Artificial Intelligence and Machine Learning. I work with modern AI frameworks, neural networks, and large language models, with hands-on experience in fine-tuning and evaluating LLMs.</p>
             <p>As a Legal Tech & Automation Intern at NYC Emergency Management, I build internal web tools, workflow automation, and legal technology systems that replace manual processes with reusable software.</p>
-            <p>I'm passionate about leveraging AI to solve real-world problems and help organizations harness the power of artificial intelligence.</p>
+            <p>I am passionate about leveraging AI to solve real-world problems and help organizations harness the power of artificial intelligence.</p>
           </div>
           <div className="education">
             <h3>Education</h3>
