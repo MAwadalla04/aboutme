@@ -194,23 +194,21 @@ nav {
 }
 
 .surprise-nav-btn {
-  color: var(--text-secondary);
+  color: var(--text-primary);
   text-decoration: none;
   font-weight: 500;
   font-size: 0.85rem;
   padding: 0.5rem 1.25rem;
   border-radius: var(--radius-full);
-  background: transparent;
-  border: 1px solid var(--border-color);
+  background: var(--gradient-secondary);
+  border: 1px solid transparent;
   transition: all 0.3s ease;
   margin-left: 0.75rem;
   cursor: pointer;
+  box-shadow: var(--shadow-glow-purple);
 }
 
 .surprise-nav-btn:hover {
-  background: var(--gradient-secondary);
-  border-color: transparent;
-  color: var(--text-primary);
   transform: translateY(-1px);
   box-shadow: var(--shadow-glow-purple);
 }

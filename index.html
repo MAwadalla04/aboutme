@@ -202,23 +202,21 @@ nav {
 }
 
 .surprise-nav-btn {
-  color: var(--text-secondary);
+  color: var(--text-primary);
   text-decoration: none;
   font-weight: 500;
   font-size: 0.85rem;
   padding: 0.5rem 1.25rem;
   border-radius: var(--radius-full);
-  background: transparent;
-  border: 1px solid var(--border-color);
+  background: var(--gradient-secondary);
+  border: 1px solid transparent;
   transition: all 0.3s ease;
   margin-left: 0.75rem;
   cursor: pointer;
+  box-shadow: var(--shadow-glow-purple);
 }
 
 .surprise-nav-btn:hover {
-  background: var(--gradient-secondary);
-  border-color: transparent;
-  color: var(--text-primary);
   transform: translateY(-1px);
   box-shadow: var(--shadow-glow-purple);
 }
@@ -1326,7 +1324,7 @@ footer {
                         <li>Neural Networks</li>
                         <li>Transformers</li>
                         <li>NLP</li>
-                        <li>Time-Series Modeling (LSTM)</li>
+                        <li>Time-Series Modeling (XGBoost, Gradient Boosting)</li>
                         <li>Backpropagation</li>
                         <li>Custom Autograd</li>
                     </ul>
@@ -1453,17 +1451,20 @@ footer {
                 </div>
                 <div class="project-card">
                     <div class="project-content">
-                        <h3 class="project-title">Financial Time-Series Forecasting (LSTM & Sequence Modeling)</h3>
+                        <h3 class="project-title">Stock Return Prediction (XGBoost & Gradient Boosting)</h3>
+                        <div class="project-links">
+                            <a href="https://github.com/Mo-Awadalla/stock-return-prediction" target="_blank" rel="noopener noreferrer">stock-return-prediction</a>
+                        </div>
                         <div class="project-description">
-                            <p>Built a PyTorch LSTM for sequence modeling on financial market data, with a multi-API ingestion pipeline, systematic hyperparameter search, and ensemble experimentation to improve forecasting accuracy.</p>
-                            <p>Engineered time-series features across multi-API sources, ran controlled experiments on model architecture and training procedure, and analyzed performance across configurations to improve generalization on out-of-sample data.</p>
+                            <p>Python pipeline for next-day price prediction on AAPL using 9 technical indicators. Predicted next-day returns to handle non-stationarity, then reconstructed price for evaluation against a naive baseline on a held-out test set.</p>
+                            <p>XGBoost achieved 1.54% MAPE vs. 1.05% for the baseline, a known finance-ML result.</p>
                         </div>
                         <div class="project-tech">
                             <span class="tech-tag">Python</span>
-                            <span class="tech-tag">PyTorch</span>
-                            <span class="tech-tag">LSTM</span>
+                            <span class="tech-tag">XGBoost</span>
+                            <span class="tech-tag">Gradient Boosting</span>
                             <span class="tech-tag">Time-Series Modeling</span>
-                            <span class="tech-tag">Feature Engineering</span>
+                            <span class="tech-tag">Technical Indicators</span>
                         </div>
                     </div>
                 </div>
@@ -1483,25 +1484,6 @@ footer {
                             <span class="tech-tag">JavaScript</span>
                             <span class="tech-tag">REST APIs</span>
                             <span class="tech-tag">Event Registration</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-content">
-                        <h3 class="project-title">Context-Aware Spotify Recommendation Engine</h3>
-                        <div class="project-description">
-                            <p>Developing a behavioral ML system that predicts user intent from skip patterns and listening context.</p>
-                            <p>Moving beyond collaborative filtering to model psychological engagement (discovery vs. comfort modes).</p>
-                            <p>Engineered 4 custom recommendation algorithms: momentum-based transitions, rage-skip detection with immediate fallback, novelty injection for zero-play tracks, and user-controlled exploration parameters.</p>
-                            <p>Built ETL pipeline processing 100K+ songs with engineered audio features (valence, energy, tempo).</p>
-                        </div>
-                        <div class="project-tech">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">XGBoost</span>
-                            <span class="tech-tag">LSTM</span>
-                            <span class="tech-tag">ETL Pipelines</span>
-                            <span class="tech-tag">Feature Engineering</span>
-                            <span class="tech-tag">Behavioral ML</span>
                         </div>
                     </div>
                 </div>

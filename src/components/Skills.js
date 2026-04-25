@@ -26,7 +26,7 @@ const Skills = () => {
         'Neural Networks',
         'Transformers',
         'NLP',
-        'Time-Series Modeling (LSTM)',
+        'Time-Series Modeling (XGBoost, Gradient Boosting)',
         'Backpropagation',
         'Custom Autograd'
       ]

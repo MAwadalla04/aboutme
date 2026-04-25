@@ -26,12 +26,15 @@ const Projects = () => {
       tech: ['Python', 'Tesseract', 'pdfplumber', 'OCR', 'CLI', 'GUI']
     },
     {
-      title: 'Financial Time-Series Forecasting (LSTM & Sequence Modeling)',
-      description: [
-        'Built a PyTorch LSTM for sequence modeling on financial market data, with a multi-API ingestion pipeline, systematic hyperparameter search, and ensemble experimentation to improve forecasting accuracy.',
-        'Engineered time-series features across multi-API sources, ran controlled experiments on model architecture and training procedure, and analyzed performance across configurations to improve generalization on out-of-sample data.'
+      title: 'Stock Return Prediction (XGBoost & Gradient Boosting)',
+      links: [
+        { label: 'stock-return-prediction', url: 'https://github.com/Mo-Awadalla/stock-return-prediction' }
       ],
-      tech: ['Python', 'PyTorch', 'LSTM', 'Time-Series Modeling', 'Feature Engineering']
+      description: [
+        'Python pipeline for next-day price prediction on AAPL using 9 technical indicators. Predicted next-day returns to handle non-stationarity, then reconstructed price for evaluation against a naive baseline on a held-out test set.',
+        'XGBoost achieved 1.54% MAPE vs. 1.05% for the baseline, a known finance-ML result.'
+      ],
+      tech: ['Python', 'XGBoost', 'Gradient Boosting', 'Time-Series Modeling', 'Technical Indicators']
     },
     {
       title: 'DLS Website Sanitized',
@@ -43,17 +46,6 @@ const Projects = () => {
         'Implemented reusable front-end registration flows with HTML, CSS, and JavaScript, designed around the same operational needs as the internal Zoom Events-integrated system.'
       ],
       tech: ['HTML', 'CSS', 'JavaScript', 'REST APIs', 'Event Registration']
-    },
-    {
-      title: 'Context-Aware Spotify Recommendation Engine',
-      description: [
-        'Developing a behavioral ML system that predicts user intent from skip patterns and listening context.',
-        'Moving beyond collaborative filtering to model psychological engagement (discovery vs. comfort modes).',
-        'Engineered 4 custom recommendation algorithms: momentum-based transitions ("Ghost Target"), rage-skip detection with immediate fallback, novelty injection for zero-play tracks ("Trojan Horse"), and user-controlled exploration parameters.',
-        'Built ETL pipeline processing 100K+ songs with engineered audio features (valence, energy, tempo).',
-        'Training XGBoost classifier on simulated preference data as baseline before LSTM sequence modeling.'
-      ],
-      tech: ['Python', 'XGBoost', 'LSTM', 'ETL Pipelines', 'Feature Engineering', 'Behavioral ML']
     }
   ];
 
