@@ -3,6 +3,24 @@ import React from 'react';
 const Projects = () => {
   const projects = [
     {
+      title: 'LegalDocuMan — Document Processing & Classification Suite',
+      featured: true,
+      badge: '★ Featured',
+      links: [
+        { label: 'LegalDocuMan', url: 'https://github.com/Mo-Awadalla/LegalDocuMan' }
+      ],
+      stats: [
+        { num: 'RF-DETR', lbl: 'signature detection' },
+        { num: 'Docker', lbl: 'one-command deploy' },
+        { num: 'MIT', lbl: 'open source' }
+      ],
+      description: [
+        'Full-stack document processing platform for regulated legal workflows — deployed at NYC Emergency Management’s Office of the Chief Counsel to classify and organize a legal drive of contracts ahead of migration to a new legal management system.',
+        'Architecture: Flask REST API with PostgreSQL persistence and a React frontend, containerized via Docker Compose. Classification is explainable regex-based (MSA, SOW, NDA, PO, Amendment, License); execution status combines deterministic regex with a fine-tuned RF-DETR computer-vision model detecting handwritten signature strokes. Pluggable OCR backends (Tesseract local, NVIDIA stub), fuzzy vendor matching, retention-category mapping, audit trail, and per-tenant user roles with API-key and rate-limit gates.'
+      ],
+      tech: ['Python', 'Flask', 'React', 'PostgreSQL', 'Docker', 'RF-DETR', 'Tesseract OCR', 'Redis/RQ']
+    },
+    {
       title: 'Custom Autograd Engine & Character-Level Language Model',
       links: [
         { label: 'autograd', url: 'https://github.com/Mo-Awadalla/autograd' },
@@ -13,17 +31,6 @@ const Projects = () => {
         'Built a character-level language model on top of the custom engine with tokenization, embedding layers, and an MLP architecture following Bengio et al. (2003), trained end-to-end via backpropagation on a 32,000-name dataset.'
       ],
       tech: ['Python', 'PyTorch', 'Backpropagation', 'Custom Autograd', 'Neural Networks']
-    },
-    {
-      title: 'LegalDocuMan — Document Processing & Classification Suite',
-      links: [
-        { label: 'LegalDocuMan', url: 'https://github.com/Mo-Awadalla/LegalDocuMan' }
-      ],
-      description: [
-        'Built a modular Python application for automated legal document classification, signature detection, and vendor-based file organization — deployed at NYC Emergency Management’s Office of the Chief Counsel to process a legal drive of 16,000+ contracts ahead of migration to a new legal management system.',
-        'Architected as a multi-component pipeline (processing engine, threaded GUI, CLI query tool, test suite) with OCR fallback via Tesseract, PDF text extraction via pdfplumber, and persistent metadata tracking for retention and destruction scheduling; released as MIT-licensed open-source with full installation and contribution documentation.'
-      ],
-      tech: ['Python', 'Tesseract', 'pdfplumber', 'OCR', 'CLI', 'GUI']
     },
     {
       title: 'Stock Return Prediction (XGBoost & Gradient Boosting)',
@@ -55,8 +62,11 @@ const Projects = () => {
         <h2>Projects</h2>
         <div className="projects-grid">
           {projects.map((project, index) => (
-            <div key={index} className="project-card">
+            <div key={index} className={`project-card${project.featured ? ' project-featured' : ''}`}>
               <div className="project-content">
+                {project.featured && project.badge && (
+                  <span className="project-featured-badge">{project.badge}</span>
+                )}
                 <h3 className="project-title">{project.title}</h3>
                 {project.links && (
                   <div className="project-links">
@@ -64,6 +74,16 @@ const Projects = () => {
                       <a key={linkIndex} href={link.url} target="_blank" rel="noopener noreferrer">
                         {link.label}
                       </a>
+                    ))}
+                  </div>
+                )}
+                {project.featured && project.stats && (
+                  <div className="project-featured-stats">
+                    {project.stats.map((stat, statIndex) => (
+                      <div key={statIndex} className="project-stat">
+                        <span className="project-stat-num">{stat.num}</span>
+                        <span className="project-stat-lbl">{stat.lbl}</span>
+                      </div>
                     ))}
                   </div>
                 )}

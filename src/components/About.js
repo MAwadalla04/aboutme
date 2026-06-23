@@ -7,9 +7,9 @@ const About = () => {
         <h2>About Me</h2>
         <div className="about-content">
           <div className="about-text">
-            <p>I am a Computer Science graduate specializing in Artificial Intelligence and Machine Learning. I work with modern AI frameworks, neural networks, and large language models, with hands-on experience in fine-tuning and evaluating LLMs.</p>
-            <p>As a Legal Tech & Automation Intern at NYC Emergency Management, I build internal web tools, workflow automation, and legal technology systems that replace manual processes with reusable software.</p>
-            <p>I am passionate about leveraging AI to solve real-world problems and help organizations harness the power of artificial intelligence.</p>
+            <p>I am a Computer Science graduate from LIU Honors, Class of 2026. My focus is on building AI-powered systems for regulated industries. At NYC Emergency Management's Office of the Chief Counsel, I built LegalDocuMan, a document classification system using regex rules and a fine-tuned RF-DETR vision model for signature detection, deployed to process a legal drive of contracts ahead of migration to a new legal management system.</p>
+            <p>Outside of work, I extend my machine learning fundamentals through projects like a custom autograd engine with tensor operations and a financial forecasting pipeline with honest baseline comparisons.</p>
+            <p>I am interested in roles where engineering substance and AI/ML depth both matter: full-stack work, AI infrastructure, document automation, and regulated-industry tooling.</p>
           </div>
           <div className="education">
             <h3>Education</h3>

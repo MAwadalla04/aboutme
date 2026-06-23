@@ -34,7 +34,7 @@ const Footer = () => {
       <div className="container">
         <div className="footer-content">
           <p>
-            &copy; 2025 Mohamed Awadalla. All rights reserved.
+            &copy; 2026 Mohamed Awadalla. All rights reserved.
           </p>
           <div className="visit-count">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
