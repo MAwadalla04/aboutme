@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -9,6 +9,8 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 
 function App() {
+  const toastRef = useRef(null);
+
   useEffect(() => {
     // Add fade-in animation on scroll
     const observerOptions = {
@@ -138,17 +140,28 @@ function App() {
 
   useEffect(() => {
     const trigger = document.querySelector('.knicks-trigger');
-    if (!trigger) return;
+    const toast = toastRef.current;
+    if (!trigger || !toast) return;
+    let hideTimer = null;
     const handler = () => {
       document.body.classList.add('knicks-mode');
+      const phrases = ["LET'S GO KNICKS", "BING BONG!"];
+      toast.textContent = phrases[Math.floor(Math.random() * phrases.length)];
+      toast.classList.add('show');
+      if (hideTimer) clearTimeout(hideTimer);
+      hideTimer = setTimeout(() => toast.classList.remove('show'), 2200);
       trigger.removeEventListener('click', handler);
     };
     trigger.addEventListener('click', handler);
-    return () => trigger.removeEventListener('click', handler);
+    return () => {
+      trigger.removeEventListener('click', handler);
+      if (hideTimer) clearTimeout(hideTimer);
+    };
   }, []);
 
   return (
     <div className="App">
+      <div className="knicks-toast" ref={toastRef} aria-live="polite"></div>
       <Header />
       <Hero />
       <About />
