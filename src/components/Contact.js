@@ -7,7 +7,7 @@ const Contact = () => {
         <h2>Contact Information</h2>
         <div className="contact-content">
           <div className="contact-info">
-            <p>I am happy to discuss software engineering, cybersecurity, research opportunities, and professional collaborations. Feel free to reach out with any inquiries or potential opportunities.</p>
+            <p>I am happy to discuss software engineering, AI/ML, research opportunities, and professional collaborations. Feel free to reach out with any inquiries or potential opportunities.</p>
           </div>
           <div>
             <ul className="contact-links">
