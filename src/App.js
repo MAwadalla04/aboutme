@@ -136,6 +136,17 @@ function App() {
     };
   }, []);
 
+  useEffect(() => {
+    const trigger = document.querySelector('.knicks-trigger');
+    if (!trigger) return;
+    const handler = () => {
+      document.body.classList.add('knicks-mode');
+      trigger.removeEventListener('click', handler);
+    };
+    trigger.addEventListener('click', handler);
+    return () => trigger.removeEventListener('click', handler);
+  }, []);
+
   return (
     <div className="App">
       <Header />
