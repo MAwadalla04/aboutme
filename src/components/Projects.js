@@ -43,6 +43,17 @@ const Projects = () => {
         'Built a Cloudflare Worker API with serverless deployment, CORS handling, and persistent data storage on Cloudflare D1.'
       ],
       tech: ['React', 'TypeScript', 'Cloudflare Workers', 'Cloudflare Pages', 'D1']
+    },
+    {
+      title: 'DLS Website Sanitized',
+      links: [
+        { label: 'GitHub', url: 'https://github.com/Mo-Awadalla/dls-website-sanitized' }
+      ],
+      description: [
+        'Built a sanitized public version of the Disaster Law Symposium registration and tracking website used for hybrid event sign-up and attendance workflows.',
+        'Implemented reusable front-end registration flows with HTML, CSS, and JavaScript, designed around the same operational needs as the internal Zoom Events-integrated system.'
+      ],
+      tech: ['HTML', 'CSS', 'JavaScript', 'REST APIs', 'Event Registration']
     }
   ];
 
