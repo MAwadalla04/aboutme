@@ -145,7 +145,7 @@ function App() {
     let hideTimer = null;
     const handler = () => {
       document.body.classList.add('knicks-mode');
-      const phrases = ["LET'S GO KNICKS", "BING BONG!"];
+      const phrases = ["LET'S GO KNICKS!", "BING BONG!!"];
       toast.textContent = phrases[Math.floor(Math.random() * phrases.length)];
       toast.classList.add('show');
       if (hideTimer) clearTimeout(hideTimer);
