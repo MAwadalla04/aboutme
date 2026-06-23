@@ -10,10 +10,6 @@ const Hero = () => {
       <div className="container">
         <div className="hero-layout">
           <div className="hero-content fade-in-up">
-            <div className="hero-badge">
-              <span className="hero-badge-dot"></span>
-              Open to opportunities
-            </div>
             <h1>Mohamed Awadalla</h1>
             <p className="tagline">Software Engineer — building AI systems for regulated industries</p>
             <div className="hero-info">
