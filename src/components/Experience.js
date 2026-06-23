@@ -3,14 +3,15 @@ import React from 'react';
 const Experience = () => {
   const experiences = [
     {
-      title: 'Legal Tech & Automation Intern',
+      title: 'Software Development & Automation Intern',
       company: 'New York City Emergency Management',
       location: 'Brooklyn, NY',
       date: 'June 2025 – Present',
       description: [
-        'Designed and built a custom event registration and tracking website (HTML, CSS, JavaScript) integrated with the Zoom Events REST API, handling sign-up and attendance tracking for 1,000+ registrants across hybrid events and replacing a manual coordination process with a reusable template adopted by the department.',
-        'Authored a vendor evaluation framework benchmarking 8 competing legal matter management platforms (Thomson Reuters-class systems) on technical capabilities, cost, and integration fit; framework adopted by Chief Counsel and drove the department’s final vendor selection.',
-        'Designed and deployed an end-to-end OKR tracking and reporting system for the Office of the Chief Counsel: built a dynamic Power Apps form with cascading dropdowns backed by a SharePoint list of 63 pre-populated records across 4 attorneys, and orchestrated 3 Power Automate flows for quarterly reminders, 48-hour compliance follow-ups, and automated HTML report generation and email delivery.'
+        'Built and operated a REST API event system supporting 1,000+ registrants with structured logging, failure tracking, and production monitoring.',
+        'Built a compliance tracking system with a SQL database and automated reporting, serving 4 legal team members with reliable data pipelines.',
+        'Designed automated data pipelines with retry logic, dead-letter handling, and scheduled execution for production reliability.',
+        'Evaluated 8 platform vendors on technical capability, security, and integration fit; presented architectural recommendations to Chief Counsel.'
       ]
     }
   ];

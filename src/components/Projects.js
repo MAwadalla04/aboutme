@@ -7,18 +7,18 @@ const Projects = () => {
       featured: true,
       badge: '★ Featured',
       links: [
-        { label: 'LegalDocuMan', url: 'https://github.com/Mo-Awadalla/LegalDocuMan' }
+        { label: 'GitHub', url: 'https://github.com/Mo-Awadalla/LegalDocuMan' }
       ],
       stats: [
-        { num: 'RF-DETR', lbl: 'signature detection' },
-        { num: 'Docker', lbl: 'one-command deploy' },
+        { num: '94.9%', lbl: 'RF-DETR precision' },
+        { num: 'Docker', lbl: 'multi-container deploy' },
         { num: 'MIT', lbl: 'open source' }
       ],
       description: [
-        'Full-stack document processing platform for regulated legal workflows — deployed at NYC Emergency Management’s Office of the Chief Counsel to classify and organize a legal drive of contracts ahead of migration to a new legal management system.',
-        'Architecture: Flask REST API with PostgreSQL persistence and a React frontend, containerized via Docker Compose. Classification is explainable regex-based (MSA, SOW, NDA, PO, Amendment, License); execution status combines deterministic regex with a fine-tuned RF-DETR computer-vision model detecting handwritten signature strokes. Pluggable OCR backends (Tesseract local, NVIDIA stub), fuzzy vendor matching, retention-category mapping, audit trail, and per-tenant user roles with API-key and rate-limit gates.'
+        'Full-stack document-processing platform with a React frontend, Flask REST API, PostgreSQL persistence, and Redis-backed async workers for scalable background processing.',
+        'Designed RESTful endpoints with request validation, error handling, and comprehensive logging for production observability. Deployed containerized services with Docker, managing the API server, worker processes, Redis, and PostgreSQL in a multi-container architecture. AI-powered document classification combines computer vision (RF-DETR, 94.9% precision) with OCR pipelines for automated data extraction.'
       ],
-      tech: ['Python', 'Flask', 'React', 'PostgreSQL', 'Docker', 'RF-DETR', 'Tesseract OCR', 'Redis/RQ']
+      tech: ['Python', 'Flask', 'PostgreSQL', 'React', 'Redis', 'Docker', 'REST APIs', 'RF-DETR']
     },
     {
       title: 'Custom Autograd Engine & Character-Level Language Model',
@@ -27,32 +27,22 @@ const Projects = () => {
         { label: 'makemore', url: 'https://github.com/Mo-Awadalla/makemore' }
       ],
       description: [
-        'Re-implemented a reverse-mode automatic differentiation engine in Python (inspired by Karpathy’s micrograd), then extended it beyond the tutorial with tensor operations, a numerical gradient checker using finite differences, and a PyTorch benchmark suite validating gradient correctness against torch.autograd on identical inputs.',
-        'Built a character-level language model on top of the custom engine with tokenization, embedding layers, and an MLP architecture following Bengio et al. (2003), trained end-to-end via backpropagation on a 32,000-name dataset.'
+        'Implemented a reverse-mode autodiff engine from scratch with tensor operations, topological backpropagation, and finite-difference gradient checks validating against torch.autograd.',
+        'Trained a character-level neural language model with embeddings, MLP layers, and backpropagation on a 32,000-name dataset.'
       ],
-      tech: ['Python', 'PyTorch', 'Backpropagation', 'Custom Autograd', 'Neural Networks']
+      tech: ['Python', 'PyTorch', 'Autograd', 'Backpropagation']
     },
     {
-      title: 'Stock Return Prediction (XGBoost & Gradient Boosting)',
+      title: 'Personal Portfolio',
       links: [
-        { label: 'stock-return-prediction', url: 'https://github.com/Mo-Awadalla/stock-return-prediction' }
+        { label: 'site', url: 'https://moawadalla.com' },
+        { label: 'GitHub', url: 'https://github.com/MAwadalla04/aboutme' }
       ],
       description: [
-        'Python pipeline for next-day price prediction on AAPL using 9 technical indicators. Predicted next-day returns to handle non-stationarity, then reconstructed price for evaluation against a naive baseline on a held-out test set.',
-        'XGBoost achieved 1.54% MAPE vs. 1.05% for the baseline, a known finance-ML result.'
+        'Built a React 18 + TypeScript SPA with a custom CSS architecture, responsive layouts, and Intersection Observer-based scroll animations.',
+        'Built a Cloudflare Worker API with serverless deployment, CORS handling, and persistent data storage on Cloudflare D1.'
       ],
-      tech: ['Python', 'XGBoost', 'Gradient Boosting', 'Time-Series Modeling', 'Technical Indicators']
-    },
-    {
-      title: 'DLS Website Sanitized',
-      links: [
-        { label: 'dls-website-sanitized', url: 'https://github.com/Mo-Awadalla/dls-website-sanitized' }
-      ],
-      description: [
-        'Built a sanitized public version of the Disaster Law Symposium registration and tracking website used for hybrid event sign-up and attendance workflows.',
-        'Implemented reusable front-end registration flows with HTML, CSS, and JavaScript, designed around the same operational needs as the internal Zoom Events-integrated system.'
-      ],
-      tech: ['HTML', 'CSS', 'JavaScript', 'REST APIs', 'Event Registration']
+      tech: ['React', 'TypeScript', 'Cloudflare Workers', 'Cloudflare Pages', 'D1']
     }
   ];
 

@@ -3,88 +3,31 @@ import React from 'react';
 const Skills = () => {
   const skillCategories = [
     {
-      title: 'Programming Languages & Frameworks',
+      title: 'Languages',
       icon: '</>',
-      skills: [
-        'Python',
-        'C++',
-        'JavaScript',
-        'TypeScript',
-        'HTML/CSS',
-        'SQL',
-        'PyTorch',
-        'Scikit-learn',
-        'NumPy',
-        'Pandas'
-      ]
+      skills: ['Python', 'JavaScript/TypeScript', 'SQL', 'C++']
     },
     {
-      title: 'Machine Learning & AI',
+      title: 'Backend',
+      icon: 'API',
+      skills: ['Flask', 'FastAPI', 'Node.js', 'REST APIs', 'PostgreSQL', 'Redis', 'Docker']
+    },
+    {
+      title: 'AI/ML',
       icon: 'ML',
-      skills: [
-        'LLM Fine-Tuning (LoRA)',
-        'Neural Networks',
-        'Transformers',
-        'NLP',
-        'Time-Series Modeling (XGBoost, Gradient Boosting)',
-        'Backpropagation',
-        'Custom Autograd'
-      ]
+      skills: ['PyTorch', 'Autograd', 'Computer Vision', 'NLP', 'Model Fine-tuning', 'OCR']
     },
     {
-      title: 'Data Engineering',
-      icon: 'ETL',
-      skills: [
-        'Data Pipelines',
-        'Feature Engineering',
-        'Text Processing',
-        'Data Cleaning',
-        'OCR (Tesseract, AWS Textract)',
-        'REST API Integration',
-        'ETL'
-      ]
-    },
-    {
-      title: 'Tools & Infrastructure',
-      icon: 'Git',
-      skills: [
-        'Git',
-        'Linux',
-        'Docker',
-        'AWS',
-        'Cloudflare (Pages, Workers)',
-        'Jupyter',
-        'REST APIs',
-        'CI/CD'
-      ]
-    },
-    {
-      title: 'Low-Code Development & Automation',
-      icon: 'Auto',
-      skills: [
-        'Microsoft Power Platform (Power Apps, Power Automate)',
-        'SharePoint',
-        'SharePoint Lists',
-        'Workflow Automation'
-      ]
-    },
-    {
-      title: 'Foundations',
-      icon: 'CS',
-      skills: [
-        'Data Structures & Algorithms',
-        'Object-Oriented Design',
-        'Automatic Differentiation',
-        'Systems Design',
-        'Empirical Experimentation'
-      ]
+      title: 'Infrastructure',
+      icon: 'Ops',
+      skills: ['Git', 'Linux', 'Docker', 'Docker Compose', 'Cloudflare Workers/Pages']
     }
   ];
 
   return (
     <section id="skills">
       <div className="container">
-        <h2>Skills</h2>
+        <h2>Technical Skills</h2>
         <div className="skills-container">
           {skillCategories.map((category, index) => (
             <div key={index} className="skill-category">
