@@ -7,6 +7,8 @@ import Experience from './components/Experience';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import { SocialsDock } from './components/SocialsDock';
+import { restoreKnicksTheme } from './utils/animatedThemeToggle';
 
 function App() {
   const toastRef = useRef(null);
@@ -42,9 +44,6 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let cancelled = false;
-
     // Active nav-link observer
     const navLinks = document.querySelectorAll('.nav-links a');
     const navMap = new Map();
@@ -66,95 +65,32 @@ function App() {
       navMap.forEach((_, sec) => navObs.observe(sec));
     }
 
-    // Autograd forward/backward pass animation
-    function setupAutograd() {
-      const graph = document.querySelector('.autograd-graph');
-      if (!graph || reduceMotion) return null;
-      const svgNS = 'http://www.w3.org/2000/svg';
-      const fwdOrder = ['e-x1-n1','e-w1-n1','e-x2-n2','e-w2-n2','e-n1-n3','e-n2-n3','e-b-n3','e-n3-tanh','e-tanh-L'];
-      const bwdOrder = [...fwdOrder].reverse();
-
-      function dot(color) {
-        const c = document.createElementNS(svgNS, 'circle');
-        c.setAttribute('r', '4.5');
-        c.setAttribute('class', 'ag-dot ' + color);
-        graph.appendChild(c);
-        return c;
-      }
-
-      function travel(edgeId, reverse, travelMs) {
-        return new Promise(resolve => {
-          const path = document.getElementById(edgeId);
-          if (!path) return resolve();
-          const len = path.getTotalLength();
-          const c = dot(reverse ? 'ag-dot-bwd' : 'ag-dot-fwd');
-          const start = performance.now();
-          function frame(now) {
-            if (cancelled) { c.remove(); return resolve(); }
-            const t = Math.min((now - start) / travelMs, 1);
-            const p = path.getPointAtLength(reverse ? (1 - t) * len : t * len);
-            c.setAttribute('cx', p.x);
-            c.setAttribute('cy', p.y);
-            c.style.opacity = t < 0.08 ? t / 0.08 : (t > 0.9 ? (1 - t) / 0.1 : 1);
-            if (t < 1) requestAnimationFrame(frame);
-            else { c.remove(); resolve(); }
-          }
-          requestAnimationFrame(frame);
-        });
-      }
-
-      async function runPass(order, reverse, travelMs, gap) {
-        for (let i = 0; i < order.length; i++) {
-          const concurrent = (i % 2 === 0 && i + 1 < order.length && order[i] !== 'e-b-n3' && order[i] !== 'e-n3-tanh' && order[i] !== 'e-tanh-L');
-          if (concurrent) {
-            await Promise.all([travel(order[i], reverse, travelMs), travel(order[i+1], reverse, travelMs)]);
-            i++;
-          } else {
-            await travel(order[i], reverse, travelMs);
-          }
-          if (gap) await new Promise(r => setTimeout(r, gap));
-        }
-      }
-
-      let stop = false;
-      async function loop() {
-        while (!stop && !cancelled) {
-          await runPass(fwdOrder, false, 620, 60);
-          await new Promise(r => setTimeout(r, 700));
-          await runPass(bwdOrder, true, 620, 60);
-          await new Promise(r => setTimeout(r, 1600));
-        }
-      }
-      setTimeout(loop, 2500);
-      return () => { stop = true; };
-    }
-
-    const stopAutograd = setupAutograd();
-
     return () => {
-      cancelled = true;
       if (navObs) navObs.disconnect();
-      if (stopAutograd) stopAutograd();
     };
   }, []);
 
   useEffect(() => {
-    const trigger = document.querySelector('.knicks-trigger');
+    restoreKnicksTheme();
+
     const toast = toastRef.current;
-    if (!trigger || !toast) return;
+    if (!toast) return;
     let hideTimer = null;
-    const handler = () => {
-      document.body.classList.add('knicks-mode');
-      const phrases = ["LET'S GO KNICKS!", "BING BONG!!"];
-      toast.textContent = phrases[Math.floor(Math.random() * phrases.length)];
-      toast.classList.add('show');
-      if (hideTimer) clearTimeout(hideTimer);
-      hideTimer = setTimeout(() => toast.classList.remove('show'), 2200);
-      trigger.removeEventListener('click', handler);
+    const onToggle = (e) => {
+      if (e.detail?.active) {
+        const phrases = ["LET'S GO KNICKS!", "BING BONG!!"];
+        toast.textContent = phrases[Math.floor(Math.random() * phrases.length)];
+        toast.classList.add('show');
+        if (hideTimer) clearTimeout(hideTimer);
+        hideTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+      } else {
+        toast.classList.remove('show');
+        if (hideTimer) clearTimeout(hideTimer);
+      }
     };
-    trigger.addEventListener('click', handler);
+    document.addEventListener('knicks:toggle', onToggle);
     return () => {
-      trigger.removeEventListener('click', handler);
+      document.removeEventListener('knicks:toggle', onToggle);
       if (hideTimer) clearTimeout(hideTimer);
     };
   }, []);
@@ -170,6 +106,7 @@ function App() {
       <Projects />
       <Contact />
       <Footer />
+      <SocialsDock />
     </div>
   );
 }
