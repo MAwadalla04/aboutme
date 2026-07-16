@@ -1,3 +1,3 @@
 /resume/*
-  Content-Disposition: attachment
+  Content-Disposition: inline
   Cache-Control: public, max-age=3600, must-revalidate
