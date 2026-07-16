@@ -474,7 +474,8 @@ nav {
   text-decoration: none;
   font-weight: 600;
   font-size: 1rem;
-  transition: all 0.3s ease;
+  transition: transform 100ms ease-out, box-shadow 0.3s ease;
+  touch-action: manipulation;
   box-shadow: 0 4px 20px rgba(138, 104, 73, 0.24);
   border: none;
   position: relative;
@@ -493,6 +494,10 @@ nav {
 .download-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 30px rgba(138, 104, 73, 0.3);
+}
+
+.download-btn:active {
+  transform: translateY(-1px) scale(0.97);
 }
 
 .download-btn:hover::before {
@@ -1783,7 +1788,8 @@ body.knicks-mode .surprise-nav-btn {
   font: inherit;
   color: inherit;
   box-shadow: var(--shadow-md);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 100ms ease-out, box-shadow 0.3s ease;
+  touch-action: manipulation;
   background-size: 200% 200%;
   animation: gradientFlow 12s ease-in-out infinite;
   animation-delay: var(--anim-delay, 0s);
@@ -1791,6 +1797,9 @@ body.knicks-mode .surprise-nav-btn {
 .acc-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-lg), var(--shadow-glow);
+}
+.acc-card:active {
+  transform: translateY(-2px) scale(0.98);
 }
 @media (min-width: 768px) {
   .acc-card {
@@ -1884,12 +1893,16 @@ body.knicks-mode .surprise-nav-btn {
   border: 1px solid var(--border-color);
   color: var(--text-secondary);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: transform 100ms ease-out, background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  touch-action: manipulation;
 }
 .acc-arrow:hover:not(:disabled) {
   background: var(--bg-card-hover);
   border-color: var(--accent-primary);
   color: var(--accent-primary);
+}
+.acc-arrow:active:not(:disabled) {
+  transform: scale(0.95);
 }
 .acc-arrow:disabled {
   opacity: 0.4;
@@ -2153,6 +2166,24 @@ body.knicks-mode .surprise-nav-btn {
 .dock-tooltip[data-visible="true"] {
   opacity: 1;
   transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .download-btn,
+  .acc-card,
+  .acc-arrow {
+    transition-duration: 100ms;
+    transition-timing-function: ease-out;
+  }
+
+  .download-btn:active,
+  .acc-card:active {
+    transform: scale(0.99);
+  }
+
+  .acc-arrow:active:not(:disabled) {
+    transform: scale(0.98);
+  }
 }
 
 @media (max-width: 480px) {
