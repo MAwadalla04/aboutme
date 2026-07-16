@@ -1669,11 +1669,6 @@ body.knicks-mode .surprise-nav-btn {
 }
 
 /* Apple Cards Carousel */
-.acc-hint {
-  color: var(--text-muted);
-  font-size: 0.9rem;
-  margin: 0.5rem 0 1.5rem;
-}
 
 .acc-root {
   position: relative;
@@ -1685,8 +1680,11 @@ body.knicks-mode .surprise-nav-btn {
   display: flex;
   width: 100%;
   overflow-x: auto;
-  overscroll-x: auto;
+  overscroll-behavior-x: contain;
   scroll-behavior: smooth;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x;
   padding: 2.5rem 0 5rem;
   scrollbar-width: none;
 }
@@ -1714,15 +1712,10 @@ body.knicks-mode .surprise-nav-btn {
 }
 
 .acc-item {
+  flex: none;
   border-radius: var(--radius-xl);
-}
-.acc-item:last-child {
-  padding-right: 33%;
-}
-@media (max-width: 768px) {
-  .acc-item:last-child {
-    padding-right: 5%;
-  }
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 /* Marquee mode: CSS-driven continuous scroll, no manual interaction. */

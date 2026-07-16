@@ -74,12 +74,11 @@ const Projects = () => {
     <section id="projects">
       <div className="container">
         <h2 className="section-title">Projects</h2>
-        <p className="acc-hint">Click a card for details</p>
         <Carousel
           items={cards.map((card, index) => (
             <Card key={card.title} card={card} index={index} />
           ))}
-          mode="marquee"
+          mode="step"
         />
       </div>
     </section>

@@ -5,6 +5,7 @@ import React, {
   createContext,
   useContext,
 } from "react";
+import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
 const CarouselContext = createContext({
@@ -14,8 +15,8 @@ const CarouselContext = createContext({
 });
 
 const getCardStep = () => {
-  const cardWidth = window.innerWidth < 768 ? 230 : 384;
-  const gap = window.innerWidth < 768 ? 4 : 8;
+  const cardWidth = window.innerWidth < 768 ? 224 : 384;
+  const gap = 16;
   return cardWidth + gap;
 };
 
@@ -289,48 +290,51 @@ export const Card = ({ card, index, layout = false }) => {
 
   return (
     <>
-      <AnimatePresence>
-        {open && (
-          <div className="acc-modal-overlay">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="acc-modal-backdrop"
-            />
-            <motion.div
-              ref={containerRef}
-              layoutId={layout ? `card-${card.title}` : undefined}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.25, ease: "easeOut" }}
-              className="acc-modal"
-            >
-              <button
-                className="acc-modal-close"
-                onClick={handleClose}
-                aria-label="Close"
+      {createPortal(
+        <AnimatePresence>
+          {open && (
+            <div className="acc-modal-overlay">
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="acc-modal-backdrop"
+              />
+              <motion.div
+                ref={containerRef}
+                layoutId={layout ? `card-${card.title}` : undefined}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.25, ease: "easeOut" }}
+                className="acc-modal"
               >
-                <CloseIcon />
-              </button>
-              <motion.p
-                layoutId={layout ? `category-${card.title}` : undefined}
-                className="acc-modal-category"
-              >
-                {card.category}
-              </motion.p>
-              <motion.h3
-                layoutId={layout ? `title-${card.title}` : undefined}
-                className="acc-modal-title"
-              >
-                {card.title}
-              </motion.h3>
-              <div className="acc-modal-body">{card.content}</div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
+                <button
+                  className="acc-modal-close"
+                  onClick={handleClose}
+                  aria-label="Close"
+                >
+                  <CloseIcon />
+                </button>
+                <motion.p
+                  layoutId={layout ? `category-${card.title}` : undefined}
+                  className="acc-modal-category"
+                >
+                  {card.category}
+                </motion.p>
+                <motion.h3
+                  layoutId={layout ? `title-${card.title}` : undefined}
+                  className="acc-modal-title"
+                >
+                  {card.title}
+                </motion.h3>
+                <div className="acc-modal-body">{card.content}</div>
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
 
       <motion.button
         layoutId={layout ? `card-${card.title}` : undefined}
