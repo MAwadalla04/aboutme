@@ -337,9 +337,7 @@ export const Card = ({ card, index, layout = false }) => {
         onClick={handleOpen}
         className="acc-card"
         style={{
-          background: card.gradient,
-          backgroundSize: "200% 200%",
-          "--anim-delay": `${(index % 4) * -2.5}s`,
+          "--card-accent": card.accent,
         }}
       >
         <div className="acc-card-shade" />

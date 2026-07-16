@@ -34,6 +34,7 @@
   --radius-lg: 16px;
   --radius-xl: 24px;
   --radius-full: 9999px;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 * {
@@ -1778,8 +1779,9 @@ body.knicks-mode .surprise-nav-btn {
   justify-content: flex-start;
   overflow: hidden;
   border-radius: var(--radius-xl);
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
+  background: #3a2818;
+  border: 1px solid rgba(244, 237, 229, 0.18);
+  border-top: 3px solid var(--card-accent);
   height: 20rem;
   width: 14rem;
   padding: 0;
@@ -1788,16 +1790,17 @@ body.knicks-mode .surprise-nav-btn {
   font: inherit;
   color: inherit;
   box-shadow: var(--shadow-md);
-  transition: transform 100ms ease-out, box-shadow 0.3s ease;
+  transition: transform 160ms var(--ease-out), box-shadow 160ms ease;
   touch-action: manipulation;
-  background-size: 200% 200%;
-  animation: gradientFlow 12s ease-in-out infinite;
-  animation-delay: var(--anim-delay, 0s);
 }
-.acc-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg), var(--shadow-glow);
+
+@media (hover: hover) and (pointer: fine) {
+  .acc-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg), 0 12px 32px color-mix(in srgb, var(--card-accent) 20%, transparent);
+  }
 }
+
 .acc-card:active {
   transform: translateY(-2px) scale(0.98);
 }
@@ -1806,15 +1809,6 @@ body.knicks-mode .surprise-nav-btn {
     height: 40rem;
     width: 24rem;
   }
-}
-
-@keyframes gradientFlow {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .acc-card { animation: none; }
 }
 
 .acc-card-shade {
@@ -1975,6 +1969,7 @@ body.knicks-mode .surprise-nav-btn {
   text-transform: uppercase;
   letter-spacing: 0.08em;
   margin: 0.5rem 0 0;
+  text-align: center;
 }
 
 .acc-modal-title {
@@ -1985,6 +1980,7 @@ body.knicks-mode .surprise-nav-btn {
   margin: 1rem 0 0;
   line-height: 1.2;
   letter-spacing: -0.01em;
+  text-align: center;
 }
 @media (min-width: 768px) {
   .acc-modal-title { font-size: 2.5rem; }
@@ -1997,12 +1993,15 @@ body.knicks-mode .surprise-nav-btn {
 .acc-modal-content {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1.5rem;
+  text-align: center;
 }
 
 .acc-modal-stats {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 1rem;
   padding: 1.5rem;
   background: var(--glass-bg);
@@ -2014,6 +2013,7 @@ body.knicks-mode .surprise-nav-btn {
   flex-direction: column;
   gap: 0.2rem;
   min-width: 120px;
+  text-align: center;
 }
 .acc-modal-stat-num {
   font-family: var(--font-display);
@@ -2032,6 +2032,7 @@ body.knicks-mode .surprise-nav-btn {
 .acc-modal-links {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 0.5rem;
 }
 .acc-modal-link {
@@ -2054,6 +2055,7 @@ body.knicks-mode .surprise-nav-btn {
 .acc-modal-description {
   color: var(--text-secondary);
   line-height: 1.7;
+  max-width: 46rem;
 }
 .acc-modal-description p {
   margin-bottom: 0.85rem;
@@ -2064,6 +2066,8 @@ body.knicks-mode .surprise-nav-btn {
 .acc-modal-tech {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
   gap: 0.5rem;
   padding-top: 1.5rem;
   border-top: 1px solid var(--border-color);

@@ -6,8 +6,7 @@ const Projects = () => {
     {
       title: 'LegalDocuMan — Document Processing & Classification Suite',
       category: 'Full-Stack · AI',
-      gradient:
-        'linear-gradient(135deg, #0a1628 0%, #1a2744 60%, #0a1628 100%)',
+      accent: '#a27b5c',
       featured: true,
       stats: [
         { num: '94.9%', lbl: 'RF-DETR precision' },
@@ -26,8 +25,7 @@ const Projects = () => {
     {
       title: 'Custom Autograd Engine & Character-Level Language Model',
       category: 'AI/ML · Systems',
-      gradient:
-        'linear-gradient(135deg, #1a1d23 0%, #2d323b 60%, #1a1d23 100%)',
+      accent: '#8d9b6f',
       links: [
         { label: 'autograd', url: 'https://github.com/Mo-Awadalla/autograd' },
         { label: 'makemore', url: 'https://github.com/Mo-Awadalla/makemore' },
@@ -39,25 +37,23 @@ const Projects = () => {
       tech: ['Python', 'PyTorch', 'Autograd', 'Backpropagation'],
     },
     {
-      title: 'Personal Portfolio',
-      category: 'Web · Cloud',
-      gradient:
-        'linear-gradient(135deg, #1a0a2e 0%, #2d1b69 60%, #1a0a2e 100%)',
+      title: 'KnicksIQ',
+      category: 'Full-Stack · Sports Intelligence',
+      accent: '#bf8a53',
       links: [
-        { label: 'site', url: 'https://moawadalla.com' },
-        { label: 'GitHub', url: 'https://github.com/MAwadalla04/aboutme' },
+        { label: 'site', url: 'https://www.knicksiq.win' },
+        { label: 'GitHub', url: 'https://github.com/Mo-Awadalla/KnicksIQ' },
       ],
       description: [
-        'Built a React 18 + TypeScript SPA with a custom CSS architecture, responsive layouts, and Intersection Observer-based scroll animations.',
-        'Built a Cloudflare Worker API with serverless deployment, CORS handling, and persistent data storage on Cloudflare D1.',
+        'Built an anonymous Knicks archive that answers supported 2025–26 regular-season and playoff questions from immutable game, player, and play-by-play data with claim-level citations.',
+        'Engineered a React analyst experience and read-only FastAPI service backed by PostgreSQL, with deterministic release validation and offline data-ingestion tooling.',
       ],
-      tech: ['React', 'TypeScript', 'Cloudflare Workers', 'Cloudflare Pages', 'D1'],
+      tech: ['React', 'FastAPI', 'PostgreSQL', 'Docker', 'Python', 'MCP'],
     },
     {
       title: 'DLS Website Sanitized',
       category: 'Web · Frontend',
-      gradient:
-        'linear-gradient(135deg, #0a1c24 0%, #0d353e 60%, #0a1c24 100%)',
+      accent: '#c39a73',
       links: [
         { label: 'GitHub', url: 'https://github.com/Mo-Awadalla/dls-website-sanitized' },
       ],
