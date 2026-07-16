@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 
 const DEFAULT_SIZE = 40;
@@ -132,6 +132,21 @@ const MailIcon = (props) => (
 
 export const SocialsDock = () => {
   const [hovered, setHovered] = useState(null);
+  const [isNearBottom, setIsNearBottom] = useState(false);
+
+  useEffect(() => {
+    const contact = document.getElementById("contact");
+    if (!contact) return undefined;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsNearBottom(entry.isIntersecting),
+      { threshold: 0.15 }
+    );
+
+    observer.observe(contact);
+    return () => observer.disconnect();
+  }, []);
+
   const items = [
     {
       key: "github",
@@ -148,13 +163,16 @@ export const SocialsDock = () => {
     {
       key: "email",
       label: "Email",
-      href: "mailto:Mohamedawadalla75@gmail.com",
+      href: "mailto:mohamed@moawadalla.com",
       icon: <MailIcon className="dock-svg" />,
     },
   ];
 
   return (
-    <div className="dock-wrapper" onMouseLeave={() => setHovered(null)}>
+    <div
+      className={`dock-wrapper${isNearBottom ? " dock-wrapper-hidden" : ""}`}
+      onMouseLeave={() => setHovered(null)}
+    >
       <span className="dock-tooltip" data-visible={hovered ? "true" : "false"}>
         {hovered ? items.find((i) => i.key === hovered)?.label : ""}
       </span>

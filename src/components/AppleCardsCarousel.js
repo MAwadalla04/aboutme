@@ -275,8 +275,12 @@ export const Card = ({ card, index, layout = false }) => {
       if (event.key === "Escape") handleClose();
     };
     document.body.style.overflow = open ? "hidden" : "auto";
+    document.body.classList.toggle("project-modal-open", open);
     window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+      if (open) document.body.classList.remove("project-modal-open");
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
 
