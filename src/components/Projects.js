@@ -4,7 +4,7 @@ import { Carousel, Card } from './AppleCardsCarousel';
 const Projects = () => {
   const projects = [
     {
-      title: 'LegalDocuMan — Document Processing & Classification Suite',
+      title: 'LegalDocuMan',
       category: 'Full-Stack · AI',
       accent: '#a27b5c',
       featured: true,
@@ -17,13 +17,12 @@ const Projects = () => {
         { label: 'GitHub', url: 'https://github.com/Mo-Awadalla/LegalDocuMan' },
       ],
       description: [
-        'Full-stack document-processing platform with a React frontend, Flask REST API, PostgreSQL persistence, and Redis-backed async workers for scalable background processing.',
-        'Designed RESTful endpoints with request validation, error handling, and comprehensive logging for production observability. Deployed containerized services with Docker, managing the API server, worker processes, Redis, and PostgreSQL in a multi-container architecture. AI-powered document classification combines computer vision (RF-DETR, 94.9% precision) with OCR pipelines for automated data extraction.',
+        'Turned an internal script into a production document processing platform. RF-DETR for signature detection (94.9% precision), OCR for extraction, Flask API, React frontend, PostgreSQL, Redis workers. Docker multi container deploy.',
       ],
       tech: ['Python', 'Flask', 'PostgreSQL', 'React', 'Redis', 'Docker', 'REST APIs', 'RF-DETR'],
     },
     {
-      title: 'Custom Autograd Engine & Character-Level Language Model',
+      title: 'Autograd Engine',
       category: 'AI/ML · Systems',
       accent: '#8d9b6f',
       links: [
@@ -31,8 +30,7 @@ const Projects = () => {
         { label: 'makemore', url: 'https://github.com/Mo-Awadalla/makemore' },
       ],
       description: [
-        'Implemented a reverse-mode autodiff engine from scratch with tensor operations, topological backpropagation, and finite-difference gradient checks validating against torch.autograd.',
-        'Trained a character-level neural language model with embeddings, MLP layers, and backpropagation on a 32,000-name dataset.',
+        'I wanted to understand backpropagation, not just use it. Built the engine from scratch, validated gradients against PyTorch, then trained a character level language model on 32,000 names.',
       ],
       tech: ['Python', 'PyTorch', 'Autograd', 'Backpropagation'],
     },
@@ -45,8 +43,7 @@ const Projects = () => {
         { label: 'GitHub', url: 'https://github.com/Mo-Awadalla/KnicksIQ' },
       ],
       description: [
-        'Built an anonymous Knicks archive that answers supported 2025–26 regular-season and playoff questions from immutable game, player, and play-by-play data with claim-level citations.',
-        'Engineered a React analyst experience and read-only FastAPI service backed by PostgreSQL, with deterministic release validation and offline data-ingestion tooling.',
+        'A Knicks analytics site that answers any question about the 2025–26 season with citations from play by play data.',
       ],
       tech: ['React', 'FastAPI', 'PostgreSQL', 'Docker', 'Python', 'MCP'],
     },
@@ -58,8 +55,7 @@ const Projects = () => {
         { label: 'GitHub', url: 'https://github.com/Mo-Awadalla/dls-website-sanitized' },
       ],
       description: [
-        'Built a sanitized public version of the Disaster Law Symposium registration and tracking website used for hybrid event sign-up and attendance workflows.',
-        'Implemented reusable front-end registration flows with HTML, CSS, and JavaScript, designed around the same operational needs as the internal Zoom Events-integrated system.',
+        'Built the registration and tracking system for the Disaster Law Symposium, a hybrid legal conference. Processed 1,000+ sign ups.',
       ],
       tech: ['HTML', 'CSS', 'JavaScript', 'REST APIs', 'Event Registration'],
     },

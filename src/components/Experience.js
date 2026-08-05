@@ -8,10 +8,10 @@ const Experience = () => {
       location: 'Brooklyn, NY',
       date: 'June 2025 – Present',
       description: [
-        'Built and operated a REST API event system supporting 1,000+ registrants with structured logging, failure tracking, and production monitoring.',
-        'Built a compliance tracking system with a SQL database and automated reporting, serving 4 legal team members with reliable data pipelines.',
-        'Designed automated data pipelines with retry logic, dead-letter handling, and scheduled execution for production reliability.',
-        'Evaluated 8 platform vendors on technical capability, security, and integration fit; presented architectural recommendations to Chief Counsel.'
+        'Replaced a spreadsheet workflow with a REST API that processed 1,000+ registrations. Caught failures before users noticed.',
+        'Automated compliance reporting for a legal team managing citywide emergency contracts. Reduced manual tracking from hours to minutes.',
+        'Built pipelines that processed legal documents ahead of a hard migration deadline. Failure meant missing the court date.',
+        'Evaluated 8 vendors on security and integration fit. Recommended the architecture to Chief Counsel.'
       ]
     }
   ];

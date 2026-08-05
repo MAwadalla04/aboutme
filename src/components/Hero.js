@@ -45,7 +45,7 @@ const Hero = () => {
         <div className="hero-layout">
           <div className="hero-content fade-in-up">
             <h1>Mohamed Awadalla</h1>
-            <p className="tagline">Software Engineer — building AI systems for regulated industries</p>
+            <p className="tagline">Software Engineer</p>
             <div className="hero-info">
               <div className="hero-info-item">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
@@ -88,8 +88,8 @@ const Hero = () => {
             <svg className="autograd-graph" viewBox="0 0 340 470" role="img" aria-label="Computation graph of a small neural network, animated with a forward and backward pass">
               <defs>
                 <linearGradient id="agGrad" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stopColor="#8a6849"/>
-                  <stop offset="100%" stopColor="#c39a73"/>
+                  <stop offset="0%" stopColor="var(--accent-primary)"/>
+                  <stop offset="100%" stopColor="var(--accent-tertiary)"/>
                 </linearGradient>
               </defs>
               <g className="ag-edges">
@@ -110,7 +110,7 @@ const Hero = () => {
                     <motion.path
                       key={edge.id}
                       d={edge.d}
-                      stroke="var(--accent-primary)"
+                      stroke="rgba(0, 0, 0, 0.08)"
                       strokeWidth={5}
                       strokeLinecap="round"
                       fill="none"
@@ -127,7 +127,7 @@ const Hero = () => {
                     <motion.path
                       key={edge.id + '-bwd'}
                       d={edge.d}
-                      stroke="var(--accent-green)"
+                      stroke="rgba(0, 0, 0, 0.06)"
                       strokeWidth={5}
                       strokeLinecap="round"
                       fill="none"

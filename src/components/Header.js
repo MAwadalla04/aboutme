@@ -19,7 +19,7 @@ const Header = () => {
           <div className="logo">MA</div>
           <ul className="nav-links">
             <li><a href="#about" onClick={(e) => handleSmoothScroll(e, '#about')}>About</a></li>
-            <li><a href="#skills" onClick={(e) => handleSmoothScroll(e, '#skills')}>Skills</a></li>
+            <li><a href="#reading" onClick={(e) => handleSmoothScroll(e, '#reading')}>Reading</a></li>
             <li><a href="#experience" onClick={(e) => handleSmoothScroll(e, '#experience')}>Experience</a></li>
             <li><a href="#projects" onClick={(e) => handleSmoothScroll(e, '#projects')}>Projects</a></li>
             <li><a href="#contact" onClick={(e) => handleSmoothScroll(e, '#contact')}>Contact</a></li>
