@@ -37,15 +37,14 @@ const beamTransition = (edge, isForward) => {
 const Hero = () => {
   return (
     <section className="hero">
-      <div className="hero-grid-bg"></div>
-      <div className="hero-shape hero-shape-1"></div>
-      <div className="hero-shape hero-shape-2"></div>
-      <div className="hero-shape hero-shape-3"></div>
       <div className="container">
         <div className="hero-layout">
-          <div className="hero-content fade-in-up">
+          <div className="hero-content">
             <h1>Mohamed Awadalla</h1>
-            <p className="tagline">Software Engineer</p>
+            <p className="tagline">Product Software Engineer</p>
+            <p className="hero-summary">
+              I build end-to-end software that turns complex workflows into reliable products—from AI document systems to data-rich web experiences.
+            </p>
             <div className="hero-info">
               <div className="hero-info-item">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
@@ -53,22 +52,16 @@ const Hero = () => {
                 </svg>
                 Brooklyn, NY
               </div>
-              <div className="hero-info-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                  <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
-                </svg>
-                mohamed@moawadalla.com
-              </div>
-              <div className="hero-info-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                  <path d="M8.211 2.047a.5.5 0 0 1 .578 0l7 4.5a.5.5 0 0 1 0 .842l-7 4.5a.5.5 0 0 1-.578 0l-7-4.5a.5.5 0 0 1 0-.842l7-4.5Z"/>
-                  <path d="M4.5 8.5v3.077c0 .99.675 1.86 1.648 2.061C6.99 13.81 7.5 14 8 14s1.01-.19 1.852-.362A2.31 2.31 0 0 0 11.5 11.577V8.5l-3.5 2-3.5-2Z"/>
-                </svg>
-                LIU Honors · CS '26
-              </div>
             </div>
 
             <div className="hero-actions">
+              <a
+                href="#projects"
+                className="project-cta"
+              >
+                <span>See my work</span>
+                <span aria-hidden="true">→</span>
+              </a>
               <a
                 href={`${process.env.PUBLIC_URL}/resume/Mohamed%27s%20Resume.pdf`}
                 target="_blank"
@@ -84,14 +77,8 @@ const Hero = () => {
             </div>
           </div>
 
-          <div className="hero-graph" aria-hidden="true">
+          <div className="hero-graph">
             <svg className="autograd-graph" viewBox="0 0 340 470" role="img" aria-label="Computation graph of a small neural network, animated with a forward and backward pass">
-              <defs>
-                <linearGradient id="agGrad" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stopColor="var(--accent-primary)"/>
-                  <stop offset="100%" stopColor="var(--accent-tertiary)"/>
-                </linearGradient>
-              </defs>
               <g className="ag-edges">
                 <path id="e-x1-n1" className="ag-edge" style={{animationDelay:'0ms'}} d="M52,392 L96,300"/>
                 <path id="e-w1-n1" className="ag-edge" style={{animationDelay:'0ms'}} d="M140,392 L96,300"/>
@@ -110,7 +97,7 @@ const Hero = () => {
                     <motion.path
                       key={edge.id}
                       d={edge.d}
-                      stroke="rgba(0, 0, 0, 0.08)"
+                      stroke="var(--accent-primary)"
                       strokeWidth={5}
                       strokeLinecap="round"
                       fill="none"
@@ -127,7 +114,7 @@ const Hero = () => {
                     <motion.path
                       key={edge.id + '-bwd'}
                       d={edge.d}
-                      stroke="rgba(0, 0, 0, 0.06)"
+                      stroke="var(--accent-secondary)"
                       strokeWidth={5}
                       strokeLinecap="round"
                       fill="none"
@@ -148,7 +135,7 @@ const Hero = () => {
                 <g className="ag-node ag-op" style={{animationDelay:'300ms'}}><circle cx="96" cy="300" r="18"/><text x="96" y="300">×</text></g>
                 <g className="ag-node ag-op" style={{animationDelay:'300ms'}}><circle cx="244" cy="300" r="18"/><text x="244" y="300">×</text></g>
                 <g className="ag-node ag-op" style={{animationDelay:'540ms'}}><circle cx="170" cy="214" r="18"/><text x="170" y="214">+</text></g>
-                <g className="ag-node ag-op" style={{animationDelay:'720ms'}}><circle cx="170" cy="128" r="19"/><text x="170" y="128" style={{fontSize:'11px'}}>tanh</text></g>
+                <g className="ag-node ag-op" style={{animationDelay:'720ms'}}><circle cx="170" cy="128" r="19"/><text x="170" y="128">tanh</text></g>
                 <g className="ag-node ag-out" style={{animationDelay:'900ms'}}><circle cx="170" cy="44" r="20"/><text x="170" y="44">L</text></g>
               </g>
             </svg>

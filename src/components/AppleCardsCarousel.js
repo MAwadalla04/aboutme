@@ -1,5 +1,6 @@
 import React, {
   useEffect,
+  useCallback,
   useRef,
   useState,
   createContext,
@@ -14,10 +15,14 @@ const CarouselContext = createContext({
   registerOpen: () => {},
 });
 
-const getCardStep = () => {
-  const cardWidth = window.innerWidth < 768 ? 224 : 384;
-  const gap = 16;
-  return cardWidth + gap;
+const getCardStep = (carousel) => {
+  const card = carousel?.querySelector(".acc-card");
+  const row = carousel?.querySelector(".acc-row");
+  if (!card) return 0;
+
+  const rowStyles = row ? window.getComputedStyle(row) : null;
+  const gap = Number.parseFloat(rowStyles?.columnGap || rowStyles?.gap) || 16;
+  return card.getBoundingClientRect().width + gap;
 };
 
 const useOutsideClick = (ref, callback) => {
@@ -141,21 +146,21 @@ export const Carousel = ({
 
   const scrollLeft = () => {
     if (carouselRef.current) {
-      carouselRef.current.scrollBy({ left: -getCardStep(), behavior: "smooth" });
+      carouselRef.current.scrollBy({ left: -getCardStep(carouselRef.current), behavior: "smooth" });
       markInteraction();
     }
   };
 
   const scrollRight = () => {
     if (carouselRef.current) {
-      carouselRef.current.scrollBy({ left: getCardStep(), behavior: "smooth" });
+      carouselRef.current.scrollBy({ left: getCardStep(carouselRef.current), behavior: "smooth" });
       markInteraction();
     }
   };
 
   const handleCardClose = (index) => {
     if (carouselRef.current) {
-      const scrollPosition = getCardStep() * (index + 1);
+      const scrollPosition = getCardStep(carouselRef.current) * index;
       carouselRef.current.scrollTo({
         left: scrollPosition,
         behavior: "smooth",
@@ -165,10 +170,10 @@ export const Carousel = ({
     }
   };
 
-  const registerOpen = (isOpen) => {
+  const registerOpen = useCallback((isOpen) => {
     openCountRef.current = Math.max(0, openCountRef.current + (isOpen ? 1 : -1));
     setHasOpenModal(openCountRef.current > 0);
-  };
+  }, []);
 
   // Step mode: advance one card every cycleInterval, with a grace period
   // after the user interacts.
@@ -181,7 +186,7 @@ export const Carousel = ({
       const el = carouselRef.current;
       if (!el) return;
       if (el.scrollWidth <= el.clientWidth + 1) return;
-      const step = getCardStep();
+      const step = getCardStep(el);
       const maxScroll = el.scrollWidth - el.clientWidth;
       const atEnd = el.scrollLeft >= maxScroll - 1;
       if (atEnd) {
@@ -198,6 +203,8 @@ export const Carousel = ({
     <CarouselContext.Provider value={{ onCardClose: handleCardClose, currentIndex, registerOpen }}>
       <div
         className={`acc-root${isMarquee ? " acc-root-marquee" : ""}`}
+        role="region"
+        aria-label="Project carousel"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
@@ -218,16 +225,7 @@ export const Carousel = ({
             {trackItems.map((item, index) => (
               <motion.div
                 key={"card-" + index}
-                initial={isMarquee ? false : { opacity: 0, y: 20 }}
-                animate={isMarquee ? undefined : {
-                  opacity: 1,
-                  y: 0,
-                  transition: {
-                    duration: 0.5,
-                    delay: 0.2 * (index % items.length),
-                    ease: "easeOut",
-                  },
-                }}
+                initial={false}
                 className="acc-item"
               >
                 {item}
@@ -263,7 +261,10 @@ export const Carousel = ({
 export const Card = ({ card, index, layout = false }) => {
   const [open, setOpen] = useState(false);
   const containerRef = useRef(null);
+  const closeButtonRef = useRef(null);
+  const triggerRef = useRef(null);
   const { onCardClose, registerOpen } = useContext(CarouselContext);
+  const modalTitleId = `project-modal-title-${index}`;
 
   useEffect(() => {
     registerOpen(open);
@@ -271,22 +272,54 @@ export const Card = ({ card, index, layout = false }) => {
   }, [open, registerOpen]);
 
   useEffect(() => {
+    if (!open) return undefined;
+
+    const previousOverflow = document.body.style.overflow;
     const onKeyDown = (event) => {
-      if (event.key === "Escape") handleClose();
+      if (event.key === "Escape") {
+        event.preventDefault();
+        handleClose();
+        return;
+      }
+
+      if (event.key !== "Tab" || !containerRef.current) return;
+      const focusable = Array.from(containerRef.current.querySelectorAll(
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      ));
+      if (!focusable.length) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
     };
-    document.body.style.overflow = open ? "hidden" : "auto";
-    document.body.classList.toggle("project-modal-open", open);
+
+    document.body.style.overflow = "hidden";
+    document.body.classList.add("project-modal-open");
     window.addEventListener("keydown", onKeyDown);
+    const focusFrame = window.requestAnimationFrame(() => closeButtonRef.current?.focus());
+
     return () => {
+      window.cancelAnimationFrame(focusFrame);
       window.removeEventListener("keydown", onKeyDown);
-      if (open) document.body.classList.remove("project-modal-open");
+      document.body.style.overflow = previousOverflow;
+      document.body.classList.remove("project-modal-open");
+      triggerRef.current?.focus();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
 
   useOutsideClick(containerRef, () => handleClose());
 
-  const handleOpen = () => setOpen(true);
+  const handleOpen = () => {
+    triggerRef.current = document.activeElement;
+    setOpen(true);
+  };
   const handleClose = () => {
     setOpen(false);
     onCardClose(index);
@@ -306,6 +339,9 @@ export const Card = ({ card, index, layout = false }) => {
               />
               <motion.div
                 ref={containerRef}
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby={modalTitleId}
                 layoutId={layout ? `card-${card.title}` : undefined}
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -314,6 +350,7 @@ export const Card = ({ card, index, layout = false }) => {
                 className="acc-modal"
               >
                 <button
+                  ref={closeButtonRef}
                   className="acc-modal-close"
                   onClick={handleClose}
                   aria-label="Close"
@@ -327,6 +364,7 @@ export const Card = ({ card, index, layout = false }) => {
                   {card.category}
                 </motion.p>
                 <motion.h3
+                  id={modalTitleId}
                   layoutId={layout ? `title-${card.title}` : undefined}
                   className="acc-modal-title"
                 >
@@ -341,36 +379,51 @@ export const Card = ({ card, index, layout = false }) => {
       )}
 
       <motion.button
+        ref={triggerRef}
         layoutId={layout ? `card-${card.title}` : undefined}
         onClick={handleOpen}
         className="acc-card"
+        aria-label={`View details for ${card.title}`}
         style={{
-          "--card-accent": card.accent,
+          "--card-accent": `var(--project-accent-${card.accent})`,
         }}
       >
-        <div className="acc-card-shade" />
-        <div className="acc-card-text">
+        <div className="acc-card-header">
           <motion.p
             layoutId={layout ? `category-${card.category}` : undefined}
             className="acc-card-category"
           >
             {card.category}
           </motion.p>
-          <motion.p
+          {card.featured && <span className="acc-card-featured">Featured</span>}
+        </div>
+        <div className="acc-card-body">
+          <motion.h3
             layoutId={layout ? `title-${card.title}` : undefined}
             className="acc-card-title"
           >
             {card.title}
-          </motion.p>
+          </motion.h3>
+          <p className="acc-card-summary">{card.description?.[0]}</p>
+          {card.stats && (
+            <div className="acc-card-stats">
+              {card.stats.map((stat) => (
+                <div key={stat.lbl} className="acc-card-stat">
+                  <strong>{stat.num}</strong>
+                  <span>{stat.lbl}</span>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
-        {card.src && (
-          <img
-            src={card.src}
-            alt={card.title}
-            className="acc-card-image"
-            loading="lazy"
-          />
-        )}
+        <div className="acc-card-footer">
+          <div className="acc-card-tech" aria-label="Technologies">
+            {card.tech?.slice(0, 4).map((tech) => (
+              <span key={tech}>{tech}</span>
+            ))}
+          </div>
+          <span className="acc-card-action">Open details <span aria-hidden="true">→</span></span>
+        </div>
       </motion.button>
     </>
   );

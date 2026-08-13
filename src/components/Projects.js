@@ -6,7 +6,7 @@ const Projects = () => {
     {
       title: 'LegalDocuMan',
       category: 'Full-Stack · AI',
-      accent: '#a27b5c',
+      accent: 'featured',
       featured: true,
       stats: [
         { num: '94.9%', lbl: 'RF-DETR precision' },
@@ -24,7 +24,7 @@ const Projects = () => {
     {
       title: 'Autograd Engine',
       category: 'AI/ML · Systems',
-      accent: '#8d9b6f',
+      accent: 'standard',
       links: [
         { label: 'autograd', url: 'https://github.com/Mo-Awadalla/autograd' },
         { label: 'makemore', url: 'https://github.com/Mo-Awadalla/makemore' },
@@ -37,7 +37,7 @@ const Projects = () => {
     {
       title: 'KnicksIQ',
       category: 'Full-Stack · Sports Intelligence',
-      accent: '#bf8a53',
+      accent: 'featured',
       links: [
         { label: 'site', url: 'https://www.knicksiq.win' },
         { label: 'GitHub', url: 'https://github.com/Mo-Awadalla/KnicksIQ' },
@@ -50,7 +50,7 @@ const Projects = () => {
     {
       title: 'DLS Website Sanitized',
       category: 'Web · Frontend',
-      accent: '#c39a73',
+      accent: 'standard',
       links: [
         { label: 'GitHub', url: 'https://github.com/Mo-Awadalla/dls-website-sanitized' },
       ],
@@ -70,11 +70,12 @@ const Projects = () => {
     <section id="projects">
       <div className="container">
         <h2 className="section-title">Projects</h2>
+        <p className="projects-intro">Selected products, systems, and experiments. Use the arrows or swipe to explore.</p>
         <Carousel
           items={cards.map((card, index) => (
             <Card key={card.title} card={card} index={index} />
           ))}
-          mode="step"
+          mode="off"
         />
       </div>
     </section>
