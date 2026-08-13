@@ -6,7 +6,7 @@ const Experience = () => {
       title: 'Software Development & Automation Intern',
       company: 'New York City Emergency Management',
       location: 'Brooklyn, NY',
-      date: 'June 2025 – Present',
+      date: 'June 2025 – August 2026',
       description: [
         'Replaced a spreadsheet workflow with a REST API that processed 1,000+ registrations. Caught failures before users noticed.',
         'Automated compliance reporting for a legal team managing citywide emergency contracts. Reduced manual tracking from hours to minutes.',
@@ -19,7 +19,7 @@ const Experience = () => {
   return (
     <section id="experience">
       <div className="container">
-        <h2>Relevant Experience</h2>
+        <h2 className="section-title"><span className="section-index">02 /</span> Experience</h2>
         <div className="experience-timeline">
           {experiences.map((exp, index) => (
             <div key={index} className="experience-item">

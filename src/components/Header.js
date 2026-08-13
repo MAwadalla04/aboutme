@@ -35,7 +35,7 @@ const Header = () => {
     <header>
       <div className="container">
         <nav aria-label="Primary navigation">
-          <a className="logo" href="#main-content" aria-label="Mohamed Awadalla, home">MA</a>
+          <a className="logo" href="#main-content" aria-label="MA, Mohamed Awadalla home">MA</a>
           <ul id="primary-nav" className={`nav-links${menuOpen ? ' is-open' : ''}`}>
             <li><a href="#about" onClick={(e) => handleSmoothScroll(e, '#about')}>About</a></li>
             <li><a href="#experience" onClick={(e) => handleSmoothScroll(e, '#experience')}>Experience</a></li>

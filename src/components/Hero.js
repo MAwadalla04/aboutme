@@ -1,8 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const SPEED = 2.2;
-const CYCLE_MS = 10340;
+const SPEED = 1.1;
 const EDGE_MS = 620;
 const BEAM_DASH = '50 300';
 const BEAM_HIDDEN = 50;
@@ -24,13 +23,10 @@ const EDGES = [
 const beamTransition = (edge, isForward) => {
   const delaySec = ((isForward ? edge.fwd : edge.bwd) * SPEED) / 1000;
   const edgeDur = (EDGE_MS * SPEED) / 1000;
-  const cycleDur = (CYCLE_MS * SPEED) / 1000;
   return {
     duration: edgeDur,
     delay: delaySec,
     ease: EASE,
-    repeat: Infinity,
-    repeatDelay: cycleDur - edgeDur,
   };
 };
 
@@ -40,10 +36,11 @@ const Hero = () => {
       <div className="container">
         <div className="hero-layout">
           <div className="hero-content">
+            <p className="hero-eyebrow">Hi, I&apos;m Mohamed.</p>
             <h1>Mohamed Awadalla</h1>
-            <p className="tagline">Product Software Engineer</p>
+            <p className="tagline">Software Engineer</p>
             <p className="hero-summary">
-              I build end-to-end software that turns complex workflows into reliable products—from AI document systems to data-rich web experiences.
+              I build software that holds up in production.
             </p>
             <div className="hero-info">
               <div className="hero-info-item">

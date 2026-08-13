@@ -69,13 +69,12 @@ const Projects = () => {
   return (
     <section id="projects">
       <div className="container">
-        <h2 className="section-title">Projects</h2>
-        <p className="projects-intro">Selected products, systems, and experiments. Use the arrows or swipe to explore.</p>
+        <h2 className="section-title"><span className="section-index">03 /</span> Projects</h2>
+        <p className="projects-intro">Selected products, systems, and experiments. Use the arrow keys, controls, or swipe to explore.</p>
         <Carousel
           items={cards.map((card, index) => (
             <Card key={card.title} card={card} index={index} />
           ))}
-          mode="off"
         />
       </div>
     </section>

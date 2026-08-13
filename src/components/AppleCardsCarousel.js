@@ -1,6 +1,5 @@
 import React, {
   useEffect,
-  useCallback,
   useRef,
   useState,
   createContext,
@@ -11,8 +10,6 @@ import { AnimatePresence, motion } from "framer-motion";
 
 const CarouselContext = createContext({
   onCardClose: () => {},
-  currentIndex: 0,
-  registerOpen: () => {},
 });
 
 const getCardStep = (carousel) => {
@@ -94,35 +91,15 @@ const CloseIcon = (props) => (
   </svg>
 );
 
-export const Carousel = ({
-  items,
-  initialScroll = 0,
-  mode = "off",
-  cycleInterval = 4000,
-  marqueeDuration = 30,
-}) => {
+const scrollBehavior = () => (
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+);
+
+export const Carousel = ({ items, initialScroll = 0 }) => {
   const carouselRef = useRef(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
-  const [hasOpenModal, setHasOpenModal] = useState(false);
-  const openCountRef = useRef(0);
-  const lastInteractionRef = useRef(0);
-  const pausedRef = useRef(false);
-
-  const isMarquee = mode === "marquee";
-  // Pause the marquee on hover or while a modal is open.
-  const isPaused = isHovered || hasOpenModal;
-
-  // Keep the ref in sync with state so the step-mode interval reads fresh values.
-  useEffect(() => { pausedRef.current = isPaused; }, [isPaused]);
-
-  // In marquee mode, duplicate the items so the CSS animation can loop
-  // seamlessly via translateX(-50%).
-  const trackItems = isMarquee && items.length > 0
-    ? [...items, ...items]
-    : items;
 
   useEffect(() => {
     if (carouselRef.current) {
@@ -137,24 +114,36 @@ export const Carousel = ({
       const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
       setCanScrollLeft(scrollLeft > 0);
       setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 1);
+      const step = getCardStep(carouselRef.current);
+      if (step) setCurrentIndex(Math.round(scrollLeft / step));
     }
-  };
-
-  const markInteraction = () => {
-    lastInteractionRef.current = Date.now();
   };
 
   const scrollLeft = () => {
     if (carouselRef.current) {
-      carouselRef.current.scrollBy({ left: -getCardStep(carouselRef.current), behavior: "smooth" });
-      markInteraction();
+      carouselRef.current.scrollBy({
+        left: -getCardStep(carouselRef.current),
+        behavior: scrollBehavior(),
+      });
     }
   };
 
   const scrollRight = () => {
     if (carouselRef.current) {
-      carouselRef.current.scrollBy({ left: getCardStep(carouselRef.current), behavior: "smooth" });
-      markInteraction();
+      carouselRef.current.scrollBy({
+        left: getCardStep(carouselRef.current),
+        behavior: scrollBehavior(),
+      });
+    }
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'ArrowLeft') {
+      event.preventDefault();
+      scrollLeft();
+    } else if (event.key === 'ArrowRight') {
+      event.preventDefault();
+      scrollRight();
     }
   };
 
@@ -163,113 +152,66 @@ export const Carousel = ({
       const scrollPosition = getCardStep(carouselRef.current) * index;
       carouselRef.current.scrollTo({
         left: scrollPosition,
-        behavior: "smooth",
+        behavior: scrollBehavior(),
       });
       setCurrentIndex(index);
-      markInteraction();
     }
   };
 
-  const registerOpen = useCallback((isOpen) => {
-    openCountRef.current = Math.max(0, openCountRef.current + (isOpen ? 1 : -1));
-    setHasOpenModal(openCountRef.current > 0);
-  }, []);
-
-  // Step mode: advance one card every cycleInterval, with a grace period
-  // after the user interacts.
-  useEffect(() => {
-    if (mode !== "step") return undefined;
-    const id = setInterval(() => {
-      if (pausedRef.current) return;
-      if (openCountRef.current > 0) return;
-      if (Date.now() - lastInteractionRef.current < cycleInterval) return;
-      const el = carouselRef.current;
-      if (!el) return;
-      if (el.scrollWidth <= el.clientWidth + 1) return;
-      const step = getCardStep(el);
-      const maxScroll = el.scrollWidth - el.clientWidth;
-      const atEnd = el.scrollLeft >= maxScroll - 1;
-      if (atEnd) {
-        el.scrollTo({ left: 0, behavior: "smooth" });
-      } else {
-        const next = Math.min(el.scrollLeft + step, maxScroll);
-        el.scrollTo({ left: next, behavior: "smooth" });
-      }
-    }, cycleInterval);
-    return () => clearInterval(id);
-  }, [mode, cycleInterval]);
-
   return (
-    <CarouselContext.Provider value={{ onCardClose: handleCardClose, currentIndex, registerOpen }}>
+    <CarouselContext.Provider value={{ onCardClose: handleCardClose }}>
       <div
-        className={`acc-root${isMarquee ? " acc-root-marquee" : ""}`}
+        className="acc-root"
         role="region"
-        aria-label="Project carousel"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
+        aria-roledescription="carousel"
+        aria-label="Projects"
+        tabIndex="0"
+        onKeyDown={handleKeyDown}
       >
         <div
-          className={`acc-track${isMarquee ? " acc-track-marquee" : ""}`}
+          className="acc-track"
           ref={carouselRef}
-          onScroll={() => { checkScrollability(); markInteraction(); }}
-          onTouchStart={markInteraction}
+          onScroll={checkScrollability}
         >
-          <div className="acc-fade-right" />
-          <div
-            className={`acc-row${isMarquee ? " acc-row-marquee" : ""}`}
-            style={isMarquee ? {
-              animationDuration: `${marqueeDuration}s`,
-              animationPlayState: isPaused ? "paused" : "running",
-            } : undefined}
-          >
-            {trackItems.map((item, index) => (
-              <motion.div
-                key={"card-" + index}
-                initial={false}
-                className="acc-item"
-              >
+          <div className="acc-row">
+            {items.map((item, index) => (
+              <div key={"card-" + index} className="acc-item">
                 {item}
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
-        {!isMarquee && (
-          <div className="acc-controls">
-            <button
-              className="acc-arrow"
-              onClick={scrollLeft}
-              disabled={!canScrollLeft}
-              aria-label="Scroll left"
-            >
-              <ArrowLeft className="acc-arrow-icon" />
-            </button>
-            <button
-              className="acc-arrow"
-              onClick={scrollRight}
-              disabled={!canScrollRight}
-              aria-label="Scroll right"
-            >
-              <ArrowRight className="acc-arrow-icon" />
-            </button>
-          </div>
-        )}
+        <p className="sr-only" aria-live="polite">Project {currentIndex + 1} of {items.length}</p>
+        <div className="acc-controls">
+          <button
+            className="acc-arrow"
+            onClick={scrollLeft}
+            disabled={!canScrollLeft}
+            aria-label="Previous project"
+          >
+            <ArrowLeft className="acc-arrow-icon" />
+          </button>
+          <button
+            className="acc-arrow"
+            onClick={scrollRight}
+            disabled={!canScrollRight}
+            aria-label="Next project"
+          >
+            <ArrowRight className="acc-arrow-icon" />
+          </button>
+        </div>
       </div>
     </CarouselContext.Provider>
   );
 };
 
-export const Card = ({ card, index, layout = false }) => {
+export const Card = ({ card, index }) => {
   const [open, setOpen] = useState(false);
   const containerRef = useRef(null);
   const closeButtonRef = useRef(null);
   const triggerRef = useRef(null);
-  const { onCardClose, registerOpen } = useContext(CarouselContext);
+  const { onCardClose } = useContext(CarouselContext);
   const modalTitleId = `project-modal-title-${index}`;
-
-  useEffect(() => {
-    registerOpen(open);
-    return () => { if (open) registerOpen(false); };
-  }, [open, registerOpen]);
 
   useEffect(() => {
     if (!open) return undefined;
@@ -342,11 +284,10 @@ export const Card = ({ card, index, layout = false }) => {
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby={modalTitleId}
-                layoutId={layout ? `card-${card.title}` : undefined}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.25, ease: "easeOut" }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
                 className="acc-modal"
               >
                 <button
@@ -357,19 +298,15 @@ export const Card = ({ card, index, layout = false }) => {
                 >
                   <CloseIcon />
                 </button>
-                <motion.p
-                  layoutId={layout ? `category-${card.title}` : undefined}
-                  className="acc-modal-category"
-                >
+                <p className="acc-modal-category">
                   {card.category}
-                </motion.p>
-                <motion.h3
+                </p>
+                <h3
                   id={modalTitleId}
-                  layoutId={layout ? `title-${card.title}` : undefined}
                   className="acc-modal-title"
                 >
                   {card.title}
-                </motion.h3>
+                </h3>
                 <div className="acc-modal-body">{card.content}</div>
               </motion.div>
             </div>
@@ -378,32 +315,24 @@ export const Card = ({ card, index, layout = false }) => {
         document.body
       )}
 
-      <motion.button
+      <button
         ref={triggerRef}
-        layoutId={layout ? `card-${card.title}` : undefined}
         onClick={handleOpen}
         className="acc-card"
-        aria-label={`View details for ${card.title}`}
         style={{
           "--card-accent": `var(--project-accent-${card.accent})`,
         }}
       >
         <div className="acc-card-header">
-          <motion.p
-            layoutId={layout ? `category-${card.category}` : undefined}
-            className="acc-card-category"
-          >
+          <p className="acc-card-category">
             {card.category}
-          </motion.p>
+          </p>
           {card.featured && <span className="acc-card-featured">Featured</span>}
         </div>
         <div className="acc-card-body">
-          <motion.h3
-            layoutId={layout ? `title-${card.title}` : undefined}
-            className="acc-card-title"
-          >
+          <h3 className="acc-card-title">
             {card.title}
-          </motion.h3>
+          </h3>
           <p className="acc-card-summary">{card.description?.[0]}</p>
           {card.stats && (
             <div className="acc-card-stats">
@@ -424,7 +353,7 @@ export const Card = ({ card, index, layout = false }) => {
           </div>
           <span className="acc-card-action">Open details <span aria-hidden="true">→</span></span>
         </div>
-      </motion.button>
+      </button>
     </>
   );
 };
