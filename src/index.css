@@ -365,6 +365,14 @@ nav {
   color: var(--text-primary);
 }
 
+.hero-first-name {
+  display: inline-block;
+}
+
+.hero-first-name-pending {
+  opacity: 0;
+}
+
 .hero .tagline {
   font-family: var(--font-mono);
   font-size: clamp(0.85rem, 1.5vw, 1rem);
@@ -598,18 +606,6 @@ section::before {
   line-height: 1;
   margin-right: 0.5rem;
   color: var(--accent-primary);
-}
-
-.about-text .education-credential {
-  margin: 2.25rem 0 0;
-  padding-bottom: 0.85rem;
-  border-bottom: 1px solid var(--border-color);
-  color: var(--text-muted);
-  font-size: 0.7rem;
-  font-weight: 600;
-  line-height: 1.6;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
 }
 
 /* Currently Reading Section */
@@ -1210,24 +1206,13 @@ footer {
 
 /* ===== Refined redesign ===== */
 .hero-layout {
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 3rem;
-  align-items: center;
+  display: block;
   position: relative;
   z-index: 2;
 }
 
 .hero .hero-content {
-  max-width: none;
-}
-
-.hero-graph {
-  position: relative;
-  padding: 1.5rem 1.25rem 1.1rem;
-  background: #ffffff;
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
+  max-width: 800px;
 }
 
 .autograd-graph {
@@ -1237,16 +1222,127 @@ footer {
   overflow: visible;
 }
 
-.hero-graph-caption {
-  margin-top: 0.4rem;
-  text-align: center;
-  font-size: 0.76rem;
-  color: var(--text-muted);
-  letter-spacing: 0.02em;
+.hero-info {
+  gap: 0.55rem;
 }
 
-.hero-graph-caption .dot-fwd { color: var(--accent-primary); }
-.hero-graph-caption .dot-bwd { color: var(--accent-secondary); }
+.hero-education-bubble {
+  gap: 0.35rem;
+  padding: 0.45rem 0.7rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+}
+
+.hero-education-school {
+  font-weight: 600;
+}
+
+.hero-education-year {
+  color: var(--text-muted);
+}
+
+.intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1500;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: var(--bg-primary);
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 800ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.intro-overlay.intro-phase-landing {
+  background: transparent;
+  pointer-events: none;
+}
+
+.intro-stage {
+  position: relative;
+  width: min(30rem, 78vw);
+  display: grid;
+  place-items: center;
+  transform: scale(1);
+  transition: transform 800ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.intro-graph-wrap {
+  width: min(20rem, 64vw);
+  text-align: center;
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 420ms ease, transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.intro-phase-greeting .intro-graph-wrap,
+.intro-phase-landing .intro-graph-wrap {
+  opacity: 0;
+  transform: scale(0.82);
+}
+
+.intro-autograd-graph {
+  width: 100%;
+}
+
+.intro-autograd-graph .ag-edge {
+  animation-duration: 0.65s;
+}
+
+.intro-autograd-graph .ag-node {
+  animation-duration: 0.45s;
+}
+
+.intro-graph-caption {
+  margin-top: 0.4rem;
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.intro-copy {
+  position: absolute;
+  inset: 0 auto 0 50%;
+  width: calc(100vw - 2rem);
+  display: grid;
+  place-content: center;
+  text-align: center;
+  opacity: 0;
+  transform: translateX(-50%) translateY(0.75rem) scale(0.96);
+  transition: opacity 500ms ease, transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.intro-phase-greeting .intro-copy,
+.intro-phase-landing .intro-copy {
+  opacity: 1;
+  transform: translateX(-50%);
+}
+
+.intro-greeting {
+  margin: 0;
+  color: var(--text-primary);
+  font-family: var(--font-headline);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+}
+
+.intro-greeting {
+  font-size: clamp(2rem, 7.5vw, 5.75rem);
+}
+
+.intro-greeting-context,
+.intro-moving-name {
+  display: inline-block;
+}
+
+.intro-moving-name {
+  transform-origin: center;
+}
 
 .ag-edge {
   fill: none;
@@ -1319,16 +1415,6 @@ footer {
 .ag-edge-beams path {
   fill: none;
   filter: drop-shadow(0 0 6px currentColor);
-}
-
-@media (max-width: 1024px) {
-  .hero-layout {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-  .hero-graph {
-    display: none;
-  }
 }
 
 .project-featured {
@@ -2132,8 +2218,6 @@ body.project-modal-open .dock-wrapper {
 
 body,
 header,
-.hero-graph,
-.education,
 .acc-card,
 .terminal-egg {
   transition: background-color 220ms ease, border-color 220ms ease, color 220ms ease;
@@ -2245,10 +2329,7 @@ body.knicks-mode ::selection {
 }
 
 .about-content {
-  display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(17rem, 1fr);
-  gap: clamp(2.5rem, 6vw, 5.5rem);
-  align-items: start;
+  display: block;
 }
 
 .about-text {
@@ -2314,104 +2395,6 @@ body.knicks-mode ::selection {
 .knicks-trigger[aria-pressed='true'] {
   color: var(--accent-primary);
   border-bottom-style: solid;
-}
-
-.education {
-  position: sticky;
-  top: 7rem;
-  overflow: hidden;
-  padding: 2.25rem;
-  color: var(--project-card-text);
-  background: var(--project-card-bg);
-  border: 1px solid var(--project-card-border);
-  border-radius: 0;
-}
-
-.education-topline {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 2.5rem;
-}
-
-.education-school-mark {
-  padding: 0.35rem 0.5rem;
-  color: var(--project-card-muted);
-  border: 1px solid var(--project-card-border);
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-}
-
-.education-class-year {
-  color: var(--project-card-text);
-  font-family: var(--font-display);
-  font-size: clamp(3.8rem, 7vw, 5.5rem);
-  font-weight: 500;
-  line-height: 0.7;
-  letter-spacing: -0.04em;
-}
-
-.education h3 {
-  margin: 0 0 0.4rem;
-  color: var(--project-card-text);
-  font-family: var(--font-body);
-  font-size: 1.1rem;
-  line-height: 1.3;
-}
-
-.education-degree {
-  margin: 0;
-  color: var(--project-card-text);
-  font-family: var(--font-display);
-  font-size: clamp(1.45rem, 2.5vw, 1.85rem);
-  line-height: 1.2;
-}
-
-.education-meta {
-  margin: 0.65rem 0 0;
-  color: var(--project-card-muted);
-  font-size: 0.84rem;
-  line-height: 1.55;
-}
-
-.education-rule {
-  width: 100%;
-  height: 1px;
-  margin: 1.5rem 0;
-  background: var(--project-card-border);
-}
-
-.education-honors {
-  margin: 0;
-  color: var(--project-card-text);
-  font-size: 0.9rem;
-  font-weight: 600;
-}
-
-.education-honors span {
-  margin: 0 0.35rem;
-  color: var(--project-card-muted);
-}
-
-.education-coursework {
-  margin: 1.2rem 0 0;
-  color: var(--project-card-muted);
-  font-size: 0.78rem;
-  line-height: 1.65;
-}
-
-.education-coursework strong {
-  display: block;
-  margin-bottom: 0.35rem;
-  color: var(--project-card-text);
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
 }
 
 .acc-root {
@@ -2532,17 +2515,6 @@ body.knicks-mode ::selection {
   outline-offset: 0.2rem;
 }
 
-@media (max-width: 900px) {
-  .about-content {
-    grid-template-columns: 1fr;
-  }
-
-  .education {
-    position: static;
-    max-width: 32rem;
-  }
-}
-
 @media (max-width: 768px) {
   .terminal-egg {
     display: none;
@@ -2561,8 +2533,6 @@ body.knicks-mode ::selection {
 @media (prefers-reduced-motion: reduce) {
   body,
   header,
-  .hero-graph,
-  .education,
   .acc-card,
   .terminal-egg,
   .about-beat,
@@ -2575,6 +2545,17 @@ body.knicks-mode ::selection {
   .about-beat.reveal-ready.in-view {
     opacity: 1;
     transform: none;
+  }
+
+  .intro-overlay,
+  .intro-stage,
+  .intro-graph-wrap,
+  .intro-copy {
+    transition: none !important;
+  }
+
+  .intro-overlay {
+    display: none;
   }
 
   .download-btn:active,

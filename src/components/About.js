@@ -8,22 +8,22 @@ const About = ({ knicksMode, onToggleKnicksMode }) => {
         <div className="about-content">
           <div className="about-text">
             <div className="about-beat" style={{ '--beat-delay': '0ms' }}>
-              <span className="about-kicker">01</span>
-              <h3>Built for the real world.</h3>
-              <p>I build AI systems for regulated industries. At NYC Emergency Management's Office of the Chief Counsel, I built LegalDocuMan. It started as an internal script for processing a legal drive of contracts. I turned it into a production system with a fine tuned RF-DETR vision model for signature detection, deployed ahead of a hard migration deadline.</p>
+              <span className="about-kicker">01 —</span>
+              <h3>What I build</h3>
+              <p>I build software for real operational problems. I built LegalDocuMan to process legal contracts based on their end dates. To explore computer vision models, I fine-tuned an RF-DETR model with synthetic data and publicly available training datasets.</p>
             </div>
             <div className="about-connector" aria-hidden="true" />
             <div className="about-beat" style={{ '--beat-delay': '80ms' }}>
-              <span className="about-kicker">02</span>
-              <h3>The boring parts.</h3>
-              <p>I care about the boring parts: retry logic, dead letter queues, observability. The stuff that keeps systems running when nobody's watching.</p>
+              <span className="about-kicker">02 —</span>
+              <h3>How I build</h3>
+              <p>I care about reliability. I design for retries, failure recovery, and observability. I also make sure that systems work correctly outside the happy path.</p>
             </div>
             <div className="about-connector" aria-hidden="true" />
             <div className="about-beat" style={{ '--beat-delay': '160ms' }}>
-              <span className="about-kicker">03</span>
-              <h3>Overlaps with life.</h3>
+              <span className="about-kicker">03 —</span>
+              <h3>Outside of work</h3>
               <p>
-                Sometimes my work overlaps with my life. I watch the{' '}
+                I am a die-hard{' '}
                 <button
                   type="button"
                   className="knicks-trigger"
@@ -32,25 +32,11 @@ const About = ({ knicksMode, onToggleKnicksMode }) => {
                   onClick={onToggleKnicksMode}
                 >
                   Knicks
-                </button>.
+                </button>{' '}
+                fan. I built KnicksIQ, a full-stack project that lets people explore games, player statistics, and season data. KnicksIQ is in public beta. I welcome feedback and ideas for improvement.
               </p>
             </div>
           </div>
-          <aside className="education" aria-labelledby="education-title">
-            <div className="education-topline">
-              <span className="education-school-mark">LIU</span>
-              <span className="education-class-year" aria-label="Class of 2026">’26</span>
-            </div>
-            <h3 id="education-title">Long Island University</h3>
-            <p className="education-degree">B.S. Computer Science</p>
-            <p className="education-meta">Honors College · Brooklyn, NY · May 2026</p>
-            <div className="education-rule" />
-            <p className="education-honors">Dean’s List <span aria-hidden="true">·</span> Dean Scholar</p>
-            <p className="education-coursework">
-              <strong>Coursework</strong>
-              Data Structures · Algorithms · Database Systems · Operating Systems · Computer Architecture · Machine Learning
-            </p>
-          </aside>
         </div>
       </div>
     </section>
