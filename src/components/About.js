@@ -1,10 +1,10 @@
 import React from 'react';
 
-const About = ({ knicksMode, onToggleKnicksMode }) => {
+const About = ({ knicksMode, onToggleKnicksMode, sectionIndex = '01 /' }) => {
   return (
     <section id="about">
       <div className="container">
-        <h2 className="section-title"><span className="section-index">01 /</span> About</h2>
+        <h2 className="section-title"><span className="section-index">{sectionIndex}</span> About</h2>
         <div className="about-content">
           <div className="about-text">
             <div className="about-beat" style={{ '--beat-delay': '0ms' }}>

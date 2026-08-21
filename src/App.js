@@ -10,8 +10,26 @@ import Footer from './components/Footer';
 import { SocialsDock } from './components/SocialsDock';
 import TerminalEgg from './components/TerminalEgg';
 
+const ROUTES = new Set(['/about', '/experience', '/projects']);
+
+const normalizePath = (pathname) => {
+  const path = pathname.replace(/\/+$/, '');
+  return ROUTES.has(path) ? path : '/about';
+};
+
+const PageHeader = ({ number, title, description }) => (
+  <div className="page-header">
+    <div className="container page-header-inner">
+      <p className="page-header-index">{number} /</p>
+      <h1>{title}</h1>
+      {description && <p className="page-header-description">{description}</p>}
+    </div>
+  </div>
+);
+
 function App() {
   const [knicksMode, setKnicksMode] = useState(false);
+  const route = normalizePath(window.location.pathname);
 
   const toggleKnicksMode = useCallback(() => {
     setKnicksMode((isActive) => !isActive);
@@ -23,36 +41,21 @@ function App() {
   }, [knicksMode]);
 
   useEffect(() => {
-    // Active nav-link observer
-    const navLinks = document.querySelectorAll('.nav-links a');
-    const navMap = new Map();
-    navLinks.forEach(a => {
-      const id = a.getAttribute('href').slice(1);
-      const sec = document.getElementById(id);
-      if (sec) navMap.set(sec, a);
-    });
-    let navObs;
-    if (navMap.size) {
-      navObs = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            navLinks.forEach(a => a.classList.remove('active'));
-            navMap.get(e.target)?.classList.add('active');
-          }
-        });
-      }, { rootMargin: '-45% 0px -50% 0px' });
-      navMap.forEach((_, sec) => navObs.observe(sec));
-    }
+    document.title = route === '/experience'
+      ? 'Experience — Mohamed Awadalla'
+      : route === '/projects'
+        ? 'Projects — Mohamed Awadalla'
+        : 'Mohamed Awadalla — Software Engineer';
 
-    // About narrative observer. Content is visible by default and only enters
-    // a reveal-ready state once observation is available.
+    window.scrollTo(0, 0);
+
     const beats = document.querySelectorAll('.about-beat');
     let beatObs;
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const desktopNarrative = window.matchMedia('(min-width: 769px)').matches;
     if (beats.length && desktopNarrative && !reduceMotion && 'IntersectionObserver' in window) {
-      beatObs = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
+      beatObs = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('in-view');
             beatObs.unobserve(entry.target);
@@ -60,32 +63,58 @@ function App() {
         });
       }, { threshold: 0.2, rootMargin: '0px 0px -8% 0px' });
 
-      beats.forEach(beat => {
+      beats.forEach((beat) => {
         beat.classList.add('reveal-ready');
         beatObs.observe(beat);
       });
     } else {
-      beats.forEach(beat => beat.classList.add('in-view'));
+      beats.forEach((beat) => beat.classList.add('in-view'));
     }
 
-    return () => {
-      if (navObs) navObs.disconnect();
-      if (beatObs) beatObs.disconnect();
-    };
-  }, []);
+    return () => beatObs?.disconnect();
+  }, [route]);
+
+  const renderPage = () => {
+    if (route === '/experience') {
+      return (
+        <>
+          <PageHeader
+            number="02"
+            title="Experience"
+            description="Reliable systems for operational work, from emergency management to legal infrastructure."
+          />
+          <Experience showHeader={false} />
+        </>
+      );
+    }
+
+    if (route === '/projects') {
+      return (
+        <>
+          <PageHeader
+            number="03"
+            title="Projects"
+          />
+          <Projects />
+        </>
+      );
+    }
+
+    return (
+      <>
+        <Hero />
+        <About knicksMode={knicksMode} onToggleKnicksMode={toggleKnicksMode} sectionIndex="01 /" />
+        <CurrentlyReading sectionIndex="02 /" />
+        <Contact sectionIndex="03 /" />
+      </>
+    );
+  };
 
   return (
-    <div className="App">
+    <div className={`App app-${route.slice(1)}`}>
       <a className="skip-link" href="#main-content">Skip to content</a>
       <Header />
-      <main id="main-content">
-        <Hero />
-        <About knicksMode={knicksMode} onToggleKnicksMode={toggleKnicksMode} />
-        <Experience />
-        <Projects />
-        <CurrentlyReading />
-        <Contact />
-      </main>
+      <main id="main-content">{renderPage()}</main>
       <Footer />
       <SocialsDock />
       <TerminalEgg knicksMode={knicksMode} onToggleKnicksMode={toggleKnicksMode} />

@@ -8,6 +8,26 @@ const BEAM_HIDDEN = 50;
 const BEAM_END = -200;
 const INTRO_BEAM_DURATION = 1.3;
 const EASE = [0.16, 1, 0.3, 1];
+const INTRO_SEEN_KEY = 'mohamed-awadalla-intro-seen';
+let introMarkedInMemory = false;
+
+const hasSeenIntro = () => {
+  if (introMarkedInMemory) return true;
+  try {
+    return window.localStorage.getItem(INTRO_SEEN_KEY) === 'true';
+  } catch {
+    return false;
+  }
+};
+
+const markIntroSeen = () => {
+  introMarkedInMemory = true;
+  try {
+    window.localStorage.setItem(INTRO_SEEN_KEY, 'true');
+  } catch {
+    // The in-memory flag still prevents replays during this app session.
+  }
+};
 
 const EDGES = [
   { id: 'e-x1-n1', d: 'M52,392 L96,300', fwd: 0, bwd: 8120, introFwd: 1700, introBwd: 7200 },
@@ -118,12 +138,13 @@ const Hero = () => {
   const heroMohamedRef = React.useRef(null);
   const [introPhase, setIntroPhase] = React.useState(() => {
     if (typeof window === 'undefined') return 'graph';
-    return window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'done' : 'graph';
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches || hasSeenIntro() ? 'done' : 'graph';
   });
   const [introPass, setIntroPass] = React.useState('forward');
   const [landingTransform, setLandingTransform] = React.useState({ x: 0, y: 0, scale: 1 });
 
   React.useEffect(() => {
+    if (introPhase === 'graph') markIntroSeen();
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
 
     const backpropTimer = window.setTimeout(() => setIntroPass('backprop'), 5100);
@@ -147,6 +168,9 @@ const Hero = () => {
       window.clearTimeout(greetingTimer);
       window.clearTimeout(landingTimer);
     };
+  // The initial phase is intentionally captured once: the intro claims its
+  // one allowed play as soon as it mounts, before any route navigation.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -231,7 +255,7 @@ const Hero = () => {
               </div>
 
               <div className="hero-actions">
-                <a href="#projects" className="project-cta">
+                <a href="/projects" className="project-cta">
                   <span>See my work</span>
                   <span aria-hidden="true">→</span>
                 </a>

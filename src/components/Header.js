@@ -1,5 +1,16 @@
 import React, { useEffect, useState } from 'react';
 
+const getActivePath = () => {
+  const path = window.location.pathname.replace(/\/+$/, '');
+  return path || '/about';
+};
+
+const PAGE_DETAILS = {
+  '/about': { number: '01', label: 'About' },
+  '/experience': { number: '02', label: 'Experience' },
+  '/projects': { number: '03', label: 'Projects' },
+};
+
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -19,31 +30,34 @@ const Header = () => {
     };
   }, []);
 
-  const handleSmoothScroll = (e, targetId) => {
-    e.preventDefault();
+  const activePath = getActivePath();
+  const currentPage = PAGE_DETAILS[activePath] || PAGE_DETAILS['/about'];
+
+  const handleNavigate = () => {
     setMenuOpen(false);
-    const target = document.querySelector(targetId);
-    if (target) {
-      target.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }
   };
 
   return (
     <header>
       <div className="container">
         <nav aria-label="Primary navigation">
-          <a className="logo" href="#main-content" aria-label="MA, Mohamed Awadalla home">MA</a>
+          <div className="current-page" aria-label={`Current page: ${currentPage.label}`}>
+            <span className="current-page-value">{currentPage.label}</span>
+          </div>
           <ul id="primary-nav" className={`nav-links${menuOpen ? ' is-open' : ''}`}>
-            <li><a href="#about" onClick={(e) => handleSmoothScroll(e, '#about')}>About</a></li>
-            <li><a href="#experience" onClick={(e) => handleSmoothScroll(e, '#experience')}>Experience</a></li>
-            <li><a href="#projects" onClick={(e) => handleSmoothScroll(e, '#projects')}>Projects</a></li>
-            <li><a href="#reading" onClick={(e) => handleSmoothScroll(e, '#reading')}>Reading</a></li>
-            <li><a href="#contact" onClick={(e) => handleSmoothScroll(e, '#contact')}>Contact</a></li>
+            <li><a className={activePath === '/about' ? 'active' : ''} aria-current={activePath === '/about' ? 'page' : undefined} href="/about" onClick={handleNavigate}>About</a></li>
+            <li><a className={activePath === '/experience' ? 'active' : ''} aria-current={activePath === '/experience' ? 'page' : undefined} href="/experience" onClick={handleNavigate}>Experience</a></li>
+            <li><a className={activePath === '/projects' ? 'active' : ''} aria-current={activePath === '/projects' ? 'page' : undefined} href="/projects" onClick={handleNavigate}>Projects</a></li>
           </ul>
           <div className="nav-actions">
+            <a
+              href="https://youtu.be/xvFZjo5PgG0?si=e2d4R0ybH1zhHJZS"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="surprise-nav-btn"
+            >
+              /useless
+            </a>
             <button
               type="button"
               className="menu-toggle"
@@ -60,14 +74,6 @@ const Header = () => {
                 )}
               </svg>
             </button>
-            <a
-              href="https://youtu.be/xvFZjo5PgG0?si=e2d4R0ybH1zhHJZS"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="surprise-nav-btn"
-            >
-              /useless
-            </a>
           </div>
         </nav>
       </div>

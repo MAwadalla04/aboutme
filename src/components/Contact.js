@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Contact = () => {
+const Contact = ({ sectionIndex = '03 /' }) => {
   return (
     <section id="contact">
       <div className="container">
-        <h2 className="section-title"><span className="section-index">05 /</span> Contact</h2>
+        <h2 className="section-title"><span className="section-index">{sectionIndex}</span> Contact</h2>
         <div className="contact-content">
           <div className="contact-info">
             <p>Let's get in touch.</p>

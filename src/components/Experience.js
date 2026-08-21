@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Experience = () => {
+const Experience = ({ showHeader = true }) => {
   const experiences = [
     {
       title: 'Software Development & Automation Intern',
@@ -19,7 +19,7 @@ const Experience = () => {
   return (
     <section id="experience">
       <div className="container">
-        <h2 className="section-title"><span className="section-index">02 /</span> Experience</h2>
+        {showHeader && <h2 className="section-title"><span className="section-index">02 /</span> Experience</h2>}
         <div className="experience-timeline">
           {experiences.map((exp, index) => (
             <div key={index} className="experience-item">
