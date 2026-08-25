@@ -25,9 +25,18 @@
   --project-card-muted: rgba(255, 255, 255, 0.72);
   --project-accent-featured: #ffffff;
   --project-accent-standard: #aeb4ba;
-  --modal-bg: rgba(255, 255, 255, 0.94);
-  --modal-backdrop: rgba(9, 10, 11, 0.72);
+  --modal-bg: var(--modal-surface);
+  --modal-backdrop: var(--overlay-backdrop);
   --dock-bg: rgba(255, 255, 255, 0.72);
+  --overlay-backdrop: rgba(9, 10, 11, 0.72);
+  --modal-surface: rgba(255, 255, 255, 0.94);
+  --focus-ring: var(--text-primary);
+  --button-hover-bg: #252525;
+  --project-index-paper: #f4f4f0;
+  --project-index-panel: #fbfbf8;
+  --project-index-soft: #e8e9e4;
+  --project-index-line: #cfd1cb;
+  --project-index-muted: #686b68;
   --accent-primary: #000000;
   --accent-secondary: #333333;
   --accent-tertiary: #666666;
@@ -89,8 +98,8 @@ body {
   left: 0.75rem;
   z-index: 2000;
   padding: 0.65rem 0.9rem;
-  color: #ffffff;
-  background: #111111;
+  color: var(--bg-primary);
+  background: var(--text-primary);
   border-radius: var(--radius-sm);
   text-decoration: none;
   transform: translateY(-160%);
@@ -102,7 +111,7 @@ body {
 }
 
 :where(a, button):focus-visible {
-  outline: 3px solid var(--text-primary);
+  outline: 3px solid var(--focus-ring);
   outline-offset: 3px;
 }
 
@@ -414,16 +423,16 @@ nav {
 }
 
 .app-projects main {
-  background: #f4f4f0;
+  background: var(--project-index-paper);
 }
 
 .projects-index {
-  --pg-ink: #111213;
-  --pg-paper: #f4f4f0;
-  --pg-panel: #fbfbf8;
-  --pg-soft: #e8e9e4;
-  --pg-line: #cfd1cb;
-  --pg-muted: #686b68;
+  --pg-ink: var(--text-primary);
+  --pg-paper: var(--project-index-paper);
+  --pg-panel: var(--project-index-panel);
+  --pg-soft: var(--project-index-soft);
+  --pg-line: var(--project-index-line);
+  --pg-muted: var(--project-index-muted);
   padding: 3.5rem 0 8rem;
   background: var(--pg-paper);
   color: var(--pg-ink);
@@ -701,7 +710,7 @@ nav {
 }
 
 .project-cta:hover {
-  background: #252525;
+  background: var(--button-hover-bg);
   transform: translateY(-2px);
 }
 
@@ -2138,7 +2147,7 @@ footer {
 .acc-modal-close:hover { transform: scale(1.05); }
 
 .acc-modal-close:focus-visible {
-  outline-color: #ffffff;
+  outline-color: var(--bg-primary);
 }
 
 .acc-modal-category {
@@ -2410,28 +2419,100 @@ body.project-modal-open .dock-wrapper {
 
 body,
 header,
+footer,
 .acc-card,
+.acc-modal,
+.dock,
 .terminal-egg {
-  transition: background-color 220ms ease, border-color 220ms ease, color 220ms ease;
+  transition: background-color 240ms ease, border-color 240ms ease, color 240ms ease, box-shadow 240ms ease;
+}
+
+.App,
+.App main,
+.projects-index,
+body:not(.playground-mode) .pg-panel,
+body:not(.playground-mode) .pg-panel-backdrop {
+  transition: background-color 240ms ease, border-color 240ms ease, color 240ms ease, box-shadow 240ms ease;
 }
 
 body.knicks-mode {
-  --bg-primary: var(--knicks-canvas);
-  --bg-secondary: var(--knicks-canvas);
-  --header-bg: var(--knicks-canvas);
-  --header-bg-strong: var(--knicks-canvas);
-  --accent-primary: var(--knicks-blue);
+  --bg-primary: var(--knicks-blue);
+  --bg-secondary: var(--knicks-navy);
+  --bg-card: rgba(17, 29, 47, 0.92);
+  --bg-card-hover: #172945;
+  --glass-bg: rgba(17, 29, 47, 0.68);
+  --glass-border: rgba(245, 132, 38, 0.5);
+  --header-bg: rgba(0, 107, 182, 0.94);
+  --header-bg-strong: rgba(0, 107, 182, 0.99);
+  --overlay-backdrop: rgba(17, 29, 47, 0.88);
+  --modal-surface: var(--knicks-navy);
+  --focus-ring: #ffffff;
+  --button-hover-bg: var(--knicks-orange);
+  --project-index-paper: var(--knicks-blue);
+  --project-index-panel: var(--knicks-navy);
+  --project-index-soft: rgba(245, 132, 38, 0.14);
+  --project-index-line: var(--knicks-orange);
+  --project-index-muted: var(--knicks-orange);
+  --accent-primary: var(--knicks-orange);
   --accent-secondary: var(--knicks-orange);
-  --accent-tertiary: var(--knicks-blue);
-  --text-primary: var(--knicks-navy);
-  --text-secondary: var(--knicks-navy);
-  --text-muted: var(--knicks-blue);
-  --border-color: var(--knicks-blue);
+  --accent-tertiary: #ffffff;
+  --accent-green: #ffffff;
+  --accent-orange: var(--knicks-orange);
+  --text-primary: #ffffff;
+  --text-secondary: var(--knicks-orange);
+  --text-muted: #ffffff;
+  --border-color: rgba(245, 132, 38, 0.62);
   --border-hover: var(--knicks-orange);
-  --project-card-bg: var(--knicks-blue);
-  --project-card-muted: var(--project-card-text);
-  --project-accent-featured: var(--project-card-text);
-  --project-accent-standard: var(--knicks-canvas);
+  --project-card-bg: var(--knicks-navy);
+  --project-card-border: rgba(245, 132, 38, 0.62);
+  --project-card-muted: rgba(255, 255, 255, 0.82);
+  --project-accent-featured: var(--knicks-orange);
+  --project-accent-standard: #ffffff;
+}
+
+body.knicks-mode .projects-index {
+  --pg-ink: #ffffff;
+  --pg-paper: var(--knicks-blue);
+  --pg-panel: var(--knicks-navy);
+  --pg-soft: rgba(245, 132, 38, 0.14);
+  --pg-line: var(--knicks-orange);
+  --pg-muted: var(--knicks-orange);
+}
+
+body.knicks-mode .pg-panel-backdrop {
+  --pg-ink: #ffffff;
+  --pg-panel: var(--knicks-navy);
+  --pg-line: var(--knicks-orange);
+  --pg-muted: var(--knicks-orange);
+}
+
+body.knicks-mode .app-projects main {
+  background: var(--knicks-blue);
+}
+
+body.knicks-mode h1,
+body.knicks-mode h2,
+body.knicks-mode h3,
+body.knicks-mode h4,
+body.knicks-mode .page-header h1,
+body.knicks-mode .hero h1,
+body.knicks-mode .project-title,
+body.knicks-mode .experience-title,
+body.knicks-mode .acc-card-title,
+body.knicks-mode .acc-modal-title {
+  color: #ffffff;
+}
+
+body.knicks-mode .project-cta,
+body.knicks-mode .download-btn {
+  color: var(--knicks-navy);
+  background: var(--knicks-orange);
+  border-color: var(--knicks-orange);
+}
+
+body.knicks-mode .download-btn {
+  background: var(--knicks-navy);
+  color: #ffffff;
 }
 
 body.knicks-mode h2::after,
@@ -2442,6 +2523,28 @@ body.knicks-mode .experience-item::before {
 body.knicks-mode ::selection {
   color: var(--knicks-navy);
   background: var(--knicks-orange);
+}
+
+body.knicks-mode .nav-links a.active {
+  background: transparent;
+  box-shadow: none;
+}
+
+.knicks-mode-indicator {
+  display: inline-block;
+  width: 0.52rem;
+  height: 0.52rem;
+  margin-left: 0.55rem;
+  vertical-align: 0.04rem;
+  border: 1px solid var(--accent-secondary);
+  background: transparent;
+  transition: background-color 240ms ease, border-color 240ms ease, box-shadow 240ms ease;
+}
+
+.knicks-mode-indicator.is-active {
+  border-color: var(--knicks-orange);
+  background: var(--knicks-orange);
+  box-shadow: 0 0 0 3px rgba(245, 132, 38, 0.16);
 }
 
 .section-title {
@@ -2703,7 +2806,7 @@ body.knicks-mode ::selection {
 }
 
 .terminal-form input:focus-visible {
-  outline: 1px solid var(--text-primary);
+  outline: 1px solid var(--focus-ring);
   outline-offset: 0.2rem;
 }
 
@@ -2725,10 +2828,19 @@ body.knicks-mode ::selection {
 @media (prefers-reduced-motion: reduce) {
   body,
   header,
+  footer,
+  .App,
+  .App main,
+  .projects-index,
+  body:not(.playground-mode) .pg-panel,
+  body:not(.playground-mode) .pg-panel-backdrop,
   .acc-card,
+  .acc-modal,
+  .dock,
   .terminal-egg,
   .about-beat,
-  .nav-links a::after {
+  .nav-links a::after,
+  .knicks-mode-indicator {
     transition: none !important;
     animation: none !important;
   }

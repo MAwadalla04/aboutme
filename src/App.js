@@ -11,6 +11,7 @@ import { SocialsDock } from './components/SocialsDock';
 import TerminalEgg from './components/TerminalEgg';
 
 const ROUTES = new Set(['/about', '/experience', '/projects']);
+const KNICKS_MODE_STORAGE_KEY = 'aboutme-knicks-mode';
 
 const normalizePath = (pathname) => {
   const path = pathname.replace(/\/+$/, '');
@@ -28,7 +29,13 @@ const PageHeader = ({ number, title, description }) => (
 );
 
 function App() {
-  const [knicksMode, setKnicksMode] = useState(false);
+  const [knicksMode, setKnicksMode] = useState(() => {
+    try {
+      return window.sessionStorage.getItem(KNICKS_MODE_STORAGE_KEY) === 'true';
+    } catch {
+      return false;
+    }
+  });
   const route = normalizePath(window.location.pathname);
 
   const toggleKnicksMode = useCallback(() => {
@@ -37,6 +44,11 @@ function App() {
 
   useEffect(() => {
     document.body.classList.toggle('knicks-mode', knicksMode);
+    try {
+      window.sessionStorage.setItem(KNICKS_MODE_STORAGE_KEY, String(knicksMode));
+    } catch {
+      // Theme state still works when storage is unavailable.
+    }
     return () => document.body.classList.remove('knicks-mode');
   }, [knicksMode]);
 
@@ -113,11 +125,11 @@ function App() {
   return (
     <div className={`App app-${route.slice(1)}`}>
       <a className="skip-link" href="#main-content">Skip to content</a>
-      <Header />
+      <Header knicksMode={knicksMode} />
       <main id="main-content">{renderPage()}</main>
       <Footer />
       <SocialsDock />
-      <TerminalEgg knicksMode={knicksMode} onToggleKnicksMode={toggleKnicksMode} />
+      <TerminalEgg />
     </div>
   );
 }

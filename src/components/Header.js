@@ -11,7 +11,7 @@ const PAGE_DETAILS = {
   '/projects': { number: '03', label: 'Projects' },
 };
 
-const Header = () => {
+const Header = ({ knicksMode }) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -43,7 +43,15 @@ const Header = () => {
         <nav aria-label="Primary navigation">
           <div className="current-page" aria-label={`Current page: ${currentPage.label}`}>
             <span className="current-page-value">{currentPage.label}</span>
+            <span
+              className={`knicks-mode-indicator${knicksMode ? ' is-active' : ''}`}
+              aria-label={knicksMode ? 'Knicks mode active' : 'Knicks mode inactive'}
+              title={knicksMode ? 'Knicks mode active' : 'Knicks mode inactive'}
+            />
           </div>
+          <span className="sr-only" role="status" aria-live="polite">
+            {knicksMode ? 'Knicks mode active' : 'Knicks mode inactive'}
+          </span>
           <ul id="primary-nav" className={`nav-links${menuOpen ? ' is-open' : ''}`}>
             <li><a className={activePath === '/about' ? 'active' : ''} aria-current={activePath === '/about' ? 'page' : undefined} href="/about" onClick={handleNavigate}>About</a></li>
             <li><a className={activePath === '/experience' ? 'active' : ''} aria-current={activePath === '/experience' ? 'page' : undefined} href="/experience" onClick={handleNavigate}>Experience</a></li>

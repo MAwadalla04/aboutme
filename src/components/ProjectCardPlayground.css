@@ -620,7 +620,7 @@ body.playground-mode::before {
 .pg-index-details p {
   max-width: 58ch;
   margin: 0;
-  color: #343635;
+  color: var(--pg-muted);
   font-family: var(--font-display);
   font-size: 1.25rem;
   line-height: 1.55;
@@ -974,7 +974,7 @@ body.playground-mode::before {
 .pg-tab-panel p {
   max-width: 66ch;
   margin: 0;
-  color: #353736;
+  color: var(--pg-muted);
   font-family: var(--font-display);
   font-size: 1.18rem;
   line-height: 1.6;

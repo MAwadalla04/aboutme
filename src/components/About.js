@@ -28,7 +28,7 @@ const About = ({ knicksMode, onToggleKnicksMode, sectionIndex = '01 /' }) => {
                   type="button"
                   className="knicks-trigger"
                   aria-pressed={knicksMode}
-                  title="Toggle Knicks mode"
+                  title={knicksMode ? 'Turn off Knicks mode' : 'Turn on Knicks mode'}
                   onClick={onToggleKnicksMode}
                 >
                   Knicks

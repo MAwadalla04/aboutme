@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 const RESUME_URL = `${process.env.PUBLIC_URL}/resume/Mohamed%27s%20Resume.pdf`;
 
-const TerminalEgg = ({ knicksMode, onToggleKnicksMode }) => {
+const TerminalEgg = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [command, setCommand] = useState('');
   const [output, setOutput] = useState(['type help for commands']);
@@ -46,10 +46,7 @@ const TerminalEgg = ({ knicksMode, onToggleKnicksMode }) => {
 
     if (!nextCommand) return;
     if (nextCommand === 'help') {
-      setOutput((lines) => [...lines, '$ help', 'commands: knicks, resume, clear, exit']);
-    } else if (nextCommand === 'knicks') {
-      onToggleKnicksMode();
-      setOutput((lines) => [...lines, '$ knicks', `knicks mode ${knicksMode ? 'off' : 'on'}`]);
+      setOutput((lines) => [...lines, '$ help', 'commands: resume, clear, exit']);
     } else if (nextCommand === 'resume') {
       window.open(RESUME_URL, '_blank', 'noopener,noreferrer');
       setOutput((lines) => [...lines, '$ resume', 'opening resume...']);
