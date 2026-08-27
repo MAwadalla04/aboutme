@@ -1543,12 +1543,13 @@ footer {
 
 .intro-moving-name {
   transform-origin: center;
+  line-height: 1.2;
 }
 
 .ag-edge {
   fill: none;
-  stroke: rgba(0, 0, 0, 0.06);
-  stroke-width: 1.6;
+  stroke: rgba(0, 0, 0, 0.22);
+  stroke-width: 1.8;
   stroke-linecap: round;
   stroke-dasharray: 260;
   stroke-dashoffset: 260;
@@ -1572,25 +1573,25 @@ footer {
 }
 
 .ag-node circle {
-  fill: rgba(0, 0, 0, 0.03);
-  stroke: rgba(0, 0, 0, 0.1);
-  stroke-width: 1.5;
+  fill: rgba(0, 0, 0, 0.06);
+  stroke: rgba(0, 0, 0, 0.28);
+  stroke-width: 1.7;
 }
 
 .ag-node.ag-in circle {
-  fill: rgba(0, 0, 0, 0.04);
-  stroke: rgba(0, 0, 0, 0.12);
+  fill: rgba(0, 0, 0, 0.08);
+  stroke: rgba(0, 0, 0, 0.3);
 }
 
 .ag-node.ag-op circle {
-  fill: rgba(0, 0, 0, 0.06);
-  stroke: rgba(0, 0, 0, 0.15);
+  fill: rgba(0, 0, 0, 0.1);
+  stroke: rgba(0, 0, 0, 0.34);
 }
 
 .ag-node.ag-out circle {
-  fill: rgba(0, 0, 0, 0.04);
-  stroke: rgba(0, 0, 0, 0.14);
-  stroke-width: 1.5;
+  fill: rgba(0, 0, 0, 0.08);
+  stroke: rgba(0, 0, 0, 0.34);
+  stroke-width: 1.7;
 }
 
 .ag-node text {
