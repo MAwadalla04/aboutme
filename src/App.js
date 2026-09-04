@@ -115,6 +115,7 @@ function App() {
     return (
       <>
         <Hero />
+        <SocialsDock />
         <About knicksMode={knicksMode} onToggleKnicksMode={toggleKnicksMode} sectionIndex="01 /" />
         <CurrentlyReading sectionIndex="02 /" />
         <Contact sectionIndex="03 /" />
@@ -128,7 +129,6 @@ function App() {
       <Header knicksMode={knicksMode} />
       <main id="main-content">{renderPage()}</main>
       <Footer />
-      <SocialsDock />
       <TerminalEgg />
     </div>
   );

@@ -73,17 +73,17 @@ describe('Hero intro', () => {
     root.render(strict ? <React.StrictMode><Hero /></React.StrictMode> : <Hero />);
   });
 
-  it('changes the caption at 2.4 seconds and completes at six seconds in StrictMode', () => {
+  it('changes the caption at 2.9 seconds and completes at 7.6 seconds in StrictMode', () => {
     mount(true);
-    act(() => jest.advanceTimersByTime(2399));
+    act(() => jest.advanceTimersByTime(2899));
     expect(container.querySelector('.intro-graph-caption').textContent).toContain('forward');
     act(() => jest.advanceTimersByTime(1));
     expect(container.querySelector('.intro-graph-caption').textContent).toContain('backprop');
-    act(() => jest.advanceTimersByTime(1800));
+    act(() => jest.advanceTimersByTime(2300));
     expect(container.querySelector('.intro-phase-greeting')).not.toBeNull();
     act(() => jest.advanceTimersByTime(600));
     expect(container.querySelector('.intro-phase-landing')).not.toBeNull();
-    act(() => jest.advanceTimersByTime(1199));
+    act(() => jest.advanceTimersByTime(1799));
     expect(container.querySelector('.intro-overlay')).not.toBeNull();
     act(() => jest.advanceTimersByTime(1));
     expect(container.querySelector('.intro-overlay')).toBeNull();
@@ -133,16 +133,16 @@ describe('graph dependency timeline', () => {
   it.each([true, false])('runs independent edges together and waits for every incoming edge (forward=%s)', (forward) => {
     const stages = [0, 1, 2, 3].map(stage => EDGES.filter(edge => edge.stage === stage));
     if (!forward) stages.reverse();
-    let end = forward ? 600 : 2400;
+    let end = forward ? 600 : 2900;
     stages.forEach(edges => {
       edges.forEach(edge => {
         const beam = beamTimeline(edge, forward);
         expect(beam.start).toBe(end);
-        expect(beam.duration).toBe(400);
+        expect(beam.duration).toBe(525);
       });
-      end += 400;
+      end += 525;
     });
-    expect(end).toBe(forward ? 2200 : 4000);
+    expect(end).toBe(forward ? 2700 : 5000);
   });
 
   it('uses actual unequal edge lengths and reverses the exact traversal', () => {

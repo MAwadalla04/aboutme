@@ -7,6 +7,9 @@
 }
 
 :root {
+  --content-width: 1152px;
+  --page-gutter: 24px;
+  --stripe-width: clamp(12px, 4vw, 64px);
   --font-headline: 'Harmond', 'Iowan Old Style', Georgia, serif;
   --font-display: 'EB Garamond', 'Iowan Old Style', Georgia, serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -128,9 +131,10 @@ body::before {
 }
 
 .container {
-  max-width: 1200px;
+  width: 100%;
+  max-width: calc(var(--content-width) + 2 * var(--page-gutter));
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 var(--page-gutter);
 }
 
 /* Typography */
@@ -385,6 +389,11 @@ nav {
   row-gap: 0.8rem;
 }
 
+.page-header-inner > * {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
 .page-header-index {
   margin: 0 0 0.35rem;
   color: var(--text-muted);
@@ -394,7 +403,7 @@ nav {
 
 .page-header h1 {
   margin: 0;
-  font-size: clamp(3rem, 8vw, 6.5rem);
+  font-size: clamp(2rem, 8vw, 6.5rem);
   line-height: 0.88;
 }
 
@@ -784,7 +793,7 @@ section::before {
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 80%;
+  width: min(var(--content-width), calc(100% - 2 * var(--page-gutter)));
   height: 1px;
   background: var(--border-color);
 }
@@ -1173,7 +1182,7 @@ section::before {
 /* Contact Section */
 .contact-content {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 4rem;
   align-items: start;
 }
@@ -1224,6 +1233,8 @@ section::before {
 }
 
 .contact-link a {
+  min-width: 0;
+  overflow-wrap: anywhere;
   color: var(--text-primary);
   text-decoration: none;
   font-weight: 500;
@@ -1286,9 +1297,7 @@ footer {
 }
 
 @media (max-width: 768px) {
-  .container {
-    padding: 0 16px;
-  }
+  :root { --page-gutter: 16px; }
   
   section {
     padding: 4rem 0;
@@ -1362,6 +1371,8 @@ footer {
   .experience-timeline {
     padding-left: 1.5rem;
   }
+
+  .experience-item { padding: 1.25rem; }
   
   .experience-item::before {
     left: -1.5rem;
@@ -2436,6 +2447,7 @@ body:not(.playground-mode) .pg-panel-backdrop {
 }
 
 body.knicks-mode {
+  --page-gutter: max(24px, calc(var(--stripe-width) + 12px));
   --bg-primary: #006bb6;
   --bg-secondary: #111d2f;
   --bg-card: #111d2f;
@@ -2568,7 +2580,7 @@ body.knicks-mode .intro-overlay {
   --jersey-stripe: linear-gradient(90deg, #111d2f 0 42%, #f58426 42% 67%, #111d2f 67% 100%);
   background-image: var(--jersey-stripe), var(--jersey-stripe);
   background-position: left top, right top;
-  background-size: clamp(12px, 4vw, 64px) 100%;
+  background-size: var(--stripe-width) 100%;
   background-repeat: no-repeat;
 }
 body.knicks-mode .intro-overlay { background-color: var(--knicks-navy); }
@@ -2614,7 +2626,6 @@ body.knicks-mode footer p { color: #ffffff; }
 body.knicks-mode footer .visit-count { color: #ffffff; background: transparent; border-color: #ffffff; }
 
 @media (max-width: 768px) {
-  body.knicks-mode .container { padding-inline: max(24px, calc(4vw + 8px)); }
   body.knicks-mode header .nav-links { background: var(--knicks-blue); border-color: var(--knicks-orange); }
   body.knicks-mode :is(.hero h1, .page-header h1, .intro-moving-name) {
     text-shadow: 1px 1px 0 var(--knicks-navy), 2px 2px 0 var(--knicks-orange);
@@ -2987,4 +2998,19 @@ body :is(h1, h2, h3, h4, a, .pg-index-title, .projects-index-case-study, .pg-tab
   .acc-arrow:active:not(:disabled) {
     transform: none;
   }
+}
+
+/* On phones the social links belong to the introduction, clear of reading content. */
+@media (max-width: 768px) {
+  .hero { padding-bottom: 2rem; }
+  .dock-wrapper {
+    position: relative;
+    left: auto;
+    bottom: auto;
+    width: fit-content;
+    margin: 0 var(--page-gutter) 4rem;
+    transform: none;
+    align-items: flex-start;
+  }
+  .dock-wrapper .dock-tooltip { position: absolute; bottom: 100%; }
 }

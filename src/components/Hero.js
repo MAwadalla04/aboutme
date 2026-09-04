@@ -4,8 +4,8 @@ import { motion } from 'framer-motion';
 const EASE = [0.16, 1, 0.3, 1];
 export const INTRO_STORAGE_KEY = 'aboutme-graph-intro-seen';
 export const INTRO_TIMELINE = Object.freeze({
-  assembly: 600, forward: 600, backward: 2400, stage: 400,
-  greeting: 4200, landing: 4800, done: 6000,
+  assembly: 600, forward: 600, backward: 2900, stage: 525,
+  greeting: 5200, landing: 5800, done: 7600,
 });
 
 export const EDGES = [
