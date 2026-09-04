@@ -1,25 +1,37 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const SPEED = 1.1;
-const EDGE_MS = 620;
-const BEAM_DASH = '50 300';
-const BEAM_HIDDEN = 50;
-const BEAM_END = -200;
-const INTRO_BEAM_DURATION = 1.3;
 const EASE = [0.16, 1, 0.3, 1];
+export const INTRO_STORAGE_KEY = 'aboutme-graph-intro-seen';
+export const INTRO_TIMELINE = Object.freeze({
+  assembly: 600, forward: 600, backward: 2400, stage: 400,
+  greeting: 4200, landing: 4800, done: 6000,
+});
 
-const EDGES = [
-  { id: 'e-x1-n1', d: 'M52,392 L96,300', fwd: 0, bwd: 8120, introFwd: 1700, introBwd: 7200 },
-  { id: 'e-w1-n1', d: 'M140,392 L96,300', fwd: 0, bwd: 8120, introFwd: 1700, introBwd: 7200 },
-  { id: 'e-x2-n2', d: 'M200,392 L244,300', fwd: 680, bwd: 7440, introFwd: 2100, introBwd: 6800 },
-  { id: 'e-w2-n2', d: 'M288,392 L244,300', fwd: 680, bwd: 7440, introFwd: 2100, introBwd: 6800 },
-  { id: 'e-n1-n3', d: 'M96,300 L170,214', fwd: 1360, bwd: 6760, introFwd: 2500, introBwd: 6400 },
-  { id: 'e-n2-n3', d: 'M244,300 L170,214', fwd: 1360, bwd: 6760, introFwd: 2500, introBwd: 6400 },
-  { id: 'e-b-n3', d: 'M305,214 L170,214', fwd: 2040, bwd: 6080, introFwd: 2900, introBwd: 6000 },
-  { id: 'e-n3-tanh', d: 'M170,214 L170,128', fwd: 2720, bwd: 5400, introFwd: 3300, introBwd: 5600 },
-  { id: 'e-tanh-L', d: 'M170,128 L170,44', fwd: 3400, bwd: 4720, introFwd: 3700, introBwd: 5200 },
-];
+export const EDGES = [
+  ['e-x1-n1', 52, 392, 96, 300, 0],
+  ['e-w1-n1', 140, 392, 96, 300, 0],
+  ['e-x2-n2', 200, 392, 244, 300, 0],
+  ['e-w2-n2', 288, 392, 244, 300, 0],
+  ['e-n1-n3', 96, 300, 170, 214, 1],
+  ['e-n2-n3', 244, 300, 170, 214, 1],
+  ['e-b-n3', 305, 214, 170, 214, 1],
+  ['e-n3-tanh', 170, 214, 170, 128, 2],
+  ['e-tanh-L', 170, 128, 170, 44, 3],
+].map(([id, x1, y1, x2, y2, stage]) => ({
+  id, stage, d: `M${x1},${y1} L${x2},${y2}`,
+  length: Math.hypot(x2 - x1, y2 - y1),
+}));
+
+// A single dash crosses the entire edge, including its tail, within its stage.
+export const beamTimeline = (edge, forward) => ({
+  start: (forward ? INTRO_TIMELINE.forward : INTRO_TIMELINE.backward)
+    + (forward ? edge.stage : 3 - edge.stage) * INTRO_TIMELINE.stage,
+  duration: INTRO_TIMELINE.stage,
+  dash: `50 ${edge.length + 50}`,
+  from: forward ? 50 : -edge.length,
+  to: forward ? -edge.length : 50,
+});
 
 const NODES = [
   { type: 'in', x: 52, y: 392, label: 'x₁', delay: 0 },
@@ -34,22 +46,6 @@ const NODES = [
   { type: 'out', x: 170, y: 44, label: 'L', delay: 900, radius: 20 },
 ];
 
-const beamTransition = (edge, isForward, intro = false) => {
-  if (intro) {
-    return {
-      duration: INTRO_BEAM_DURATION,
-      delay: (isForward ? edge.introFwd : edge.introBwd) / 1000,
-      ease: 'linear',
-    };
-  }
-
-  return {
-    duration: (EDGE_MS * SPEED) / 1000,
-    delay: ((isForward ? edge.fwd : edge.bwd) * SPEED) / 1000,
-    ease: EASE,
-  };
-};
-
 const AutogradGraph = ({ intro = false }) => (
   <svg
     className={`autograd-graph${intro ? ' intro-autograd-graph' : ''}`}
@@ -58,52 +54,44 @@ const AutogradGraph = ({ intro = false }) => (
     aria-label={intro ? undefined : 'Computation graph of a small neural network, animated with a forward and backward pass'}
   >
     <g className="ag-edges">
-      {EDGES.map((edge, index) => (
+      {EDGES.map((edge) => (
         <path
           key={edge.id}
           id={intro ? `${edge.id}-intro` : edge.id}
           className="ag-edge"
-          style={{ animationDelay: `${index * 90}ms` }}
+          style={{ animationDelay: `${edge.stage * 60}ms`, animationDuration: `${INTRO_TIMELINE.assembly - 180}ms` }}
           d={edge.d}
         />
       ))}
     </g>
     <g className="ag-edge-beams">
-      {EDGES.map((edge) => (
-        <motion.path
-          key={edge.id}
-          d={edge.d}
-          stroke="var(--accent-primary)"
-          strokeWidth={5}
-          strokeLinecap="round"
-          fill="none"
-          strokeDasharray={BEAM_DASH}
-          initial={{ strokeDashoffset: BEAM_HIDDEN }}
-          animate={{ strokeDashoffset: BEAM_END }}
-          transition={beamTransition(edge, true, intro)}
-        />
-      ))}
-      {EDGES.map((edge) => (
-        <motion.path
-          key={`${edge.id}-bwd`}
-          d={edge.d}
-          stroke="var(--accent-secondary)"
-          strokeWidth={5}
-          strokeLinecap="round"
-          fill="none"
-          strokeDasharray={BEAM_DASH}
-          initial={{ strokeDashoffset: BEAM_END }}
-          animate={{ strokeDashoffset: BEAM_HIDDEN }}
-          transition={beamTransition(edge, false, intro)}
-        />
-      ))}
+      {[true, false].flatMap((forward) => EDGES.map((edge) => {
+        const beam = beamTimeline(edge, forward);
+        return ['halo', 'core'].map((layer) => (
+          <path
+            key={`${edge.id}-${forward}-${layer}`}
+            className={`ag-beam ag-beam-${layer}`}
+            d={edge.d}
+            stroke={forward ? 'var(--accent-primary)' : 'var(--accent-secondary)'}
+            strokeWidth={3}
+            strokeLinecap="butt"
+            fill="none"
+            strokeDasharray={beam.dash}
+            style={{
+              '--beam-from': beam.from, '--beam-to': beam.to,
+              animationDelay: `${beam.start}ms`,
+              animationDuration: `${beam.duration}ms`,
+            }}
+          />
+        ));
+      }))}
     </g>
     <g className="ag-nodes">
       {NODES.map((node) => (
         <g
           key={`${node.label}-${node.x}-${node.y}`}
           className={`ag-node ag-${node.type}`}
-          style={{ animationDelay: `${node.delay}ms` }}
+          style={{ animationDelay: `${node.delay / 6}ms`, animationDuration: `${INTRO_TIMELINE.assembly - 150}ms` }}
         >
           <circle cx={node.x} cy={node.y} r={node.radius || 18} />
           <text x={node.x} y={node.y}>{node.label}</text>
@@ -118,16 +106,27 @@ const Hero = () => {
   const heroMohamedRef = React.useRef(null);
   const [introPhase, setIntroPhase] = React.useState(() => {
     if (typeof window === 'undefined') return 'graph';
-    return window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'done' : 'graph';
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return 'done';
+    try {
+      return window.sessionStorage.getItem(INTRO_STORAGE_KEY) ? 'done' : 'graph';
+    } catch {
+      return 'graph';
+    }
   });
+  const playIntro = React.useRef(introPhase !== 'done');
   const [introPass, setIntroPass] = React.useState('forward');
   const [landingTransform, setLandingTransform] = React.useState({ x: 0, y: 0, scale: 1 });
 
   React.useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
+    if (!playIntro.current) return undefined;
+    try {
+      window.sessionStorage.setItem(INTRO_STORAGE_KEY, 'true');
+    } catch {
+      // Playback still completes when storage is blocked.
+    }
 
-    const backpropTimer = window.setTimeout(() => setIntroPass('backprop'), 5100);
-    const greetingTimer = window.setTimeout(() => setIntroPhase('greeting'), 9000);
+    const backpropTimer = window.setTimeout(() => setIntroPass('backprop'), INTRO_TIMELINE.backward);
+    const greetingTimer = window.setTimeout(() => setIntroPhase('greeting'), INTRO_TIMELINE.greeting);
     const landingTimer = window.setTimeout(() => {
       const source = introMohamedRef.current?.getBoundingClientRect();
       const target = heroMohamedRef.current?.getBoundingClientRect();
@@ -141,11 +140,13 @@ const Hero = () => {
       }
 
       setIntroPhase('landing');
-    }, 9700);
+    }, INTRO_TIMELINE.landing);
+    const doneTimer = window.setTimeout(() => setIntroPhase('done'), INTRO_TIMELINE.done);
     return () => {
       window.clearTimeout(backpropTimer);
       window.clearTimeout(greetingTimer);
       window.clearTimeout(landingTimer);
+      window.clearTimeout(doneTimer);
     };
   }, []);
 
@@ -166,7 +167,7 @@ const Hero = () => {
                   className="intro-greeting"
                   initial={{ opacity: 0, y: 14, scale: 0.96 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
-                  transition={{ duration: 0.55, ease: EASE }}
+                  transition={{ duration: (INTRO_TIMELINE.landing - INTRO_TIMELINE.greeting) / 1000, ease: EASE }}
                 >
                   <motion.span
                     className="intro-greeting-context"
@@ -179,10 +180,7 @@ const Hero = () => {
                     ref={introMohamedRef}
                     className="intro-moving-name"
                     animate={introPhase === 'landing' ? landingTransform : { x: 0, y: 0, scale: 1 }}
-                    transition={{ duration: 1.2, ease: EASE }}
-                    onAnimationComplete={() => {
-                      if (introPhase === 'landing') setIntroPhase('done');
-                    }}
+                    transition={{ duration: (INTRO_TIMELINE.done - INTRO_TIMELINE.landing) / 1000, ease: EASE }}
                   >
                     Mohamed
                   </motion.span>

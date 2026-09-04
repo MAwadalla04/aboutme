@@ -51,7 +51,7 @@
   --knicks-blue: #006bb6;
   --knicks-orange: #f58426;
   --knicks-navy: #111d2f;
-  --knicks-canvas: #fffaf5;
+  --knicks-canvas: #ffffff;
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
   --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
   --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.1);
@@ -1489,7 +1489,7 @@ footer {
 }
 
 .intro-autograd-graph .ag-edge {
-  animation-duration: 0.65s;
+  animation-duration: 0.42s;
 }
 
 .intro-autograd-graph .ag-node {
@@ -1512,8 +1512,8 @@ footer {
   place-content: center;
   text-align: center;
   opacity: 0;
-  transform: translateX(-50%) translateY(0.75rem) scale(0.96);
-  transition: opacity 500ms ease, transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateX(-50%);
+  transition: opacity 500ms ease;
 }
 
 .intro-phase-greeting .intro-copy,
@@ -1573,23 +1573,23 @@ footer {
 }
 
 .ag-node circle {
-  fill: rgba(0, 0, 0, 0.06);
+  fill: #ebebeb;
   stroke: rgba(0, 0, 0, 0.28);
   stroke-width: 1.7;
 }
 
 .ag-node.ag-in circle {
-  fill: rgba(0, 0, 0, 0.08);
+  fill: #e6e6e6;
   stroke: rgba(0, 0, 0, 0.3);
 }
 
 .ag-node.ag-op circle {
-  fill: rgba(0, 0, 0, 0.1);
+  fill: #e1e1e1;
   stroke: rgba(0, 0, 0, 0.34);
 }
 
 .ag-node.ag-out circle {
-  fill: rgba(0, 0, 0, 0.08);
+  fill: #e6e6e6;
   stroke: rgba(0, 0, 0, 0.34);
   stroke-width: 1.7;
 }
@@ -1616,7 +1616,6 @@ footer {
 
 .ag-edge-beams path {
   fill: none;
-  filter: drop-shadow(0 0 6px currentColor);
 }
 
 .project-featured {
@@ -2437,98 +2436,218 @@ body:not(.playground-mode) .pg-panel-backdrop {
 }
 
 body.knicks-mode {
-  --bg-primary: var(--knicks-blue);
-  --bg-secondary: var(--knicks-navy);
-  --bg-card: rgba(17, 29, 47, 0.92);
-  --bg-card-hover: #172945;
-  --glass-bg: rgba(17, 29, 47, 0.68);
-  --glass-border: rgba(245, 132, 38, 0.5);
-  --header-bg: rgba(0, 107, 182, 0.94);
-  --header-bg-strong: rgba(0, 107, 182, 0.99);
-  --overlay-backdrop: rgba(17, 29, 47, 0.88);
-  --modal-surface: var(--knicks-navy);
+  --bg-primary: #006bb6;
+  --bg-secondary: #111d2f;
+  --bg-card: #111d2f;
+  --bg-card-hover: #183452;
+  --glass-bg: #111d2f;
+  --glass-border: #4b94c8;
+  --header-bg: var(--knicks-navy);
+  --header-bg-strong: var(--knicks-navy);
+  --dock-bg: #111d2f;
+  --overlay-backdrop: rgba(17, 29, 47, 0.55);
+  --modal-surface: #111d2f;
   --focus-ring: #ffffff;
-  --button-hover-bg: var(--knicks-orange);
-  --project-index-paper: var(--knicks-blue);
-  --project-index-panel: var(--knicks-navy);
-  --project-index-soft: rgba(245, 132, 38, 0.14);
-  --project-index-line: var(--knicks-orange);
-  --project-index-muted: var(--knicks-orange);
-  --accent-primary: var(--knicks-orange);
+  --button-hover-bg: #e87519;
+  --project-index-paper: #006bb6;
+  --project-index-panel: #111d2f;
+  --project-index-soft: #183452;
+  --project-index-line: #70add6;
+  --project-index-muted: #e0edfa;
+  --accent-primary: var(--knicks-blue);
   --accent-secondary: var(--knicks-orange);
-  --accent-tertiary: #ffffff;
+  --accent-tertiary: #e0edfa;
   --accent-green: #ffffff;
   --accent-orange: var(--knicks-orange);
   --text-primary: #ffffff;
-  --text-secondary: var(--knicks-orange);
-  --text-muted: #ffffff;
-  --border-color: rgba(245, 132, 38, 0.62);
+  --text-secondary: #e0edfa;
+  --text-muted: #e0edfa;
+  --border-color: #70add6;
   --border-hover: var(--knicks-orange);
-  --project-card-bg: var(--knicks-navy);
-  --project-card-border: rgba(245, 132, 38, 0.62);
-  --project-card-muted: rgba(255, 255, 255, 0.82);
+  --project-card-bg: #111d2f;
+  --project-card-border: #70add6;
+  --project-card-text: #ffffff;
+  --project-card-muted: #e0edfa;
   --project-accent-featured: var(--knicks-orange);
   --project-accent-standard: #ffffff;
+  --shadow-sm: 0 2px 8px rgba(0, 107, 182, 0.04);
+  --shadow-md: 0 8px 24px rgba(0, 107, 182, 0.06);
+  --shadow-lg: 0 16px 48px rgba(0, 107, 182, 0.08);
 }
 
-body.knicks-mode .projects-index {
-  --pg-ink: #ffffff;
-  --pg-paper: var(--knicks-blue);
-  --pg-panel: var(--knicks-navy);
-  --pg-soft: rgba(245, 132, 38, 0.14);
-  --pg-line: var(--knicks-orange);
-  --pg-muted: var(--knicks-orange);
-}
-
+body.knicks-mode .projects-index,
 body.knicks-mode .pg-panel-backdrop {
   --pg-ink: #ffffff;
-  --pg-panel: var(--knicks-navy);
-  --pg-line: var(--knicks-orange);
-  --pg-muted: var(--knicks-orange);
+  --pg-paper: #006bb6;
+  --pg-panel: #111d2f;
+  --pg-soft: #183452;
+  --pg-line: #70add6;
+  --pg-muted: #e0edfa;
+  --pg-orange: var(--knicks-orange);
 }
 
-body.knicks-mode .app-projects main {
-  background: var(--knicks-blue);
+body.knicks-mode .app-projects main { background: var(--knicks-blue); }
+
+body.knicks-mode header::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 -10px;
+  height: 10px;
+  background: linear-gradient(to bottom, #f58426 0 6px, #ffffff 6px 8px, #006bb6 8px 10px);
+  pointer-events: none;
 }
 
-body.knicks-mode h1,
-body.knicks-mode h2,
-body.knicks-mode h3,
-body.knicks-mode h4,
-body.knicks-mode .page-header h1,
+body.knicks-mode :is(h1, h2, h3, h4),
 body.knicks-mode .hero h1,
-body.knicks-mode .project-title,
-body.knicks-mode .experience-title,
-body.knicks-mode .acc-card-title,
-body.knicks-mode .acc-modal-title {
+body.knicks-mode .page-header h1,
+body.knicks-mode :is(.project-title, .experience-title, .acc-card-title, .acc-modal-title, .intro-greeting),
+body.knicks-mode a,
+body.knicks-mode .current-page-value {
   color: #ffffff;
 }
 
-body.knicks-mode .project-cta,
-body.knicks-mode .download-btn {
+body.knicks-mode .project-cta {
   color: var(--knicks-navy);
   background: var(--knicks-orange);
   border-color: var(--knicks-orange);
 }
 
-body.knicks-mode .download-btn {
-  background: var(--knicks-navy);
-  color: #ffffff;
+body.knicks-mode :is(.download-btn, .pg-panel-close, .menu-toggle) {
+  background: #ffffff;
+  color: var(--knicks-blue);
+  border-color: var(--knicks-blue);
 }
 
-body.knicks-mode h2::after,
-body.knicks-mode .experience-item::before {
-  background: var(--knicks-orange);
-}
-
-body.knicks-mode ::selection {
+body.knicks-mode .download-btn:hover { background: #f3f7fc; }
+body.knicks-mode .pg-tabs button[aria-selected='true'] {
   color: var(--knicks-navy);
   background: var(--knicks-orange);
 }
+body.knicks-mode :is(a, button):focus-visible { outline-color: var(--knicks-orange); }
+body.knicks-mode h2::after,
+body.knicks-mode .experience-item::before { background: var(--knicks-orange); }
+body.knicks-mode ::selection { color: var(--knicks-navy); background: var(--knicks-orange); }
+body.knicks-mode .nav-links a.active { color: var(--knicks-blue); background: transparent; box-shadow: none; }
+body.knicks-mode .ag-node circle { fill: #f3f7fc; stroke: #006bb6; }
+body.knicks-mode .ag-edge { stroke: #6c89a6; }
+body.knicks-mode .ag-node text { fill: var(--knicks-navy); }
 
-body.knicks-mode .nav-links a.active {
-  background: transparent;
-  box-shadow: none;
+body.knicks-mode :is(.pg-index-title, .projects-index-case-study) { color: #ffffff; }
+body.knicks-mode .live-project-index,
+body.knicks-mode .live-project-index .pg-index-item { border-color: var(--border-color); }
+body.knicks-mode .surprise-nav-btn:hover,
+body.knicks-mode .surprise-nav-btn:focus-visible {
+  color: var(--knicks-navy);
+  background: var(--knicks-orange);
+  border-color: var(--knicks-orange);
+}
+
+/* Full Knicks takeover: blue canvas, navy panels, and orange jersey trim. */
+body.knicks-mode header :is(a, .current-page-value),
+body.knicks-mode header .nav-links a.active,
+body.knicks-mode header .nav-links a:hover {
+  color: #ffffff;
+}
+body.knicks-mode header .nav-links a::after { background: var(--knicks-orange); height: 3px; }
+body.knicks-mode header .surprise-nav-btn { border-color: #ffffff; }
+body.knicks-mode header :is(a, button):focus-visible { outline-color: #ffffff; }
+body.knicks-mode header .surprise-nav-btn:hover { color: var(--knicks-navy); }
+
+body.knicks-mode .App { position: relative; }
+
+body.knicks-mode .App::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+body.knicks-mode .App::before,
+body.knicks-mode .intro-overlay {
+  --jersey-stripe: linear-gradient(90deg, #111d2f 0 42%, #f58426 42% 67%, #111d2f 67% 100%);
+  background-image: var(--jersey-stripe), var(--jersey-stripe);
+  background-position: left top, right top;
+  background-size: clamp(12px, 4vw, 64px) 100%;
+  background-repeat: no-repeat;
+}
+body.knicks-mode .intro-overlay { background-color: var(--knicks-navy); }
+body.knicks-mode .intro-phase-landing { background-color: transparent; background-image: none; }
+body.knicks-mode .page-header { border-bottom: 5px solid var(--knicks-orange); }
+body.knicks-mode :is(.hero h1, .page-header h1, .intro-moving-name) {
+  text-shadow: 2px 2px 0 var(--knicks-navy), 4px 4px 0 var(--knicks-orange);
+}
+body.knicks-mode .hero .tagline {
+  display: inline-block;
+  padding: 0.45rem 0.7rem;
+  color: #ffffff;
+  background: var(--knicks-blue);
+  border-left: 5px solid var(--knicks-orange);
+}
+body.knicks-mode :is(.hero-info-item, .download-btn) { border: 2px solid var(--knicks-blue); }
+body.knicks-mode .project-cta {
+  border: 2px solid var(--knicks-navy);
+  box-shadow: 5px 5px 0 var(--knicks-navy);
+}
+body.knicks-mode .project-cta:hover {
+  background: #ff9a42;
+  box-shadow: 2px 2px 0 var(--knicks-navy);
+}
+body.knicks-mode .section-title::after { height: 4px; }
+body.knicks-mode :is(.experience-item, .contact-link) {
+  border: 1px solid var(--knicks-blue);
+  border-left: 5px solid var(--knicks-orange);
+  background: var(--knicks-navy);
+}
+body.knicks-mode .live-project-index { border-top: 4px solid var(--knicks-orange); }
+body.knicks-mode .pg-index-number { color: #ffffff; font-weight: 700; }
+body.knicks-mode .pg-index-mark { color: var(--knicks-orange); }
+body.knicks-mode .pg-index-item-open { background: var(--knicks-navy); box-shadow: inset 5px 0 var(--knicks-orange); }
+body.knicks-mode .pg-panel { border-top: 6px solid var(--knicks-orange); }
+body.knicks-mode .dock { border: 2px solid var(--knicks-blue); border-bottom: 5px solid var(--knicks-orange); }
+body.knicks-mode footer {
+  color: #ffffff;
+  background: var(--knicks-navy);
+  border-top: 6px solid var(--knicks-orange);
+}
+body.knicks-mode footer p { color: #ffffff; }
+body.knicks-mode footer .visit-count { color: #ffffff; background: transparent; border-color: #ffffff; }
+
+@media (max-width: 768px) {
+  body.knicks-mode .container { padding-inline: max(24px, calc(4vw + 8px)); }
+  body.knicks-mode header .nav-links { background: var(--knicks-blue); border-color: var(--knicks-orange); }
+  body.knicks-mode :is(.hero h1, .page-header h1, .intro-moving-name) {
+    text-shadow: 1px 1px 0 var(--knicks-navy), 2px 2px 0 var(--knicks-orange);
+  }
+}
+
+body.knicks-mode :is(.hero-info-item svg, .contact-link svg, .dock-icon, .experience-company, .knicks-trigger) { color: var(--knicks-orange); }
+body.knicks-mode .hero .tagline { background: var(--knicks-navy); }
+body.knicks-mode .hero-info-item { border-color: #70add6; }
+body.knicks-mode .dock-icon:hover { color: #ffffff; }
+body.knicks-mode .pg-panel a { color: #ffffff; }
+body.knicks-mode .skip-link { color: var(--knicks-navy); background: var(--knicks-orange); }
+
+/* Keep theme changes consistent without changing interaction transforms. */
+body :is(h1, h2, h3, h4, a, .pg-index-title, .projects-index-case-study, .pg-tabs button, .menu-toggle, .dock-icon) {
+  transition: color 240ms ease, background-color 240ms ease, border-color 240ms ease, box-shadow 240ms ease, transform 160ms ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  body :is(h1, h2, h3, h4, a, .pg-index-title, .projects-index-case-study, .pg-tabs button, .menu-toggle, .dock-icon) {
+    transition: none !important;
+  }
+}
+
+.ag-beam {
+  visibility: hidden;
+  animation-name: agTraverse;
+  animation-timing-function: linear;
+}
+.ag-beam-core { opacity: 1; }
+.ag-beam-halo { opacity: 0.18; filter: blur(2px); }
+@keyframes agTraverse {
+  from { visibility: visible; stroke-dashoffset: var(--beam-from); }
+  to { visibility: visible; stroke-dashoffset: var(--beam-to); }
 }
 
 .knicks-mode-indicator {
