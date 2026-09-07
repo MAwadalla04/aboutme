@@ -5,6 +5,7 @@ import About from './components/About';
 import CurrentlyReading from './components/Skills';
 import Experience from './components/Experience';
 import Projects from './components/Projects';
+import FeaturedProject from './components/FeaturedProject';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import { SocialsDock } from './components/SocialsDock';
@@ -116,6 +117,7 @@ function App() {
       <>
         <Hero />
         <SocialsDock />
+        <FeaturedProject />
         <About knicksMode={knicksMode} onToggleKnicksMode={toggleKnicksMode} sectionIndex="01 /" />
         <CurrentlyReading sectionIndex="02 /" />
         <Contact sectionIndex="03 /" />

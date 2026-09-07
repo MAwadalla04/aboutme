@@ -13,6 +13,7 @@
   --font-headline: 'Harmond', 'Iowan Old Style', Georgia, serif;
   --font-display: 'EB Garamond', 'Iowan Old Style', Georgia, serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-numeric: var(--font-body);
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
   --bg-primary: #fafafa;
   --bg-secondary: #f0f0f0;
@@ -288,6 +289,7 @@ nav {
 
 .surprise-nav-btn {
   position: relative;
+  font-family: inherit;
   color: var(--text-primary);
   text-decoration: none;
   font-weight: 500;
@@ -1678,7 +1680,8 @@ footer {
 }
 
 .project-stat-num {
-  font-family: var(--font-display);
+  font-family: var(--font-numeric);
+  font-variant-numeric: lining-nums tabular-nums;
   font-size: 1.4rem;
   font-weight: 600;
   line-height: 1;
@@ -2008,7 +2011,9 @@ footer {
 }
 
 .acc-card-stat strong {
-  font-family: var(--font-display);
+  font-family: var(--font-numeric);
+  font-weight: 600;
+  font-variant-numeric: lining-nums tabular-nums;
   font-size: 1.15rem;
   line-height: 1;
 }
@@ -2215,7 +2220,8 @@ footer {
   text-align: center;
 }
 .acc-modal-stat-num {
-  font-family: var(--font-display);
+  font-family: var(--font-numeric);
+  font-variant-numeric: lining-nums tabular-nums;
   font-size: 1.6rem;
   font-weight: 600;
   color: var(--accent-primary);
@@ -3013,4 +3019,85 @@ body :is(h1, h2, h3, h4, a, .pg-index-title, .projects-index-case-study, .pg-tab
     align-items: flex-start;
   }
   .dock-wrapper .dock-tooltip { position: absolute; bottom: 100%; }
+}
+
+/* The surprise stays on the page; the native dialog manages modal focus. */
+.rickroll-dialog {
+  width: min(56rem, calc(100% - 2rem));
+  max-height: calc(100dvh - 2rem);
+  margin: auto;
+  padding: 0;
+  overflow: auto;
+  border: 0;
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  box-shadow: var(--shadow-lg);
+}
+
+.rickroll-dialog::backdrop {
+  background: var(--overlay-backdrop);
+}
+
+.rickroll-dialog-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+}
+
+.rickroll-dialog-heading h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2vw, 1.65rem);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.rickroll-dialog-heading h2::after {
+  content: none;
+}
+
+.rickroll-close {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.5rem 0.65rem;
+  border: 0;
+  border-radius: var(--radius-sm);
+  color: inherit;
+  background: transparent;
+  font: 500 0.875rem var(--font-body);
+  cursor: pointer;
+  transition: background-color 160ms ease, transform 120ms var(--ease-out);
+}
+
+.rickroll-close svg {
+  width: 1rem;
+  height: 1rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+
+.rickroll-player {
+  display: block;
+  width: 100%;
+  min-height: 200px;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  background: var(--project-card-bg);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .rickroll-close:hover { background: var(--bg-secondary); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .rickroll-close:active { transform: scale(0.97); }
 }

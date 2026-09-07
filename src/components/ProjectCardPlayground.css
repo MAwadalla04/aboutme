@@ -389,7 +389,9 @@ body.knicks-mode .pg-visual {
 
 .pg-dossier-proof strong {
   color: white;
-  font-family: var(--font-display);
+  font-family: var(--font-numeric);
+  font-weight: 600;
+  font-variant-numeric: lining-nums tabular-nums;
   font-size: 1.35rem;
 }
 
@@ -494,7 +496,9 @@ body.knicks-mode .pg-visual {
 }
 
 .pg-index-preview > div:last-child > strong {
-  font-family: var(--font-headline);
+  font-family: var(--font-numeric);
+  font-weight: 600;
+  font-variant-numeric: lining-nums tabular-nums;
   font-size: 2.4rem;
   line-height: 1;
 }
@@ -505,6 +509,36 @@ body.knicks-mode .pg-visual {
   color: var(--pg-muted);
   font-size: 0.65rem;
   text-align: right;
+}
+
+/* Featured live-product imagery */
+.pg-index-featured .pg-index-panel {
+  grid-template-columns: minmax(0, 0.65fr) minmax(0, 1fr);
+  gap: 2.5rem;
+}
+
+.pg-index-featured .pg-index-preview {
+  display: block;
+}
+
+.pg-visual.pg-visual-screenshot {
+  display: block;
+  aspect-ratio: auto;
+  max-height: none;
+  background: var(--knicks-navy);
+}
+
+.pg-visual-screenshot img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 900px) {
+  .pg-index-featured .pg-index-panel {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
 }
 
 /* Option 3: visual carousel */
@@ -687,7 +721,9 @@ body.knicks-mode .pg-visual {
 }
 
 .pg-bento-metric strong {
-  font-family: var(--font-headline);
+  font-family: var(--font-numeric);
+  font-weight: 600;
+  font-variant-numeric: lining-nums tabular-nums;
   font-size: 2rem;
   line-height: 1;
 }
@@ -778,6 +814,16 @@ body.knicks-mode .pg-visual {
   max-height: 19rem;
 }
 
+.pg-panel > .pg-visual-screenshot {
+  aspect-ratio: auto;
+  max-height: none;
+}
+
+.pg-panel > .pg-visual-screenshot img {
+  max-height: 20rem;
+  object-fit: contain;
+}
+
 .pg-tabs {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -833,7 +879,9 @@ body.knicks-mode .pg-visual {
 }
 
 .pg-panel-footer strong {
-  font-family: var(--font-headline);
+  font-family: var(--font-numeric);
+  font-weight: 600;
+  font-variant-numeric: lining-nums tabular-nums;
   font-size: 2rem;
   line-height: 1;
 }

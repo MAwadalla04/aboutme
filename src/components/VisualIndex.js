@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import './ProjectCardPlayground.css';
-import { PROJECTS } from '../data/projects';
+import { PROJECTS, FEATURED_PROJECT } from '../data/projects';
 import { ArrowIcon, ExternalIcon, ProjectVisual } from './ProjectVisual';
 
 const VisualIndex = ({ onOpen }) => {
-  const [openId, setOpenId] = useState(null);
+  const [openId, setOpenId] = useState(FEATURED_PROJECT?.id ?? null);
 
   return (
     <section className="projects-index" aria-label="Selected projects">
@@ -15,7 +15,7 @@ const VisualIndex = ({ onOpen }) => {
             const panelId = `projects-index-panel-${project.id}`;
 
             return (
-              <article className={`pg-index-item${isOpen ? ' pg-index-item-open' : ''}`} key={project.id}>
+              <article className={`pg-index-item${isOpen ? ' pg-index-item-open' : ''}${project.featured ? ' pg-index-featured' : ''}`} key={project.id}>
                 <button
                   type="button"
                   className="pg-index-trigger"
@@ -45,7 +45,7 @@ const VisualIndex = ({ onOpen }) => {
                   </div>
                   <div className="pg-index-preview">
                     <ProjectVisual project={project} />
-                    <div><strong>{project.metric}</strong><span>{project.metricLabel}</span></div>
+                    {!project.image && <div><strong>{project.metric}</strong><span>{project.metricLabel}</span></div>}
                   </div>
                 </div>
               </article>

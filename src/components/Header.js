@@ -59,10 +59,12 @@ const Header = ({ knicksMode }) => {
           </ul>
           <div className="nav-actions">
             <a
-              href="https://youtu.be/xvFZjo5PgG0?si=e2d4R0ybH1zhHJZS"
+              className="surprise-nav-btn"
+              href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
               target="_blank"
               rel="noopener noreferrer"
-              className="surprise-nav-btn"
+              aria-label="/useless (opens YouTube in a new tab)"
+              onClick={handleNavigate}
             >
               /useless
             </a>

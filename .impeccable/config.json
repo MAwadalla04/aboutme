@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "src/index.css"
+        ],
+        "createdAt": "2026-09-07T20:31:21.366Z",
+        "reason": "Agent review: all three current side-tab matches are established optional Knicks-theme orange jersey trim: hero tagline, experience/contact items, and expanded project state. Preserve this intentional sports identity; default theme has no matches."
+      }
+    ]
+  }
+}

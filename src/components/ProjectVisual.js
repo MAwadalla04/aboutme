@@ -87,6 +87,13 @@ const DIAGRAMS = {
 };
 
 export const ProjectVisual = ({ project, compact = false }) => {
+  if (project.image) {
+    return (
+      <div className="pg-visual pg-visual-screenshot">
+        <img src={project.image} alt={project.imageAlt} width={project.imageWidth} height={project.imageHeight} loading="lazy" decoding="async" />
+      </div>
+    );
+  }
   const Diagram = DIAGRAMS[project.visual];
 
   return (

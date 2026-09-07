@@ -1,0 +1,332 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-07T20:49:03.000Z",
+  "title": "Design System: Mohamed Awadalla Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "text-primary": {
+        "role": "primary",
+        "displayName": "Black ink",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(26% 0 0)",
+          "oklch(38% 0 0)",
+          "oklch(49% 0 0)",
+          "oklch(61% 0 0)",
+          "oklch(72% 0 0)",
+          "oklch(84% 0 0)",
+          "oklch(95% 0 0)"
+        ]
+      },
+      "text-secondary": {
+        "role": "neutral",
+        "displayName": "Secondary gray",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(26% 0 0)",
+          "oklch(38% 0 0)",
+          "oklch(49% 0 0)",
+          "oklch(61% 0 0)",
+          "oklch(72% 0 0)",
+          "oklch(84% 0 0)",
+          "oklch(95% 0 0)"
+        ]
+      },
+      "text-muted": {
+        "role": "neutral",
+        "displayName": "Muted gray",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(26% 0 0)",
+          "oklch(38% 0 0)",
+          "oklch(49% 0 0)",
+          "oklch(61% 0 0)",
+          "oklch(72% 0 0)",
+          "oklch(84% 0 0)",
+          "oklch(95% 0 0)"
+        ]
+      },
+      "bg-primary": {
+        "role": "neutral",
+        "displayName": "Near-white canvas",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(26% 0 0)",
+          "oklch(38% 0 0)",
+          "oklch(49% 0 0)",
+          "oklch(61% 0 0)",
+          "oklch(72% 0 0)",
+          "oklch(84% 0 0)",
+          "oklch(95% 0 0)"
+        ]
+      },
+      "bg-secondary": {
+        "role": "neutral",
+        "displayName": "Soft gray surface",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(26% 0 0)",
+          "oklch(38% 0 0)",
+          "oklch(49% 0 0)",
+          "oklch(61% 0 0)",
+          "oklch(72% 0 0)",
+          "oklch(84% 0 0)",
+          "oklch(95% 0 0)"
+        ]
+      },
+      "project-index-paper": {
+        "role": "neutral",
+        "displayName": "Project paper",
+        "tonalRamp": [
+          "oklch(15% 0.006 106)",
+          "oklch(26% 0.006 106)",
+          "oklch(38% 0.006 106)",
+          "oklch(49% 0.006 106)",
+          "oklch(61% 0.006 106)",
+          "oklch(72% 0.006 106)",
+          "oklch(84% 0.006 106)",
+          "oklch(95% 0.006 106)"
+        ]
+      },
+      "project-index-panel": {
+        "role": "neutral",
+        "displayName": "Project panel",
+        "tonalRamp": [
+          "oklch(15% 0.004 106)",
+          "oklch(26% 0.004 106)",
+          "oklch(38% 0.004 106)",
+          "oklch(49% 0.004 106)",
+          "oklch(61% 0.004 106)",
+          "oklch(72% 0.004 106)",
+          "oklch(84% 0.004 106)",
+          "oklch(95% 0.004 106)"
+        ]
+      },
+      "project-index-line": {
+        "role": "neutral",
+        "displayName": "Project dividing line",
+        "tonalRamp": [
+          "oklch(15% 0.009 120)",
+          "oklch(26% 0.009 120)",
+          "oklch(38% 0.009 120)",
+          "oklch(49% 0.009 120)",
+          "oklch(61% 0.009 120)",
+          "oklch(72% 0.009 120)",
+          "oklch(84% 0.009 120)",
+          "oklch(95% 0.009 120)"
+        ]
+      },
+      "knicks-blue": {
+        "role": "secondary",
+        "displayName": "Knicks blue",
+        "tonalRamp": [
+          "oklch(15% 0.13 245)",
+          "oklch(26% 0.13 245)",
+          "oklch(38% 0.13 245)",
+          "oklch(49% 0.13 245)",
+          "oklch(61% 0.13 245)",
+          "oklch(72% 0.13 245)",
+          "oklch(84% 0.13 245)",
+          "oklch(95% 0.13 245)"
+        ]
+      },
+      "knicks-orange": {
+        "role": "secondary",
+        "displayName": "Knicks orange",
+        "tonalRamp": [
+          "oklch(15% 0.14 55)",
+          "oklch(26% 0.14 55)",
+          "oklch(38% 0.14 55)",
+          "oklch(49% 0.14 55)",
+          "oklch(61% 0.14 55)",
+          "oklch(72% 0.14 55)",
+          "oklch(84% 0.14 55)",
+          "oklch(95% 0.14 55)"
+        ]
+      },
+      "knicks-navy": {
+        "role": "secondary",
+        "displayName": "Knicks navy",
+        "tonalRamp": [
+          "oklch(15% 0.04 255)",
+          "oklch(26% 0.04 255)",
+          "oklch(38% 0.04 255)",
+          "oklch(49% 0.04 255)",
+          "oklch(61% 0.04 255)",
+          "oklch(72% 0.04 255)",
+          "oklch(84% 0.04 255)",
+          "oklch(95% 0.04 255)"
+        ]
+      },
+      "knicks-canvas": {
+        "role": "neutral",
+        "displayName": "Knicks white",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(26% 0 0)",
+          "oklch(38% 0 0)",
+          "oklch(49% 0 0)",
+          "oklch(61% 0 0)",
+          "oklch(72% 0 0)",
+          "oklch(84% 0 0)",
+          "oklch(95% 0 0)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Expanded display serif",
+        "purpose": "Global heading default; the hero and featured heading retain their existing overrides."
+      },
+      "headline": {
+        "displayName": "Section headline",
+        "purpose": "Major section headings."
+      },
+      "title": {
+        "displayName": "Editorial title",
+        "purpose": "Project index titles."
+      },
+      "body": {
+        "displayName": "Body and numeric evidence",
+        "purpose": "Readable copy and metrics; use the Inter numeric role because the bundled Harmond 9 glyph is empty."
+      },
+      "label": {
+        "displayName": "Monospaced metadata",
+        "purpose": "Section indices and compact labels."
+      }
+    },
+    "shadows": [
+      {
+        "name": "shadow-sm",
+        "value": "0 2px 8px rgba(0, 0, 0, 0.06)",
+        "purpose": "Small default-theme elevation."
+      },
+      {
+        "name": "shadow-md",
+        "value": "0 8px 24px rgba(0, 0, 0, 0.08)",
+        "purpose": "Scrolled header."
+      },
+      {
+        "name": "shadow-lg",
+        "value": "0 16px 48px rgba(0, 0, 0, 0.1)",
+        "purpose": "Surprise dialog."
+      },
+      {
+        "name": "case-study-panel",
+        "value": "0 24px 70px rgba(0,0,0,0.24)",
+        "purpose": "Case-study panel above its backdrop."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.23, 1, 0.32, 1)",
+        "purpose": "Existing eased interactions."
+      },
+      {
+        "name": "navigation-underline",
+        "value": "transform 250ms ease",
+        "purpose": "Reveal the current, hovered, or focused navigation underline."
+      },
+      {
+        "name": "close-control",
+        "value": "background-color 160ms ease, transform 120ms var(--ease-out)",
+        "purpose": "Fine-pointer hover and reduced-motion-aware pressed feedback."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "compact-project-panel",
+        "value": "640px"
+      },
+      {
+        "name": "mobile-navigation-and-feature-heading",
+        "value": "768px"
+      },
+      {
+        "name": "stack-featured-index",
+        "value": "900px"
+      }
+    ],
+    "notes": [
+      "Tonal ramps are synthesized OKLCH panel previews, not additional implementation tokens or approved palette replacements.",
+      "Sources: src/index.css, src/components/FeaturedProject.css, and live index/panel rules in src/components/ProjectCardPlayground.css. CSS variable fallbacks make specimens independently renderable.",
+      "Runtime CSS owns Knicks theme overrides. Preserve existing hero graph and intro; the reduced-motion implementation hides the intro overlay and disables nonessential movement.",
+      "User requested reverting /useless to the official YouTube watch page in a new tab with noopener noreferrer. Embedded playback is deferred after error 150; the dialog implementation is retained but not mounted by the live header."
+    ]
+  },
+  "components": [
+    {
+      "name": "Surprise button",
+      "kind": "button",
+      "refersTo": "surprise-button",
+      "description": "Dashed navigation pill. The live application uses a link opening YouTube in a new tab; this button is a retained style specimen.",
+      "html": "<button class=\"ds-surprise\" type=\"button\">/useless</button>",
+      "css": ".ds-surprise{font-family:var(--font-body,Inter,sans-serif);font-weight:500;font-size:.78rem;letter-spacing:.02em;text-transform:lowercase;padding:.4rem .9rem;border:1px dashed var(--border-hover,rgba(0,0,0,.2));border-radius:var(--radius-full,9999px);background:transparent;color:var(--text-muted,#666);cursor:pointer;transition:all .3s ease}.ds-surprise:hover{color:var(--accent-primary,#000);border-color:var(--accent-primary,#000)}.ds-surprise:focus-visible,.ds-close:focus-visible,.ds-feature-link:focus-visible,.ds-nav a:focus-visible,.ds-index:focus-visible{outline:3px solid var(--focus-ring,var(--text-primary,#000));outline-offset:3px}"
+    },
+    {
+      "name": "Dialog close control",
+      "kind": "button",
+      "refersTo": "close-button",
+      "description": "Explicit text and icon close control with a 44px minimum height.",
+      "html": "<button class=\"ds-close\" type=\"button\"><span>Close</span><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"m6 6 12 12M18 6 6 18\"/></svg></button>",
+      "css": ".ds-close{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:44px;padding:.5rem .65rem;border:0;border-radius:var(--radius-sm,8px);color:var(--text-primary,#000);background:transparent;font:500 .875rem var(--font-body,Inter,sans-serif);cursor:pointer;transition:background-color 160ms ease,transform 120ms var(--ease-out,cubic-bezier(.23,1,.32,1))}.ds-close svg{width:1rem;height:1rem;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round}@media(hover:hover) and (pointer:fine){.ds-close:hover{background:var(--bg-secondary,#f0f0f0)}}@media(prefers-reduced-motion:no-preference){.ds-close:active{transform:scale(.97)}}.ds-surprise:focus-visible,.ds-close:focus-visible,.ds-feature-link:focus-visible,.ds-nav a:focus-visible,.ds-index:focus-visible{outline:3px solid var(--focus-ring,var(--text-primary,#000));outline-offset:3px}"
+    },
+    {
+      "name": "Featured product link",
+      "kind": "custom",
+      "description": "Underlined product action with a readable target area.",
+      "html": "<a class=\"ds-feature-link\" href=\"https://www.knicksiq.win\">Visit KnicksIQ<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M7 17 17 7M7 7h10v10\"/></svg></a>",
+      "css": ".ds-feature-link{display:inline-flex;align-items:center;gap:.5rem;min-height:44px;color:var(--text-primary,#000);font-family:var(--font-body,Inter,sans-serif);font-size:.875rem;font-weight:600;text-decoration:underline;text-underline-offset:.3em}.ds-feature-link svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6}.ds-surprise:focus-visible,.ds-close:focus-visible,.ds-feature-link:focus-visible,.ds-nav a:focus-visible,.ds-index:focus-visible{outline:3px solid var(--focus-ring,var(--text-primary,#000));outline-offset:3px}"
+    },
+    {
+      "name": "Editorial navigation",
+      "kind": "nav",
+      "description": "Text navigation with an active, hover, and focus underline.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Portfolio specimen\"><a href=\"/about\" aria-current=\"page\">About</a><a href=\"/experience\">Experience</a><a href=\"/projects\">Projects</a></nav>",
+      "css": ".ds-nav{display:flex;flex-wrap:wrap;gap:.5rem}.ds-nav a{position:relative;padding:.5rem 1rem;color:var(--text-secondary,#333);background:transparent;text-decoration:none;font:500 .9rem var(--font-body,Inter,sans-serif)}.ds-nav a::after{content:'';position:absolute;right:1rem;bottom:.35rem;left:1rem;height:1px;background:var(--text-primary,#000);transform:scaleX(0);transform-origin:left;transition:transform 250ms ease}.ds-nav a:hover,.ds-nav a[aria-current=page]{color:var(--text-primary,#000)}.ds-nav a:hover::after,.ds-nav a:focus-visible::after,.ds-nav a[aria-current=page]::after{transform:scaleX(1)}.ds-surprise:focus-visible,.ds-close:focus-visible,.ds-feature-link:focus-visible,.ds-nav a:focus-visible,.ds-index:focus-visible{outline:3px solid var(--focus-ring,var(--text-primary,#000));outline-offset:3px}"
+    },
+    {
+      "name": "Technology tag",
+      "kind": "chip",
+      "description": "Noninteractive outlined monospaced technology label.",
+      "html": "<span class=\"ds-tag\">React</span>",
+      "css": ".ds-tag{display:inline-block;padding:.32rem .5rem;border:1px solid var(--project-index-line,#cfd1cb);color:var(--project-index-muted,#686b68);font-family:var(--font-mono,'JetBrains Mono',monospace);font-size:.64rem;letter-spacing:.04em}"
+    },
+    {
+      "name": "Project index row",
+      "kind": "card",
+      "description": "Ruled project row. Static specimen of the expandable control; React owns its panel state.",
+      "html": "<div class=\"ds-index-card\"><button class=\"ds-index\" type=\"button\" aria-expanded=\"false\"><span class=\"ds-index-meta\">01</span><span class=\"ds-index-title\">KnicksIQ</span><span class=\"ds-index-meta ds-index-category\">Sports intelligence · Full-stack</span><span class=\"ds-index-mark\" aria-hidden=\"true\">+</span></button></div>",
+      "css": ".ds-index-card{border-top:1px solid var(--text-primary,#000);border-bottom:1px solid var(--text-primary,#000);background:var(--project-index-paper,#f4f4f0)}.ds-index{width:100%;min-height:6.5rem;display:grid;grid-template-columns:4rem minmax(12rem,1fr) minmax(12rem,.55fr) 2rem;align-items:center;gap:1rem;padding:1rem 0;border:0;background:transparent;color:var(--text-primary,#000);text-align:left;cursor:pointer}.ds-index-meta{color:var(--project-index-muted,#686b68);font-family:var(--font-mono,'JetBrains Mono',monospace);font-size:.68rem;letter-spacing:.05em;text-transform:uppercase}.ds-index-title{font-family:var(--font-display,'EB Garamond',Georgia,serif);font-size:clamp(1.55rem,3.2vw,2.9rem);line-height:1}.ds-index-mark{justify-self:end;font-family:var(--font-body,Inter,sans-serif);font-size:1.7rem;font-weight:300}@media(max-width:850px){.ds-index{grid-template-columns:3rem minmax(0,1fr) 2rem}.ds-index-category{display:none}}.ds-surprise:focus-visible,.ds-close:focus-visible,.ds-feature-link:focus-visible,.ds-nav a:focus-visible,.ds-index:focus-visible{outline:3px solid var(--focus-ring,var(--text-primary,#000));outline-offset:3px}"
+    }
+  ],
+  "narrative": {
+    "overview": "This records the implemented portfolio, rather than a new brand proposal. Broad serif headings, readable sans-serif copy, small monospaced labels, generous vertical spacing, and fine rules create an editorial rhythm. Product imagery supplies concrete evidence of the work. The optional Knicks theme applies a stronger sports identity to the same structure.\n\nThe existing animated introduction and hero graph are user-preserved signature elements. Extend the surrounding system without replacing them. No product interview or named creative North Star has been established; the descriptions here are observations of the code and reviewed surfaces.",
+    "keyCharacteristics": [
+      "Expanded serif headings with restrained monospaced metadata.",
+      "Mostly flat, ruled sections with large product imagery.",
+      "A monochrome default and an optional blue, orange, and navy theme."
+    ],
+    "rules": [
+      {
+        "name": "The Numeric Readability Rule",
+        "body": "Use the numeric Inter role for metrics: the bundled Harmond font has an empty `9` glyph. Do not move numerical evidence into Harmond merely to match nearby headings.",
+        "section": "typography"
+      }
+    ],
+    "dos": [
+      "Do preserve the user's existing hero graph and introductory animation, including reduced-motion behavior.",
+      "Do use Inter for numeric evidence and retain the established serif and mono roles.",
+      "Do show real project captures at their natural proportions and keep their provenance alongside the assets.",
+      "Do preserve visible keyboard focus, dialog cleanup, and readable content at narrow widths.",
+      "Do retain the three intentional Knicks jersey side accents; their detector exception is limited to the named rule and stylesheet in `.impeccable/config.json`."
+    ],
+    "donts": [
+      "Don't treat experimental project playground layouts as the live portfolio's default system.",
+      "Don't invent a product interview, brand commitment, or named visual direction from this documentation scan.",
+      "Don't describe third-party video playback as working until it has been verified.",
+      "Don't let a fixed screenshot container overlap the case-study tabs."
+    ]
+  }
+}
