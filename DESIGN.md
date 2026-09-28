@@ -110,7 +110,7 @@ Featured copy has a readable measure (52ch); project descriptions use a similar 
 
 The main container has a content width (1152px) plus the page gutter on both sides. The header uses a three-part desktop grid, then a compact mobile arrangement at the existing breakpoint (768px). On phones the social dock participates in the introduction's document flow so it clears reading content.
 
-The featured project uses a ruled two-column heading and a full-width image; its heading stacks at (768px). The featured project index panel stacks at (900px). Images preserve their intrinsic proportions. The case-study screenshot parent is uncapped; the image itself is contained with a maximum height (20rem), keeping subsequent tabs in normal flow. These values describe the shipped compositions, not a universal column count for future pages.
+The homepage layout flows directly from the hero and socials dock into the personal narrative and contact sections. The featured project index panel on `/projects` stacks at (900px). Images preserve their intrinsic proportions. The case-study screenshot parent is uncapped; the image itself is contained with a maximum height (20rem), keeping subsequent tabs in normal flow. These values describe the shipped compositions, not a universal column count for future pages.
 
 ## Elevation & Depth
 
@@ -125,7 +125,7 @@ Project imagery and editorial rows are rectangular. Main project and download ac
 The sidecar includes representative styles for the surprise button, dialog close control, featured link, navigation, technology tag, and project index row. These are static style specimens; application behavior remains in React.
 
 - **Navigation:** understated text links with a thin underline for hover, focus, and the active route. Keyboard focus has a visible outline. Mobile menu controls keep their explicit button shape.
-- **Featured product:** a large real screenshot, concise copy, underlined links with a minimum target height (44px), and a small caption. Current KnicksIQ copy comes from `src/data/projects.js`. Image provenance is recorded in `public/images/projects/ATTRIBUTIONS.md` and the screenshot's adjacent JSON file.
+- **Featured product:** The homepage overview section was removed per user direction, allowing the hero to lead directly into the personal narrative. The component implementation and its styles remain available, and KnicksIQ continues as the first, default-expanded project in the Projects index (`/projects`). Current KnicksIQ copy comes from `src/data/projects.js`. Image provenance is recorded in `public/images/projects/ATTRIBUTIONS.md` and the screenshot's adjacent JSON file.
 - **Project index:** ruled expandable rows combine monospaced number/category, a supporting serif title, and an open/close mark. Expanded content contains the description, technology tags, links, and project preview. The current first, expanded KnicksIQ placement is a surface decision recorded in the direction contract.
 - **Case-study panel:** a scrolling rectangular panel with an explicit close control, contained screenshot, and three tabs. Keep screenshots clear of the tab row at narrow widths.
 - **Surprise link:** At the user's request, `/useless` opens the official YouTube watch page in a new tab with `noopener noreferrer`, leaving the portfolio in place. Embedded playback is deferred after YouTube returned error 150. The dialog implementation and its tests remain available for future investigation, but it is not imported or mounted by the live header.

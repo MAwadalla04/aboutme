@@ -89,6 +89,7 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 220ms ease, color 220ms ease;
 }
 
 ::selection {
@@ -492,6 +493,13 @@ nav {
   background: transparent;
   font: 700 0.78rem/1.5 var(--font-body);
   cursor: pointer;
+  transition: transform 120ms var(--ease-out), opacity 120ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .projects-index-case-study:active {
+    transform: scale(0.97);
+  }
 }
 
 @media (max-width: 768px) {
@@ -535,10 +543,11 @@ nav {
 
 /* Hero Section */
 .hero {
-  min-height: 100vh;
+  min-height: min(72vh, 40rem);
   display: flex;
   align-items: center;
-  padding-top: 72px;
+  padding-top: clamp(5rem, 10vh, 7rem);
+  padding-bottom: clamp(1.5rem, 3vh, 2.5rem);
   position: relative;
   overflow: hidden;
   background: transparent;
@@ -725,6 +734,13 @@ nav {
   transform: translateY(-2px);
 }
 
+@media (hover: hover) and (pointer: fine) {
+  .project-cta:active {
+    transform: translateY(0) scale(0.97);
+    transition: transform 100ms var(--ease-out);
+  }
+}
+
 .download-btn {
   display: inline-flex;
   align-items: center;
@@ -785,6 +801,20 @@ section {
   position: relative;
 }
 
+#about {
+  padding-top: clamp(2rem, 4vh, 3.5rem);
+  padding-bottom: clamp(2rem, 4vh, 3.5rem);
+}
+
+#reading {
+  padding: clamp(2rem, 4vh, 3rem) 0;
+}
+
+#contact {
+  padding-top: clamp(2.5rem, 5vh, 4rem);
+  padding-bottom: clamp(4rem, 8vh, 6rem);
+}
+
 section:nth-child(even) {
   background: transparent;
 }
@@ -822,9 +852,9 @@ section::before {
 
 /* Currently Reading Section */
 .reading-content {
-  max-width: 600px;
-  margin: 0 auto;
-  text-align: center;
+  max-width: 46rem;
+  margin: 0;
+  text-align: left;
 }
 
 .reading-content p {
@@ -959,7 +989,7 @@ section::before {
 .experience-item {
   background: var(--bg-card);
   padding: 2rem;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-sm);
   border: 1px solid var(--border-color);
   margin-bottom: 2rem;
   transition: all 0.3s ease;
@@ -1184,7 +1214,7 @@ section::before {
 /* Contact Section */
 .contact-content {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
   gap: 4rem;
   align-items: start;
 }
@@ -1207,7 +1237,7 @@ section::before {
   align-items: center;
   padding: 1.25rem 1.5rem;
   background: var(--bg-card);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-sm);
   border: 1px solid var(--border-color);
   transition: all 0.3s ease;
   text-decoration: none;
@@ -1302,7 +1332,18 @@ footer {
   :root { --page-gutter: 16px; }
   
   section {
-    padding: 4rem 0;
+    padding: 3rem 0;
+  }
+
+  #about,
+  #reading {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  #contact {
+    padding-top: 2rem;
+    padding-bottom: 3.5rem;
   }
   
   h2 {
@@ -1345,8 +1386,17 @@ footer {
 
   .nav-links.is-open {
     display: flex;
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 180ms var(--ease-out), transform 180ms var(--ease-out);
   }
 
+  @starting-style {
+    .nav-links.is-open {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+  }
   .nav-links a {
     display: block;
     width: 100%;
@@ -1357,8 +1407,8 @@ footer {
   
   .hero {
     min-height: auto;
-    padding-top: 120px;
-    padding-bottom: 4rem;
+    padding-top: 100px;
+    padding-bottom: 1.5rem;
   }
   
   .hero-stats {
@@ -1472,6 +1522,66 @@ footer {
 .intro-overlay.intro-phase-landing {
   background: transparent;
   pointer-events: none;
+}
+
+.intro-skip {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 1510;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.intro-skip:hover {
+  color: var(--text-primary);
+  background: var(--bg-card-hover);
+  border-color: var(--border-hover);
+}
+
+.intro-skip:active {
+  transform: scale(0.97);
+}
+
+.intro-skip:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.intro-phase-landing .intro-skip {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms ease;
+}
+
+body.knicks-mode .intro-skip {
+  background: rgba(17, 29, 47, 0.85);
+  color: #ffffff;
+  border-color: rgba(245, 132, 38, 0.4);
+}
+
+body.knicks-mode .intro-skip:hover {
+  background: var(--knicks-navy);
+  border-color: var(--knicks-orange);
+  color: #ffffff;
+}
+
+body.knicks-mode .intro-skip:focus-visible {
+  outline-color: var(--knicks-orange);
 }
 
 .intro-stage {
@@ -2705,6 +2815,14 @@ body :is(h1, h2, h3, h4, a, .pg-index-title, .projects-index-case-study, .pg-tab
   white-space: nowrap;
 }
 
+.section-index:empty {
+  display: none;
+}
+
+.section-title:not(:has(.section-index:not(:empty))) {
+  gap: 0;
+}
+
 .nav-links a {
   border-radius: 0;
   background: transparent;
@@ -2977,7 +3095,10 @@ body :is(h1, h2, h3, h4, a, .pg-index-title, .projects-index-case-study, .pg-tab
   .terminal-egg,
   .about-beat,
   .nav-links a::after,
-  .knicks-mode-indicator {
+  .knicks-mode-indicator,
+  .project-cta,
+  .projects-index-case-study,
+  .nav-links.is-open {
     transition: none !important;
     animation: none !important;
   }
@@ -2991,8 +3112,13 @@ body :is(h1, h2, h3, h4, a, .pg-index-title, .projects-index-case-study, .pg-tab
   .intro-overlay,
   .intro-stage,
   .intro-graph-wrap,
-  .intro-copy {
+  .intro-copy,
+  .intro-skip {
     transition: none !important;
+  }
+
+  .intro-skip:active {
+    transform: none;
   }
 
   .intro-overlay {
@@ -3008,13 +3134,13 @@ body :is(h1, h2, h3, h4, a, .pg-index-title, .projects-index-case-study, .pg-tab
 
 /* On phones the social links belong to the introduction, clear of reading content. */
 @media (max-width: 768px) {
-  .hero { padding-bottom: 2rem; }
+  .hero { padding-bottom: 1.25rem; }
   .dock-wrapper {
     position: relative;
     left: auto;
     bottom: auto;
     width: fit-content;
-    margin: 0 var(--page-gutter) 4rem;
+    margin: 0 var(--page-gutter) 1.5rem;
     transform: none;
     align-items: flex-start;
   }

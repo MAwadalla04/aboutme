@@ -126,6 +126,48 @@ describe('Hero intro', () => {
     expect(jest.getTimerCount()).toBe(0);
   });
 
+  it('dismisses the intro immediately and marks session storage when clicking Skip intro', () => {
+    mount();
+    const skipButton = container.querySelector('.intro-skip');
+    expect(skipButton).not.toBeNull();
+    expect(skipButton.textContent).toContain('Skip intro');
+    expect(container.querySelector('.intro-overlay')).not.toBeNull();
+    expect(jest.getTimerCount()).toBeGreaterThan(0);
+
+    act(() => {
+      skipButton.click();
+    });
+
+    expect(container.querySelector('.intro-overlay')).toBeNull();
+    expect(window.sessionStorage.getItem(INTRO_STORAGE_KEY)).toBe('true');
+    expect(jest.getTimerCount()).toBe(0);
+  });
+
+  it('dismisses the intro immediately and marks session storage on Escape keypress', () => {
+    mount();
+    expect(container.querySelector('.intro-overlay')).not.toBeNull();
+    expect(jest.getTimerCount()).toBeGreaterThan(0);
+
+    act(() => {
+      window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+    });
+
+    expect(container.querySelector('.intro-overlay')).toBeNull();
+    expect(window.sessionStorage.getItem(INTRO_STORAGE_KEY)).toBe('true');
+    expect(jest.getTimerCount()).toBe(0);
+  });
+
+  it('does not trigger skip on non-Escape keypress', () => {
+    mount();
+    expect(container.querySelector('.intro-overlay')).not.toBeNull();
+
+    act(() => {
+      window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
+    });
+
+    expect(container.querySelector('.intro-overlay')).not.toBeNull();
+  });
+
 });
 
 

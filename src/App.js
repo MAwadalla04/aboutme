@@ -5,7 +5,6 @@ import About from './components/About';
 import CurrentlyReading from './components/Skills';
 import Experience from './components/Experience';
 import Projects from './components/Projects';
-import FeaturedProject from './components/FeaturedProject';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import { SocialsDock } from './components/SocialsDock';
@@ -37,7 +36,26 @@ function App() {
       return false;
     }
   });
-  const route = normalizePath(window.location.pathname);
+  const [route, setRoute] = useState(() => normalizePath(window.location.pathname));
+
+  const navigate = useCallback((path) => {
+    const nextPath = normalizePath(path);
+    if (window.location.pathname !== nextPath) {
+      window.history.pushState({}, '', nextPath);
+    }
+    setRoute(nextPath);
+  }, []);
+
+  useEffect(() => {
+    const handlePopState = () => {
+      setRoute(normalizePath(window.location.pathname));
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, []);
 
   const toggleKnicksMode = useCallback(() => {
     setKnicksMode((isActive) => !isActive);
@@ -117,10 +135,9 @@ function App() {
       <>
         <Hero />
         <SocialsDock />
-        <FeaturedProject />
-        <About knicksMode={knicksMode} onToggleKnicksMode={toggleKnicksMode} sectionIndex="01 /" />
-        <CurrentlyReading sectionIndex="02 /" />
-        <Contact sectionIndex="03 /" />
+        <About knicksMode={knicksMode} onToggleKnicksMode={toggleKnicksMode} />
+        <CurrentlyReading />
+        <Contact />
       </>
     );
   };
@@ -128,7 +145,7 @@ function App() {
   return (
     <div className={`App app-${route.slice(1)}`}>
       <a className="skip-link" href="#main-content">Skip to content</a>
-      <Header knicksMode={knicksMode} />
+      <Header knicksMode={knicksMode} route={route} navigate={navigate} />
       <main id="main-content">{renderPage()}</main>
       <Footer />
       <TerminalEgg />

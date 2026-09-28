@@ -5,6 +5,7 @@ import FeaturedProject from './FeaturedProject';
 import RickrollDialog from './RickrollDialog';
 import Header from './Header';
 import { FEATURED_PROJECT } from '../data/projects';
+import App from '../App';
 
 describe('portfolio featured work and surprise player', () => {
   let container;
@@ -17,6 +18,25 @@ describe('portfolio featured work and surprise player', () => {
     root = createRoot(container);
     HTMLDialogElement.prototype.showModal = function showModal() { this.open = true; };
     HTMLDialogElement.prototype.close = function close() { this.open = false; };
+    window.scrollTo = jest.fn();
+    window.matchMedia = jest.fn().mockImplementation((query) => ({
+      matches: false,
+      media: query,
+      onchange: null,
+      addEventListener: jest.fn(),
+      removeEventListener: jest.fn(),
+      addListener: jest.fn(),
+      removeListener: jest.fn(),
+      dispatchEvent: jest.fn(),
+    }));
+    global.IntersectionObserver = class {
+      constructor(callback) {
+        this.callback = callback;
+      }
+      observe() {}
+      unobserve() {}
+      disconnect() {}
+    };
   });
 
   afterEach(() => {
@@ -42,7 +62,13 @@ describe('portfolio featured work and surprise player', () => {
     expect(first.querySelector('.pg-index-panel').hidden).toBe(true);
   });
 
-  it('shares the same real project data on the homepage', () => {
+  it('does not render the featured project overview on the main page', () => {
+    act(() => root.render(<App />));
+    expect(container.querySelector('.featured-project')).toBeNull();
+    expect(container.querySelector('#about')).not.toBeNull();
+  });
+
+  it('keeps the featured project component consistent with shared project data', () => {
     act(() => root.render(<FeaturedProject />));
     expect(container.querySelector('h2').textContent).toBe(FEATURED_PROJECT.title);
     expect(container.querySelector('img').getAttribute('alt')).toBe(FEATURED_PROJECT.imageAlt);

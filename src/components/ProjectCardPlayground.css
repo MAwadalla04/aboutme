@@ -446,6 +446,11 @@ body.knicks-mode .pg-visual {
   justify-self: end;
   font-size: 1.7rem;
   font-weight: 300;
+  transition: transform 200ms var(--ease-out);
+}
+
+.pg-index-trigger:hover .pg-index-mark {
+  transform: scale(1.15);
 }
 
 .pg-index-panel {
@@ -453,6 +458,16 @@ body.knicks-mode .pg-visual {
   grid-template-columns: minmax(0, 1fr) minmax(19rem, 0.7fr);
   gap: 4rem;
   padding: 0.5rem 3rem 3rem 5rem;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 220ms var(--ease-out), transform 220ms var(--ease-out);
+}
+
+@starting-style {
+  .pg-index-panel {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
 }
 
 .pg-index-panel[hidden] {
@@ -768,11 +783,19 @@ body.knicks-mode .pg-visual {
   place-items: center;
   padding: 1rem;
   background: rgba(17,18,19,0.74);
+  opacity: 1;
+  transition: opacity 220ms var(--ease-out);
   --pg-ink: #111213;
   --pg-panel: #fbfbf8;
   --pg-line: #cfd1cb;
   --pg-muted: #686b68;
   --pg-orange: #f36b24;
+}
+
+@starting-style {
+  .pg-panel-backdrop {
+    opacity: 0;
+  }
 }
 
 .pg-panel {
@@ -784,6 +807,16 @@ body.knicks-mode .pg-visual {
   background: var(--pg-panel);
   color: var(--pg-ink);
   box-shadow: 0 24px 70px rgba(0,0,0,0.24);
+  opacity: 1;
+  transform: scale(1);
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1), opacity 200ms ease;
+}
+
+@starting-style {
+  .pg-panel {
+    opacity: 0;
+    transform: scale(0.96);
+  }
 }
 
 .pg-panel-close {
@@ -798,6 +831,26 @@ body.knicks-mode .pg-visual {
   background: var(--pg-panel);
   color: var(--pg-ink);
   cursor: pointer;
+  transition: background-color 160ms ease, transform 120ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .pg-panel-close:hover {
+    background: #f0f0eb;
+  }
+  .pg-panel-close:active {
+    transform: scale(0.94);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pg-panel,
+  .pg-panel-backdrop,
+  .pg-index-panel,
+  .pg-index-mark {
+    transform: none !important;
+    transition: opacity 160ms ease !important;
+  }
 }
 
 .pg-panel h2 {
@@ -1092,6 +1145,15 @@ body.knicks-mode .pg-visual {
     max-height: 92vh;
     padding: 1.25rem;
     border-radius: 1rem 1rem 0 0;
+    transform: translateY(0);
+    transition: transform 280ms cubic-bezier(0.32, 0.72, 0, 1), opacity 200ms ease;
+  }
+
+  @starting-style {
+    .pg-panel {
+      opacity: 0;
+      transform: translateY(100%);
+    }
   }
 
   .pg-panel h2 {

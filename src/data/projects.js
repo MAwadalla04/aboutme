@@ -35,7 +35,10 @@ export const PROJECTS = [
     href: 'https://github.com/Mo-Awadalla/LegalDocuMan',
     linkLabel: 'View repository',
     visual: 'documents',
-    // image: '/images/projects/legaldocuman-contract.jpg',
+    image: '/images/projects/legaldocuman-contract.jpg',
+    imageAlt: 'LegalDocuMan contract processing: a legal document undergoing signature detection and end-date extraction.',
+    imageWidth: 1000,
+    imageHeight: 750,
   },
   {
     id: 'autograd',
@@ -52,7 +55,10 @@ export const PROJECTS = [
     href: 'https://github.com/Mo-Awadalla/autograd',
     linkLabel: 'View engine',
     visual: 'graph',
-    // image: '/images/projects/autograd-network.jpg',
+    image: '/images/projects/autograd-network.jpg',
+    imageAlt: 'Autograd Engine computational graph: neural network architecture and backpropagation visualization.',
+    imageWidth: 3000,
+    imageHeight: 1687,
   },
   {
     id: 'dls',
@@ -69,7 +75,10 @@ export const PROJECTS = [
     href: 'https://github.com/Mo-Awadalla/dls-website-sanitized',
     linkLabel: 'View repository',
     visual: 'schedule',
-    // image: '/images/projects/dls-symposium.jpg',
+    image: '/images/projects/dls-symposium.jpg',
+    imageAlt: 'NYC Emergency Management Disaster Law Symposium: attendees gathered for conference sessions.',
+    imageWidth: 1125,
+    imageHeight: 750,
   },
 ];
 

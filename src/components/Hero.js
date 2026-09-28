@@ -116,6 +116,33 @@ const Hero = () => {
   const playIntro = React.useRef(introPhase !== 'done');
   const [introPass, setIntroPass] = React.useState('forward');
   const [landingTransform, setLandingTransform] = React.useState({ x: 0, y: 0, scale: 1 });
+  const timersRef = React.useRef([]);
+
+  const clearAllTimers = React.useCallback(() => {
+    timersRef.current.forEach((id) => window.clearTimeout(id));
+    timersRef.current = [];
+  }, []);
+
+  const handleSkip = React.useCallback(() => {
+    clearAllTimers();
+    try {
+      window.sessionStorage.setItem(INTRO_STORAGE_KEY, 'true');
+    } catch {
+      // Ignore storage errors if blocked
+    }
+    setIntroPhase('done');
+  }, [clearAllTimers]);
+
+  React.useEffect(() => {
+    if (introPhase === 'done') return undefined;
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        handleSkip();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [introPhase, handleSkip]);
 
   React.useEffect(() => {
     if (!playIntro.current) return undefined;
@@ -142,23 +169,30 @@ const Hero = () => {
       setIntroPhase('landing');
     }, INTRO_TIMELINE.landing);
     const doneTimer = window.setTimeout(() => setIntroPhase('done'), INTRO_TIMELINE.done);
-    return () => {
-      window.clearTimeout(backpropTimer);
-      window.clearTimeout(greetingTimer);
-      window.clearTimeout(landingTimer);
-      window.clearTimeout(doneTimer);
-    };
-  }, []);
 
+    timersRef.current = [backpropTimer, greetingTimer, landingTimer, doneTimer];
+
+    return () => {
+      clearAllTimers();
+    };
+  }, [clearAllTimers]);
   return (
     <>
       {introPhase !== 'done' && (
-        <div className={`intro-overlay intro-phase-${introPhase}`} aria-hidden="true">
+        <div className={`intro-overlay intro-phase-${introPhase}`} aria-hidden={introPhase === 'landing' ? 'true' : undefined} aria-modal={introPhase !== 'landing' ? 'true' : undefined} role={introPhase !== 'landing' ? 'dialog' : undefined} aria-label="Introduction animation">
+          <button
+            type="button"
+            className="intro-skip"
+            onClick={handleSkip}
+            aria-label="Skip intro animation"
+          >
+            Skip intro [ESC]
+          </button>
           <div className="intro-stage">
             <div className="intro-graph-wrap">
               <AutogradGraph intro />
               <p className="intro-graph-caption code">
-                loading / {introPass === 'forward' ? 'forward pass' : 'backprop pass'}
+                calculating / {introPass === 'forward' ? 'forward pass' : 'backprop pass'}
               </p>
             </div>
             <div className="intro-copy">

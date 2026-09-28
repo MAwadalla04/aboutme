@@ -11,7 +11,7 @@ const PAGE_DETAILS = {
   '/projects': { number: '03', label: 'Projects' },
 };
 
-const Header = ({ knicksMode }) => {
+const Header = ({ knicksMode, route, navigate }) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -30,8 +30,21 @@ const Header = ({ knicksMode }) => {
     };
   }, []);
 
-  const activePath = getActivePath();
+  const activePath = route || getActivePath();
   const currentPage = PAGE_DETAILS[activePath] || PAGE_DETAILS['/about'];
+
+  const handleInternalNavigate = (path) => (event) => {
+    if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.altKey || event.shiftKey) {
+      return;
+    }
+    event.preventDefault();
+    setMenuOpen(false);
+    if (navigate) {
+      navigate(path);
+    } else {
+      window.location.pathname = path;
+    }
+  };
 
   const handleNavigate = () => {
     setMenuOpen(false);
@@ -53,9 +66,9 @@ const Header = ({ knicksMode }) => {
             {knicksMode ? 'Knicks mode active' : 'Knicks mode inactive'}
           </span>
           <ul id="primary-nav" className={`nav-links${menuOpen ? ' is-open' : ''}`}>
-            <li><a className={activePath === '/about' ? 'active' : ''} aria-current={activePath === '/about' ? 'page' : undefined} href="/about" onClick={handleNavigate}>About</a></li>
-            <li><a className={activePath === '/experience' ? 'active' : ''} aria-current={activePath === '/experience' ? 'page' : undefined} href="/experience" onClick={handleNavigate}>Experience</a></li>
-            <li><a className={activePath === '/projects' ? 'active' : ''} aria-current={activePath === '/projects' ? 'page' : undefined} href="/projects" onClick={handleNavigate}>Projects</a></li>
+            <li><a className={activePath === '/about' ? 'active' : ''} aria-current={activePath === '/about' ? 'page' : undefined} href="/about" onClick={handleInternalNavigate('/about')}>About</a></li>
+            <li><a className={activePath === '/experience' ? 'active' : ''} aria-current={activePath === '/experience' ? 'page' : undefined} href="/experience" onClick={handleInternalNavigate('/experience')}>Experience</a></li>
+            <li><a className={activePath === '/projects' ? 'active' : ''} aria-current={activePath === '/projects' ? 'page' : undefined} href="/projects" onClick={handleInternalNavigate('/projects')}>Projects</a></li>
           </ul>
           <div className="nav-actions">
             <a
