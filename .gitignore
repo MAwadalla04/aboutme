@@ -24,3 +24,7 @@ yarn-error.log*
 
 # artifacts
 /.artifacts/
+
+# agent scratch directories
+/.agents/
+/.claude/

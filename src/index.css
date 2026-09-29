@@ -2728,9 +2728,49 @@ body.knicks-mode :is(.experience-item, .contact-link) {
   background: var(--knicks-navy);
 }
 body.knicks-mode .live-project-index { border-top: 4px solid var(--knicks-orange); }
-body.knicks-mode .pg-index-number { color: #ffffff; font-weight: 700; }
-body.knicks-mode .pg-index-mark { color: var(--knicks-orange); }
-body.knicks-mode .pg-index-item-open { background: var(--knicks-navy); box-shadow: inset 5px 0 var(--knicks-orange); }
+body.knicks-mode .live-project-index .pg-index-item {
+  padding: 0 1.5rem;
+  border-left: 5px solid transparent;
+  border-bottom: 1px solid var(--border-color);
+  transition: background 180ms ease, border-color 180ms ease;
+}
+body.knicks-mode .live-project-index .pg-index-item:hover:not(.pg-index-item-open) {
+  background: rgba(17, 29, 47, 0.35);
+}
+body.knicks-mode .live-project-index .pg-index-item-open {
+  background: var(--knicks-navy);
+  border-left: 5px solid var(--knicks-orange);
+  box-shadow: none;
+}
+body.knicks-mode .live-project-index .pg-index-number {
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+body.knicks-mode .live-project-index .pg-index-mark { color: var(--knicks-orange); }
+body.knicks-mode .live-project-index .pg-index-panel {
+  padding: 0.5rem 0 3rem calc(4rem + 1rem);
+}
+@media (max-width: 900px) {
+  body.knicks-mode .live-project-index .pg-index-item {
+    padding: 0 1.25rem;
+  }
+  body.knicks-mode .live-project-index .pg-index-panel {
+    padding: 0 0 2.5rem calc(3rem + 1rem);
+  }
+}
+@media (max-width: 520px) {
+  body.knicks-mode .live-project-index .pg-index-item {
+    padding: 0 0.85rem;
+    border-left-width: 4px;
+  }
+  body.knicks-mode .live-project-index .pg-index-item-open {
+    border-left-width: 4px;
+  }
+  body.knicks-mode .live-project-index .pg-index-panel {
+    padding: 0 0 2rem calc(2rem + 0.5rem);
+  }
+}
 body.knicks-mode .pg-panel { border-top: 6px solid var(--knicks-orange); }
 body.knicks-mode .dock { border: 2px solid var(--knicks-blue); border-bottom: 5px solid var(--knicks-orange); }
 body.knicks-mode footer {

@@ -101,6 +101,16 @@ const AutogradGraph = ({ intro = false }) => (
   </svg>
 );
 
+const safeScrollToTop = () => {
+  if (typeof window !== 'undefined' && typeof window.scrollTo === 'function') {
+    try {
+      window.scrollTo(0, 0);
+    } catch {
+      // Fallback for test environments without scrollTo implementation
+    }
+  }
+};
+
 const Hero = () => {
   const introMohamedRef = React.useRef(null);
   const heroMohamedRef = React.useRef(null);
@@ -116,6 +126,8 @@ const Hero = () => {
   const playIntro = React.useRef(introPhase !== 'done');
   const [introPass, setIntroPass] = React.useState('forward');
   const [landingTransform, setLandingTransform] = React.useState({ x: 0, y: 0, scale: 1 });
+  const [scrollDelta, setScrollDelta] = React.useState(0);
+  const landingScrollYRef = React.useRef(0);
   const timersRef = React.useRef([]);
 
   const clearAllTimers = React.useCallback(() => {
@@ -145,6 +157,77 @@ const Hero = () => {
   }, [introPhase, handleSkip]);
 
   React.useEffect(() => {
+    if (introPhase === 'done' || typeof window === 'undefined') return undefined;
+
+    safeScrollToTop();
+
+    if (window.history && 'scrollRestoration' in window.history) {
+      try {
+        window.history.scrollRestoration = 'manual';
+      } catch {
+        // Ignore restricted access to history
+      }
+    }
+
+    const prevBodyOverflow = document.body ? document.body.style.overflow : '';
+    const prevHtmlOverflow = document.documentElement ? document.documentElement.style.overflow : '';
+
+    if (document.body) document.body.style.overflow = 'hidden';
+    if (document.documentElement) document.documentElement.style.overflow = 'hidden';
+
+    const preventDefault = (e) => {
+      e.preventDefault();
+    };
+
+    window.addEventListener('wheel', preventDefault, { passive: false });
+    window.addEventListener('touchmove', preventDefault, { passive: false });
+
+    const handleScrollLock = () => {
+      if ((window.scrollY && window.scrollY !== 0) || (window.scrollX && window.scrollX !== 0)) {
+        safeScrollToTop();
+      }
+    };
+
+    window.addEventListener('scroll', handleScrollLock, { passive: true });
+
+    return () => {
+      if (document.body) document.body.style.overflow = prevBodyOverflow;
+      if (document.documentElement) document.documentElement.style.overflow = prevHtmlOverflow;
+      window.removeEventListener('wheel', preventDefault);
+      window.removeEventListener('touchmove', preventDefault);
+      window.removeEventListener('scroll', handleScrollLock);
+    };
+  }, [introPhase]);
+
+  React.useEffect(() => {
+    if (introPhase !== 'landing' || typeof window === 'undefined') return undefined;
+
+    const updateTransform = () => {
+      const source = introMohamedRef.current?.getBoundingClientRect();
+      const target = heroMohamedRef.current?.getBoundingClientRect();
+      if (source && target) {
+        setLandingTransform({
+          x: target.left + (target.width / 2) - source.left - (source.width / 2),
+          y: target.top + (target.height / 2) - source.top - (source.height / 2),
+          scale: target.width / source.width,
+        });
+      }
+    };
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY || 0;
+      setScrollDelta(currentScrollY - landingScrollYRef.current);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', updateTransform, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', updateTransform);
+    };
+  }, [introPhase]);
+
+  React.useEffect(() => {
     if (!playIntro.current) return undefined;
     try {
       window.sessionStorage.setItem(INTRO_STORAGE_KEY, 'true');
@@ -157,6 +240,9 @@ const Hero = () => {
     const landingTimer = window.setTimeout(() => {
       const source = introMohamedRef.current?.getBoundingClientRect();
       const target = heroMohamedRef.current?.getBoundingClientRect();
+
+      landingScrollYRef.current = typeof window !== 'undefined' ? (window.scrollY || 0) : 0;
+      setScrollDelta(0);
 
       if (source && target) {
         setLandingTransform({
@@ -213,7 +299,11 @@ const Hero = () => {
                   <motion.span
                     ref={introMohamedRef}
                     className="intro-moving-name"
-                    animate={introPhase === 'landing' ? landingTransform : { x: 0, y: 0, scale: 1 }}
+                    animate={introPhase === 'landing' ? {
+                      x: landingTransform.x,
+                      y: landingTransform.y - scrollDelta,
+                      scale: landingTransform.scale,
+                    } : { x: 0, y: 0, scale: 1 }}
                     transition={{ duration: (INTRO_TIMELINE.done - INTRO_TIMELINE.landing) / 1000, ease: EASE }}
                   >
                     Mohamed

@@ -32,6 +32,7 @@ describe('Hero intro', () => {
     jest.useFakeTimers();
     window.localStorage.clear();
     window.sessionStorage.clear();
+    window.scrollTo = jest.fn();
     window.matchMedia = jest.fn().mockImplementation((query) => ({
       matches: false,
       media: query,
@@ -166,6 +167,29 @@ describe('Hero intro', () => {
     });
 
     expect(container.querySelector('.intro-overlay')).not.toBeNull();
+  });
+  it('locks scroll while intro is playing and restores overflow on completion', () => {
+    mount();
+    expect(document.body.style.overflow).toBe('hidden');
+    expect(document.documentElement.style.overflow).toBe('hidden');
+    expect(window.scrollTo).toHaveBeenCalledWith(0, 0);
+
+    act(() => jest.advanceTimersByTime(INTRO_TIMELINE.done));
+
+    expect(document.body.style.overflow).toBe('');
+    expect(document.documentElement.style.overflow).toBe('');
+  });
+
+  it('restores scroll overflow immediately when dismissed via skip or unmount', () => {
+    mount();
+    expect(document.body.style.overflow).toBe('hidden');
+
+    act(() => {
+      container.querySelector('.intro-skip').click();
+    });
+
+    expect(document.body.style.overflow).toBe('');
+    expect(document.documentElement.style.overflow).toBe('');
   });
 
 });
