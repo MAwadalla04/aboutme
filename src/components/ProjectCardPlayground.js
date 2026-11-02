@@ -3,6 +3,8 @@ import './ProjectCardPlayground.css';
 import { PROJECTS } from '../data/projects';
 import { ArrowIcon, CloseIcon, ExternalIcon, ProjectVisual } from './ProjectVisual';
 
+const CASE_STUDY_TABS = ['problem', 'build', 'result'];
+
 const CONCEPTS = {
   dossier: 'Project dossiers',
   index: 'Editorial index',
@@ -258,22 +260,38 @@ export const CaseStudyPanel = ({ project, onClose }) => {
         <h2 id="pg-panel-title">{project.title}</h2>
         <ProjectVisual project={project} />
         <div className="pg-tabs" role="tablist" aria-label="Case study sections">
-          {['problem', 'build', 'result'].map((item) => (
+          {CASE_STUDY_TABS.map((item, index) => (
             <button
               key={item}
               type="button"
               role="tab"
+              id={`pg-tab-${item}`}
+              aria-controls={`pg-panel-${item}`}
+              tabIndex={tab === item ? 0 : -1}
               aria-selected={tab === item}
               className={tab === item ? 'pg-tab-active' : ''}
               onClick={() => setTab(item)}
+              onKeyDown={(event) => {
+                let nextIndex;
+                if (event.key === 'ArrowRight') nextIndex = (index + 1) % CASE_STUDY_TABS.length;
+                else if (event.key === 'ArrowLeft') nextIndex = (index + CASE_STUDY_TABS.length - 1) % CASE_STUDY_TABS.length;
+                else if (event.key === 'Home') nextIndex = 0;
+                else if (event.key === 'End') nextIndex = CASE_STUDY_TABS.length - 1;
+                else return;
+                event.preventDefault();
+                setTab(CASE_STUDY_TABS[nextIndex]);
+                event.currentTarget.parentElement.children[nextIndex].focus();
+              }}
             >
               {item === 'result' ? 'Result' : item.charAt(0).toUpperCase() + item.slice(1)}
             </button>
           ))}
         </div>
-        <div className="pg-tab-panel" role="tabpanel">
-          <p>{tabCopy[tab]}</p>
-        </div>
+        {CASE_STUDY_TABS.map((item) => (
+          <div key={item} id={`pg-panel-${item}`} className="pg-tab-panel" role="tabpanel" aria-labelledby={`pg-tab-${item}`} hidden={tab !== item} tabIndex={0}>
+            <p>{tabCopy[item]}</p>
+          </div>
+        ))}
         <div className="pg-panel-footer">
           <div><strong>{project.metric}</strong><span>{project.metricLabel}</span></div>
           <a href={project.href} target="_blank" rel="noopener noreferrer">{project.linkLabel} <ExternalIcon /></a>

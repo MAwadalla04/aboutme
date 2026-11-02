@@ -25,7 +25,9 @@ const Experience = ({ showHeader = true }) => {
             <div key={index} className="experience-item">
               <div className="experience-header">
                 <div>
-                  <h3 className="experience-title">{exp.title}</h3>
+                  {showHeader
+                    ? <h3 className="experience-title">{exp.title}</h3>
+                    : <h2 className="experience-title">{exp.title}</h2>}
                   <div className="experience-company">{exp.company}</div>
                   <div className="experience-location">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
