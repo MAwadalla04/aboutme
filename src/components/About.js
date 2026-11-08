@@ -9,18 +9,18 @@ const About = ({ knicksMode, onToggleKnicksMode, sectionIndex }) => {
           <div className="about-text">
             <div className="about-beat" style={{ '--beat-delay': '0ms' }}>
               <h3>What I build</h3>
-              <p>I build software for real operational problems. I built LegalDocuMan to process legal contracts based on their end dates. To explore computer vision models, I fine-tuned an RF-DETR model with synthetic data and publicly available training datasets.</p>
+              <p>I build software for operations teams. LegalDocuMan reads legal contracts, pulls out their end dates, and detects signatures. For signature detection I fine-tuned an RF-DETR model on synthetic data and public datasets.</p>
             </div>
             <div className="about-connector" aria-hidden="true" />
             <div className="about-beat" style={{ '--beat-delay': '80ms' }}>
               <h3>How I build</h3>
-              <p>I care about reliability. I design for retries, failure recovery, and observability. I also make sure that systems work correctly outside the happy path.</p>
+              <p>I design for failure. My systems retry safely, recover when a step fails, and log enough to show what went wrong. I test the failure cases as well as the normal path.</p>
             </div>
             <div className="about-connector" aria-hidden="true" />
             <div className="about-beat" style={{ '--beat-delay': '160ms' }}>
               <h3>Outside of work</h3>
               <p>
-                I am a die-hard{' '}
+                I am a{' '}
                 <button
                   type="button"
                   className="knicks-trigger"
@@ -30,7 +30,7 @@ const About = ({ knicksMode, onToggleKnicksMode, sectionIndex }) => {
                 >
                   Knicks
                 </button>{' '}
-                fan. I built KnicksIQ, a full-stack project that lets people explore games, player statistics, and season data. KnicksIQ is in public beta. I welcome feedback and ideas for improvement.
+                fan. I built KnicksIQ, a searchable archive of the 2025–26 season with games, box scores, and player stats. It is in public beta. Send me feedback.
               </p>
             </div>
           </div>

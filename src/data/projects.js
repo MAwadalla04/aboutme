@@ -14,10 +14,6 @@ export const PROJECTS = [
     href: 'https://www.knicksiq.win',
     linkLabel: 'Explore KnicksIQ',
     visual: 'court',
-    image: '/images/projects/knicksiq-interface.webp',
-    imageAlt: 'KnicksIQ season archive: a Madison Square Garden photograph beside the season introduction, above a search form for asking questions about games and players.',
-    imageWidth: 1440,
-    imageHeight: 1380,
     featured: true,
   },
   {

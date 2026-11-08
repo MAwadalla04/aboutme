@@ -346,9 +346,9 @@ const Hero = () => {
                   </svg>
                   Brooklyn, NY
                 </div>
-                <div className="hero-info-item hero-education-bubble" aria-label="Long Island University, class of 2026">
-                  <span className="hero-education-school">LIU</span>
-                  <span className="hero-education-year">’26</span>
+                <div className="hero-info-item hero-education-bubble" aria-label="New York University, MS in AI and ML, class of 2028">
+                  <span className="hero-education-school">NYU MS AI &amp; ML</span>
+                  <span className="hero-education-year">2028</span>
                 </div>
               </div>
 

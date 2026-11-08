@@ -46,7 +46,7 @@ describe('portfolio featured work and surprise player', () => {
     global.IS_REACT_ACT_ENVIRONMENT = false;
   });
 
-  it('features KnicksIQ first and expands it by default, with the live screenshot and link', () => {
+  it('features KnicksIQ first and expands it by default, with its diagram and live link', () => {
     const onOpen = jest.fn();
     act(() => root.render(<VisualIndex onOpen={onOpen} />));
     const first = container.querySelector('.pg-index-item');
@@ -54,7 +54,8 @@ describe('portfolio featured work and surprise player', () => {
     expect(trigger.textContent).toContain('01KnicksIQ');
     expect(trigger.getAttribute('aria-expanded')).toBe('true');
     expect(first.querySelector('.pg-index-panel').hidden).toBe(false);
-    expect(first.querySelector('img').getAttribute('src')).toBe(FEATURED_PROJECT.image);
+    expect(first.querySelector('img')).toBeNull();
+    expect(first.querySelector('.pg-visual-court')).not.toBeNull();
     expect(first.querySelector('a').href).toBe('https://www.knicksiq.win/');
     act(() => first.querySelector('.projects-index-case-study').click());
     expect(onOpen).toHaveBeenCalledWith(FEATURED_PROJECT);
@@ -71,7 +72,7 @@ describe('portfolio featured work and surprise player', () => {
   it('keeps the featured project component consistent with shared project data', () => {
     act(() => root.render(<FeaturedProject />));
     expect(container.querySelector('h2').textContent).toBe(FEATURED_PROJECT.title);
-    expect(container.querySelector('img').getAttribute('alt')).toBe(FEATURED_PROJECT.imageAlt);
+    expect(container.querySelector('.pg-visual-court')).not.toBeNull();
     expect(container.querySelector('a[href="/projects"]')).not.toBeNull();
   });
 

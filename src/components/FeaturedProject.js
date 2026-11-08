@@ -1,6 +1,6 @@
 import React from 'react';
 import { FEATURED_PROJECT } from '../data/projects';
-import { ArrowIcon, ExternalIcon } from './ProjectVisual';
+import { ArrowIcon, ExternalIcon, ProjectVisual } from './ProjectVisual';
 import './FeaturedProject.css';
 
 const FeaturedProject = () => (
@@ -20,7 +20,7 @@ const FeaturedProject = () => (
       </div>
       <figure className="featured-project-figure">
         <a href={FEATURED_PROJECT.href} target="_blank" rel="noopener noreferrer" aria-label="Explore the live KnicksIQ season archive">
-          <img src={FEATURED_PROJECT.image} alt={FEATURED_PROJECT.imageAlt} width={FEATURED_PROJECT.imageWidth} height={FEATURED_PROJECT.imageHeight} loading="lazy" decoding="async" />
+          <ProjectVisual project={FEATURED_PROJECT} />
         </a>
         <figcaption>The live season archive · React, FastAPI, PostgreSQL, MCP</figcaption>
       </figure>

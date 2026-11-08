@@ -1040,6 +1040,10 @@ section::before {
   margin-bottom: 0.25rem;
 }
 
+.experience-title::after {
+  content: none;
+}
+
 .experience-company {
   color: var(--accent-primary);
   font-weight: 500;
